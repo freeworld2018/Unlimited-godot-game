@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dsosf2ph5863l"]
+[gd_scene load_steps=8 format=3 uid="uid://dsosf2ph5863l"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
 [ext_resource type="PackedScene" uid="uid://dx3ifleapc2nw" path="res://scenes/player.tscn" id="3_ujykm"]
+[ext_resource type="Texture2D" uid="uid://fo4gumkx6bxe" path="res://gane_assets/art/ui/info_wooden.png" id="4_gp4an"]
+[ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
+[ext_resource type="Texture2D" uid="uid://c6xl5fewlmkyx" path="res://gane_assets/art/back_pic/box_open.png" id="6_e1ymp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1411, 189.5)
@@ -51,5 +54,21 @@ offset_bottom = 132.0
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/console"]
 layout_mode = 2
 scroll_following = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(577, 325)
+
+[node name="InfoWooden" type="Sprite2D" parent="."]
+position = Vector2(1021, 63)
+scale = Vector2(0.512346, 0.512346)
+texture = ExtResource("4_gp4an")
+
+[node name="Box" parent="." instance=ExtResource("5_b6kwy")]
+position = Vector2(624, 435)
+
+[node name="BoxOpen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(625, 434)
+texture = ExtResource("6_e1ymp")
 
 [connection signal="text_submitted" from="UI/LineEdit" to="." method="_on_line_edit_text_submitted"]
