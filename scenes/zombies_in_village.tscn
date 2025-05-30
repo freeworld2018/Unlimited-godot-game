@@ -35,11 +35,18 @@ position = Vector2(567.5, 563.25)
 shape = SubResource("RectangleShape2D_ujykm")
 
 [node name="player" parent="." instance=ExtResource("3_ujykm")]
+visible = false
 position = Vector2(339, 260)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
-[node name="LineEdit" type="LineEdit" parent="UI"]
+[node name="CommandWindow" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="UI/CommandWindow"]
 offset_left = 1.0
 offset_top = 133.0
 offset_right = 220.0
@@ -47,11 +54,11 @@ offset_bottom = 167.0
 placeholder_text = "command"
 keep_editing_on_text_submit = true
 
-[node name="console" type="PanelContainer" parent="UI"]
+[node name="console" type="PanelContainer" parent="UI/CommandWindow"]
 offset_right = 220.0
 offset_bottom = 132.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/console"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/CommandWindow/console"]
 layout_mode = 2
 scroll_following = true
 
@@ -71,4 +78,4 @@ visible = false
 position = Vector2(625, 434)
 texture = ExtResource("6_e1ymp")
 
-[connection signal="text_submitted" from="UI/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="text_submitted" from="UI/CommandWindow/LineEdit" to="." method="_on_line_edit_text_submitted"]

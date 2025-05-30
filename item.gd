@@ -13,7 +13,7 @@ func set_info(info:Array):
 	type = info[1]
 	pic  = info[2]
 	id   = info[3]
-	$Sprite2D.texture =load(pic)
+	$Sprite2D.texture = load(pic)
 	
 func get_info():
 	var info =[]
