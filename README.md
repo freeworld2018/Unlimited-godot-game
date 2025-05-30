@@ -1,3 +1,4 @@
+```plaintext
 project_root/
 ├─ auto_load_gds                # 自动加载脚本
 │
@@ -16,3 +17,4 @@ project_root/
 ├─ 3_scenes/                     # 场景文件（保持原结构）
 │
 └─ 4_shaders/                    # 着色器（原shader）
+```
