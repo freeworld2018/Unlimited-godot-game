@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 	#暂时的重力模拟
 	velocity.y = +300.0
 
-	var direction2 = Input.get_axis("ui_left", "ui_right")
+	var direction2 = Input.get_axis("move_left", "move_right")
 	if direction2:
 		velocity.x = direction2 * SPEED
 		if direction2 < 0:
