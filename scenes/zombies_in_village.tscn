@@ -1,7 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsosf2ph5863l"]
+[gd_scene load_steps=11 format=3 uid="uid://dsosf2ph5863l"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
+[ext_resource type="Texture2D" uid="uid://bnwpjlav2hcy0" path="res://gane_assets/art/base_player/down_body.png" id="3_1ecd6"]
+[ext_resource type="Texture2D" uid="uid://bv7cqsi0ae1rf" path="res://gane_assets/art/base_player/walk_1.png" id="3_b6kwy"]
+[ext_resource type="Texture2D" uid="uid://mks770q6f4ei" path="res://gane_assets/art/base_player/walk_2.png" id="4_e1ymp"]
+[ext_resource type="Texture2D" uid="uid://cj2daokjihcst" path="res://gane_assets/art/base_player/walk_2_1.png" id="5_rgini"]
+[ext_resource type="Texture2D" uid="uid://di0iw48f45tlb" path="res://gane_assets/art/base_player/walk_4.png" id="6_1ecd6"]
+[ext_resource type="Texture2D" uid="uid://yx4pxifggi44" path="res://gane_assets/art/base_player/up_body.png" id="7_rgini"]
+[ext_resource type="Texture2D" uid="uid://db5gp54e2qe8n" path="res://gane_assets/art/base_player/arm.png" id="8_1ecd6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ccap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1ecd6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b6kwy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e1ymp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rgini")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1ecd6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pkn42")
@@ -18,3 +53,15 @@ color = Color(0, 0, 0, 1)
 [node name="Ground" type="Sprite2D" parent="floor_0"]
 position = Vector2(566, 498)
 texture = ExtResource("2_ujykm")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D"]
+sprite_frames = SubResource("SpriteFrames_0ccap")
+animation = &"idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("7_rgini")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("8_1ecd6")
