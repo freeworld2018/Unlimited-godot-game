@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://dx3ifleapc2nw"]
+
+[ext_resource type="Texture2D" uid="uid://bnwpjlav2hcy0" path="res://gane_assets/art/base_player/down_body.png" id="1_fjrip"]
+[ext_resource type="Script" uid="uid://dt4o5jk4carss" path="res://scenes/player.gd" id="1_smehm"]
+[ext_resource type="Texture2D" uid="uid://bv7cqsi0ae1rf" path="res://gane_assets/art/base_player/walk_1.png" id="2_smehm"]
+[ext_resource type="Texture2D" uid="uid://mks770q6f4ei" path="res://gane_assets/art/base_player/walk_2.png" id="3_ur7pv"]
+[ext_resource type="Texture2D" uid="uid://cj2daokjihcst" path="res://gane_assets/art/base_player/walk_2_1.png" id="4_y4r1p"]
+[ext_resource type="Texture2D" uid="uid://di0iw48f45tlb" path="res://gane_assets/art/base_player/walk_4.png" id="5_d2wvv"]
+[ext_resource type="Texture2D" uid="uid://yx4pxifggi44" path="res://gane_assets/art/base_player/up_body.png" id="6_3v2ag"]
+[ext_resource type="Texture2D" uid="uid://db5gp54e2qe8n" path="res://gane_assets/art/base_player/arm.png" id="7_jej6c"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ccap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fjrip")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_smehm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ur7pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y4r1p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_d2wvv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smehm"]
+size = Vector2(64, 128)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
+radius = 119.0
+
+[node name="player" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_smehm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0ccap")
+animation = &"idle"
+
+[node name="body" type="Sprite2D" parent="."]
+texture = ExtResource("6_3v2ag")
+
+[node name="arm" type="Sprite2D" parent="."]
+position = Vector2(-10, -30)
+rotation = -6.28319
+texture = ExtResource("7_jej6c")
+offset = Vector2(10, 30)
+
+[node name="Node2D" type="Node2D" parent="arm"]
+position = Vector2(-6.29444e-06, 36)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, -1)
+shape = SubResource("RectangleShape2D_smehm")
+
+[node name="pickup_range" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
+shape = SubResource("CircleShape2D_smehm")
+
+[connection signal="body_entered" from="pickup_range" to="." method="_on_pickup_range_body_entered"]
