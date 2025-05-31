@@ -1,25 +1,16 @@
 extends Node2D
 @onready var test_item = load("res://scenes/item.tscn")
+@onready var inventory = $UI/Inventory
 
-### 输入处理
-func _input(event: InputEvent) -> void:
-	# 禁用输入测试
-	if Input.is_action_just_pressed("ui_cancel"):
-		$UI/CommandWindow/LineEdit.unedit()
-		$UI/CommandWindow/LineEdit.release_focus()
-		return
-		var a  = test_item.instantiate()
-		self.add_child(a)
-		a.position = Vector2(100,0)
-	
-	# 命令窗口显示
-	if Input.is_action_just_pressed("CommandWindow"):
-		$UI/CommandWindow.visible = !$UI/CommandWindow.visible
-		if $UI/CommandWindow.visible:
-			$UI/CommandWindow/LineEdit.editable = true
-		else:
-			$UI/CommandWindow/LineEdit.editable = false
-	return
+
+func inventory_add_item(itemid:int,id:int = -1):
+	inventory.add_item(itemid,id)
+	pass
+func inventory_delete_item(id:int):
+	inventory.del_item(id)
+	pass
+
+
 
 ### 处理命令
 func handle_command(text:String):
@@ -34,20 +25,28 @@ func handle_command(text:String):
 	# 获取类型
 	var command_2 = int(text_group[1])
 	# 筛选指令
+	if command_1 == "quit":
+		get_tree().quit()
 	if command_1 not in ["spawn","get","kill"]:
 		super_print("未知指令")
 		return
 	if typeof(command_2) != 2:
 		super_print("错误数据")
 		return
+	#最终处理
 	match text_group[0]:
-		"spawn":create_item_by_id(command_2)
-
+		"spawn":
+			super_print("spawn指令",1)
+			create_item_by_id(command_2)
+		"get":super_print("get指令",1)
+		"kill":super_print("kill指令",1)
+		
+		
 ### 给予玩家物品(枪)
 func create_item_by_id(id:int):
-	var a = AllItem.item_info(id)
-	var test_0  = test_item.instantiate()
-	test_0.set_info(a)
+	
+	var test_0 = test_item.instantiate()
+	test_0.set_info(AllItem.item_info(id))
 	self.add_child(test_0)
 	test_0.position = Vector2(100,0)
 
@@ -59,6 +58,12 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 	pass # Replace with function body.
 
 ### 命令响应窗口
-func super_print(text:String):
+func super_print(text:String,color:int = 0):
+	var message_color:String
+	# 0 = 白色   1 = 红色  2 = 黄色 
+	match color:
+		0:message_color = "white"
+		1:message_color = "yellow"
+		2:message_color = "red"
 	#控制台输出
-	$UI/CommandWindow/console/RichTextLabel.text += text+"\n"
+	$UI/CommandWindow/console/RichTextLabel.text += "[color="+message_color+"]"+text+"[/color]"+"\n"

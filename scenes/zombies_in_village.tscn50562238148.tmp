@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=13 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://f2v8x7moyqm3" path="res://gane_assets/art/ui/Inventory.png" id="5_1ecd6"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
+[ext_resource type="PackedScene" uid="uid://crb05wy2ytu64" path="res://scenes/item.tscn" id="7_0ccap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1929, 192.5)
@@ -66,7 +67,6 @@ texture = ExtResource("6_0ccap")
 centered = false
 
 [node name="ColorRect" type="ColorRect" parent="UI/Inventory"]
-visible = false
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
@@ -78,6 +78,9 @@ color = Color(0, 0, 0.054902, 0.396078)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Inventory/Area2D"]
 position = Vector2(273, 365)
 shape = SubResource("RectangleShape2D_0ccap")
+
+[node name="item" parent="UI" instance=ExtResource("7_0ccap")]
+position = Vector2(65, 189)
 
 [node name="CommandWindow" type="Control" parent="UI"]
 process_mode = 3

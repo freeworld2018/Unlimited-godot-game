@@ -2,18 +2,7 @@ extends Node
 
 var item_group = []
 
-class item:
-	var name:String
-	var type:int
-	var pic:String
-	var id:int
-	func info():
-		var a = []
-		a.append(name)
-		a.append(type)
-		a.append(pic)
-		a.append(id)
-		return a
+
 func _ready() -> void:
 	#读取json for循环
 	var a = item.new()
@@ -26,6 +15,6 @@ func _ready() -> void:
 func item_info(id:int):
 	#通过id寻找物品
 	if id < 0 or  id>len(item_group):
-		return item_group[0].info()
+		return item_group[0]
 	else:
-		return item_group[id].info()
+		return item_group[id]

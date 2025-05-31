@@ -9,12 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://f2v8x7moyqm3" path="res://gane_assets/art/ui/Inventory.png" id="5_1ecd6"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
+[ext_resource type="Texture2D" uid="uid://c6xl5fewlmkyx" path="res://gane_assets/art/back_pic/box_open.png" id="6_e1ymp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1929, 192.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ccap"]
-size = Vector2(512, 640)
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pkn42")
@@ -50,34 +48,17 @@ position = Vector2(536, 521)
 [node name="Inventory" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 73.0
-offset_right = 263.0
-offset_bottom = 376.0
-mouse_filter = 2
+offset_left = 288.0
+offset_top = 462.0
+offset_right = 328.0
+offset_bottom = 502.0
 script = ExtResource("4_0ccap")
 
 [node name="Inventory2" type="Sprite2D" parent="UI/Inventory"]
 texture = ExtResource("5_1ecd6")
-centered = false
 
 [node name="InventoryBorder" type="Sprite2D" parent="UI/Inventory"]
 texture = ExtResource("6_0ccap")
-centered = false
-
-[node name="ColorRect" type="ColorRect" parent="UI/Inventory"]
-visible = false
-layout_mode = 0
-offset_right = 64.0
-offset_bottom = 64.0
-mouse_filter = 2
-color = Color(0, 0, 0.054902, 0.396078)
-
-[node name="Area2D" type="Area2D" parent="UI/Inventory"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Inventory/Area2D"]
-position = Vector2(273, 365)
-shape = SubResource("RectangleShape2D_0ccap")
 
 [node name="CommandWindow" type="Control" parent="UI"]
 process_mode = 3
@@ -108,7 +89,7 @@ bbcode_enabled = true
 scroll_following = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
+position = Vector2(956, 540)
 
 [node name="InfoWooden" type="Sprite2D" parent="."]
 position = Vector2(1756, 75)
@@ -118,6 +99,9 @@ texture = ExtResource("4_gp4an")
 [node name="Box" parent="." instance=ExtResource("5_b6kwy")]
 position = Vector2(1220, 903)
 
-[connection signal="mouse_entered" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_exited"]
+[node name="BoxOpen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(625, 434)
+texture = ExtResource("6_e1ymp")
+
 [connection signal="text_submitted" from="UI/CommandWindow/LineEdit" to="." method="_on_line_edit_text_submitted"]
