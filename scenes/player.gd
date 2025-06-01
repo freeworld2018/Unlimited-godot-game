@@ -11,27 +11,40 @@ var input_lock:bool =false       #输入锁定
 @onready var up_body = $body
 @onready var arm = $arm
 @onready var down_body = $AnimatedSprite2D
+<<<<<<< HEAD
 var main
 var gravity = 3000
+=======
+@onready var main = self.get_parent()
+
+>>>>>>> 8f0e4c1579c6ac479a764e96dae1d75dbadea0fb
 
 
 var hp:int
 var mp:int
 
+<<<<<<< HEAD
 var jump_level : int = 0
 
+=======
+var current_item
+>>>>>>> 8f0e4c1579c6ac479a764e96dae1d75dbadea0fb
 
 var player_bag: Array[int] = []
 var equiped_weapon
 func _ready() -> void:
-	player_bag.resize(64)  # 调整大小为 64
+	player_bag.resize(8)  # 调整大小为 64
 	player_bag.fill(-1)     # 填充默认值 0
+<<<<<<< HEAD
 	main = self.get_parent()
 	
 	
+=======
+
+>>>>>>> 8f0e4c1579c6ac479a764e96dae1d75dbadea0fb
 
 func _input(event: InputEvent) -> void:
-	
+	#对于鼠标点击的响应
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT :
 			pass
@@ -92,7 +105,6 @@ func auto_pickup(pick_item:RigidBody2D):
 	tween.tween_method(pick_item.set_position,pick_item.get_position(),self.position,0.3)
 	await tween.finished
 	#向player_bag 以及物品栏中添加
-	player_bag.append(pick_item.get_id())
 	inventory_add_item(pick_item.get_id())
 	super_print("获得了物品"+pick_item.self_item.item_name)
 	pick_item.queue_free()
@@ -105,8 +117,8 @@ func super_print(text:String):
 
 
 
-func inventory_add_item(id:int):
-	main.inventory_add_item(id)
+func inventory_add_item(itemid:int):
+	main.inventory_add_item(itemid)
 
 
 

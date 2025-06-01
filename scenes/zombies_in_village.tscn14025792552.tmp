@@ -9,7 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://f2v8x7moyqm3" path="res://gane_assets/art/ui/Inventory.png" id="5_1ecd6"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
-[ext_resource type="PackedScene" uid="uid://cdn7q13hdhncj" path="res://scenes/monster.tscn" id="8_0ccap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1929, 192.5)
@@ -146,14 +145,9 @@ color = Color(1, 1, 1, 0.423529)
 
 [node name="hand_item" type="Control" parent="UI/hand"]
 anchors_preset = 0
-[node name="monster" parent="UI" instance=ExtResource("8_0ccap")]
-position = Vector2(1416, 500)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
 
 [node name="InfoWooden" type="Sprite2D" parent="."]
-position = Vector2(1752, 76)
+position = Vector2(1756, 75)
 scale = Vector2(0.512346, 0.512346)
 texture = ExtResource("4_gp4an")
 

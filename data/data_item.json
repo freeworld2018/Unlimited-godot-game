@@ -1,0 +1,245 @@
+[
+ {
+   "item_name": "手枪",
+   "type": 0,
+   "pic": "res://gane_assets/art/weapon/pistol.png",
+   "id": 0,
+   "stack": 1,
+   "piscset_id": 0,
+   "effect": ""
+ },
+ {
+   "item_name": "面包",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 1,
+   "stack": 1,
+   "piscset_id": 55,
+   "effect": ""
+ },
+ {
+   "item_name": "长棍面包",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 2,
+   "stack": 1,
+   "piscset_id": 60,
+   "effect": ""
+ },
+ {
+   "item_name": "精致面包",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 3,
+   "stack": 1,
+   "piscset_id": 58,
+   "effect": ""
+ },
+ {
+   "item_name": "梨",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 4,
+   "stack": 1,
+   "piscset_id": 2,
+   "effect": ""
+ },
+ {
+   "item_name": "葡萄",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 5,
+   "stack": 1,
+   "piscset_id": 3,
+   "effect": ""
+ },
+ {
+   "item_name": "苹果",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 6,
+   "stack": 1,
+   "piscset_id": 1,
+   "effect": ""
+ },
+ {
+   "item_name": "菠萝",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 7,
+   "stack": 1,
+   "piscset_id": 21,
+   "effect": ""
+ },
+ {
+   "item_name": "西瓜",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 8,
+   "stack": 1,
+   "piscset_id": 6,
+   "effect": ""
+ },
+ {
+   "item_name": "樱桃",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 9,
+   "stack": 1,
+   "piscset_id": 13,
+   "effect": ""
+ },
+ {
+   "item_name": "水果蛋糕",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 10,
+   "stack": 1,
+   "piscset_id": 86,
+   "effect": ""
+ },
+ {
+   "item_name": "马克龙",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 11,
+   "stack": 1,
+   "piscset_id": 74,
+   "effect": ""
+ },
+ {
+   "item_name": "披萨",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 12,
+   "stack": 1,
+   "piscset_id": 78,
+   "effect": ""
+ },
+ {
+   "item_name": "价值50的KFC套餐",
+   "type": 1,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 13,
+   "stack": 1,
+   "piscset_id": 119,
+   "effect": ""
+ },
+ {
+   "item_name": "水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 14,
+   "stack": 1,
+   "piscset_id": 109,
+   "effect": ""
+ },
+ {
+   "item_name": "酒",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 15,
+   "stack": 1,
+   "piscset_id": 109,
+   "effect": ""
+ },
+ {
+   "item_name": "地下城劣质酒",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 16,
+   "stack": 1,
+   "piscset_id": 105,
+   "effect": ""
+ },
+ {
+   "item_name": "地下城优质酒",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 17,
+   "stack": 1,
+   "piscset_id": 104,
+   "effect": ""
+ },
+ {
+   "item_name": "治愈药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 18,
+   "stack": 1,
+   "piscset_id": 37,
+   "effect": ""
+ },
+ {
+   "item_name": "疗伤药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 19,
+   "stack": 1,
+   "piscset_id": 38,
+   "effect": ""
+ },
+ {
+   "item_name": "万能药",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 20,
+   "stack": 1,
+   "piscset_id": 38,
+   "effect": ""
+ },
+ {
+   "item_name": "火焰药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 21,
+   "stack": 1,
+   "piscset_id": 37,
+   "effect": ""
+ },
+ {
+   "item_name": "冰冻药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 22,
+   "stack": 1,
+   "piscset_id": 37,
+   "effect": ""
+ },
+ {
+   "item_name": "魅惑药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 23,
+   "stack": 1,
+   "piscset_id": 38,
+   "effect": ""
+ },
+ {
+   "item_name": "恐惧药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 24,
+   "stack": 1,
+   "piscset_id": 37,
+   "effect": ""
+ },
+ {
+   "item_name": "生命药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 25,
+   "stack": 1,
+   "piscset_id": 107,
+   "effect": ""
+ },
+ {
+   "item_name": "治疗外用药水",
+   "type": 2,
+   "pic": "res://gane_assets/art/food/food.png",
+   "id": 26,
+   "stack": 1,
+   "piscset_id": 37,
+   "effect": ""
+ }
+]
