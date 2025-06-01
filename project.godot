@@ -13,7 +13,7 @@ config_version=5
 config/name="拼好游"
 run/main_scene="uid://cl22my813xjis"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://b7ro6bmnp0o57"
 
 [autoload]
 
