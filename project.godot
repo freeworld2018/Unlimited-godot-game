@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="拼好游"
-run/main_scene="uid://dsosf2ph5863l"
+run/main_scene="uid://cl22my813xjis"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
@@ -28,6 +28,10 @@ mouse_cursor/custom_image="uid://dav38ayrv3o0l"
 [dotnet]
 
 project/assembly_name="拼好游"
+
+[global_group]
+
+monster=""
 
 [input]
 

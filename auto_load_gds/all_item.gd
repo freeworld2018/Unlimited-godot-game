@@ -31,7 +31,7 @@ func _ready() -> void:
 
 func item_info(id:int):
 	#通过id寻找物品
-	if id < 0 or  id>len(item_group):
+	if id < 0 or  id>=len(item_group):
 		return item_group[0]
 	else:
 		return item_group[id]

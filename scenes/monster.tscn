@@ -1,0 +1,77 @@
+[gd_scene load_steps=12 format=3 uid="uid://cdn7q13hdhncj"]
+
+[ext_resource type="Script" uid="uid://bxagb2cxr2fyx" path="res://scenes/monster.gd" id="1_gp4s5"]
+[ext_resource type="Texture2D" uid="uid://bmogrkicn4ofh" path="res://gane_assets/art/monsters/m3-3.png" id="2_yce20"]
+[ext_resource type="Texture2D" uid="uid://bv7cqsi0ae1rf" path="res://gane_assets/art/base_player/walk_1.png" id="3_akk5r"]
+[ext_resource type="Texture2D" uid="uid://df0kfctwsfnka" path="res://gane_assets/art/monsters/m3-2.png" id="3_fttm7"]
+[ext_resource type="Texture2D" uid="uid://btnkfxggagcqh" path="res://gane_assets/art/monsters/m3.png" id="4_akk5r"]
+[ext_resource type="Texture2D" uid="uid://mks770q6f4ei" path="res://gane_assets/art/base_player/walk_2.png" id="4_x2c6u"]
+[ext_resource type="Texture2D" uid="uid://cj2daokjihcst" path="res://gane_assets/art/base_player/walk_2_1.png" id="5_ei7v0"]
+[ext_resource type="Texture2D" uid="uid://di0iw48f45tlb" path="res://gane_assets/art/base_player/walk_4.png" id="6_1v1i4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ccap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yce20")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fttm7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_akk5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fttm7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_akk5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x2c6u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ei7v0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1v1i4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smehm"]
+size = Vector2(81, 91)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
+radius = 119.0
+
+[node name="monster" type="CharacterBody2D" groups=["monster"]]
+collision_mask = 4
+script = ExtResource("1_gp4s5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 13)
+scale = Vector2(0.32963, 0.32963)
+sprite_frames = SubResource("SpriteFrames_0ccap")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.261711
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 13.5)
+shape = SubResource("RectangleShape2D_smehm")
+
+[node name="pickup_range" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
+shape = SubResource("CircleShape2D_smehm")
+
+[connection signal="body_entered" from="pickup_range" to="." method="_on_pickup_range_body_entered"]
