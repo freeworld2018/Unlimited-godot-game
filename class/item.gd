@@ -1,6 +1,6 @@
 extends Node
 class_name item  # 物品/掉落物
-var desc_name:String
+var item_name:String
 var type:int
 var pic:String
 var id:int
@@ -10,7 +10,7 @@ var effect:Array[int]
 
 
 func set_value(value:Array):
-	desc_name = value[0]
+	item_name = value[0]
 	type = value[1]
 	pic  = value[2]
 	id  = value[3]

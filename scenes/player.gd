@@ -11,37 +11,28 @@ var input_lock:bool =false       #输入锁定
 @onready var up_body = $body
 @onready var arm = $arm
 @onready var down_body = $AnimatedSprite2D
-<<<<<<< HEAD
-var main
+
+
 var gravity = 3000
-=======
 @onready var main = self.get_parent()
 
->>>>>>> 8f0e4c1579c6ac479a764e96dae1d75dbadea0fb
 
 
 var hp:int
 var mp:int
 
-<<<<<<< HEAD
 var jump_level : int = 0
 
-=======
 var current_item
->>>>>>> 8f0e4c1579c6ac479a764e96dae1d75dbadea0fb
 
 var player_bag: Array[int] = []
 var equiped_weapon
 func _ready() -> void:
 	player_bag.resize(8)  # 调整大小为 64
 	player_bag.fill(-1)     # 填充默认值 0
-<<<<<<< HEAD
 	main = self.get_parent()
 	
 	
-=======
-
->>>>>>> 8f0e4c1579c6ac479a764e96dae1d75dbadea0fb
 
 func _input(event: InputEvent) -> void:
 	#对于鼠标点击的响应

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=14 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
@@ -146,6 +146,7 @@ color = Color(1, 1, 1, 0.423529)
 
 [node name="hand_item" type="Control" parent="UI/hand"]
 anchors_preset = 0
+
 [node name="monster" parent="UI" instance=ExtResource("8_0ccap")]
 position = Vector2(1416, 500)
 
