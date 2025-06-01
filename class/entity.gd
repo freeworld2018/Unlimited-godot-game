@@ -1,5 +1,5 @@
 extends Node
-class_name item  # 物品/掉落物
+class_name entity # 实体
 var desc_name:String
 var type:int
 var pic:String
@@ -19,7 +19,7 @@ func get_id():
 	return id
 func info():
 	var a = []
-	a.append(name)
+	a.append(desc_name)
 	a.append(type)
 	a.append(pic)
 	a.append(id)

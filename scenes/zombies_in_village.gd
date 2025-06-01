@@ -37,7 +37,10 @@ func handle_command(text:String):
 	match text_group[0]:
 		"spawn":
 			super_print("spawn指令",1)
-			create_item_by_id(command_2)
+			if command_2.is_valid_integer():
+				create_item_by_id(command_2)
+			else:
+				create_monster_by_name(command_2)
 		"get":super_print("get指令",1)
 		"kill":super_print("kill指令",1)
 		
@@ -49,6 +52,16 @@ func create_item_by_id(id:int):
 	test_0.set_info(AllItem.item_info(id))
 	self.add_child(test_0)
 	test_0.position = Vector2(100,0)
+	
+	
+### 生成单位
+func create_monster_by_name(name:String):
+	
+	pass
+	#var test_0 = test_item.instantiate()
+	#test_0.set_info(AllItem.item_info(name))
+	#self.add_child(test_0)
+	#test_0.position = Vector2(100,0)
 
 ### 命令窗回车信号
 func _on_line_edit_text_submitted(new_text: String) -> void:

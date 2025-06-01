@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=13 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://f2v8x7moyqm3" path="res://gane_assets/art/ui/Inventory.png" id="5_1ecd6"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
+[ext_resource type="PackedScene" uid="uid://cdn7q13hdhncj" path="res://scenes/monster.tscn" id="8_0ccap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1929, 192.5)
@@ -107,11 +108,14 @@ layout_mode = 2
 bbcode_enabled = true
 scroll_following = true
 
+[node name="monster" parent="UI" instance=ExtResource("8_0ccap")]
+position = Vector2(1416, 500)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
 [node name="InfoWooden" type="Sprite2D" parent="."]
-position = Vector2(1756, 75)
+position = Vector2(1752, 76)
 scale = Vector2(0.512346, 0.512346)
 texture = ExtResource("4_gp4an")
 
