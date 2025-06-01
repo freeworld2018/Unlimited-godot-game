@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btnkfxggagcqh"
-path="res://.godot/imported/m3.png-1878ee9a7197208da5200ab190b8cf31.ctex"
+uid="uid://bmogrkicn4ofh"
+path="res://.godot/imported/m3-3.png-e0f7ee4a0d9022a2919f8a5487859b2b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gane_assets/art/monsters/m3.png"
-dest_files=["res://.godot/imported/m3.png-1878ee9a7197208da5200ab190b8cf31.ctex"]
+source_file="res://gane_assets/art/entities/m3-3.png"
+dest_files=["res://.godot/imported/m3-3.png-e0f7ee4a0d9022a2919f8a5487859b2b.ctex"]
 
 [params]
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://drvtvtkoava2a"]
+
+[ext_resource type="Script" uid="uid://fcrblijfxg1v" path="res://scenes/entities/tree_1.gd" id="1_ev2ph"]
+[ext_resource type="Texture2D" uid="uid://ddyenkiwdj21i" path="res://gane_assets/art/entities/tree01.png" id="1_xrahm"]
+[ext_resource type="PackedScene" uid="uid://j7vr7rjb45f8" path="res://scenes/effects/tree_hit.tscn" id="2_5wu8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ev2ph"]
+size = Vector2(61, 305)
+
+[node name="Tree1" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 4
+input_pickable = true
+script = ExtResource("1_ev2ph")
+hit_effect_scene = ExtResource("2_5wu8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -153.5)
+shape = SubResource("RectangleShape2D_ev2ph")
+
+[node name="Tree01" type="Sprite2D" parent="."]
+position = Vector2(-2, -154)
+scale = Vector2(2.42188, 2.42188)
+texture = ExtResource("1_xrahm")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

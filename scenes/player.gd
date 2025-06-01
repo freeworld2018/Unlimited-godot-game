@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-var SPEED:float = 300.0          #移速
+var SPEED:float = 500.0          #移速
 var toward_right:bool = true     #朝向
 var input_lock:bool =false       #输入锁定
 
@@ -12,12 +12,13 @@ var input_lock:bool =false       #输入锁定
 @onready var arm = $arm
 @onready var down_body = $AnimatedSprite2D
 var main
-
+var gravity = 3000
 
 
 var hp:int
 var mp:int
 
+var jump_level : int = 0
 
 
 var player_bag: Array[int] = []
@@ -26,12 +27,21 @@ func _ready() -> void:
 	player_bag.resize(64)  # 调整大小为 64
 	player_bag.fill(-1)     # 填充默认值 0
 	main = self.get_parent()
+	
+	
 
 func _input(event: InputEvent) -> void:
 	
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT :
 			pass
+			
+			
+	elif event.is_action("jump"):
+		if jump_level < 2:
+			velocity.y = -800.0
+			jump_level += 1
+		pass
 
 func _process(delta: float) -> void:
 	#var mouse_pos = get_global_mouse_position()
@@ -40,12 +50,19 @@ func _process(delta: float) -> void:
 	arm.look_at(get_global_mouse_position())
 	arm.rotate(deg_to_rad(-90))
 	#print(direction.angle())
+	
+	
+			
 	pass
 	
 func _physics_process(delta: float) -> void:
 	
 	#暂时的重力模拟
-	velocity.y = +300.0
+	if is_on_floor():
+		jump_level = 0
+	else:
+		velocity.y += gravity * delta
+	
 	var direction2 = Input.get_axis("move_left", "move_right")
 	if direction2:
 		velocity.x = direction2 * SPEED
@@ -98,5 +115,6 @@ func inventory_add_item(id:int):
 
 func _on_pickup_range_body_entered(body: Node2D) -> void:
 	print(body.name)
-	auto_pickup(body)
+	if body is RigidBody2D:
+		auto_pickup(body)
 	pass # Replace with function body.

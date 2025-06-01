@@ -20,10 +20,8 @@ texture_region_size = Vector2i(32, 32)
 3:0/0 = 0
 3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 9.55893, -4.77946, 16, 16, -16, 16)
 3:0/1 = 1
-3:0/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 5.41673, -4.46083, 16, 16, -16, 16)
 3:0/2 = 2
 3:0/2/flip_h = true
-3:0/2/physics_layer_0/polygon_0/points = PackedVector2Array(-7.32851, -4.1422, 16, -16, 16, 16, -16, 16)
 0:1/0 = 0
 0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:1/0 = 0
@@ -34,10 +32,8 @@ texture_region_size = Vector2i(32, 32)
 3:1/0 = 0
 3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 9.55893, -4.77946, 16, 16, -16, 16)
 3:1/1 = 1
-3:1/1/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 5.41673, -4.46083, 16, 16, -16, 16)
 3:1/2 = 2
 3:1/2/flip_h = true
-3:1/2/physics_layer_0/polygon_0/points = PackedVector2Array(-7.32851, -4.1422, 16, -16, 16, 16, -16, 16)
 
 [sub_resource type="TileSet" id="TileSet_hlt0o"]
 tile_size = Vector2i(32, 32)
@@ -49,10 +45,9 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_kn7wk")
 
-[node name="HajimiHajimi" type="Node2D" node_paths=PackedStringArray("player", "generator")]
+[node name="HajimiHajimi" type="Node2D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_ym1ft")
 player = NodePath("TileMapLayer_Ground/player")
-generator = NodePath("generator")
 metadata/_edit_horizontal_guides_ = [-45.0]
 
 [node name="generator" type="Node2D" parent="." node_paths=PackedStringArray("ground_layer")]
