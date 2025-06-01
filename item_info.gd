@@ -12,7 +12,22 @@ func set_in_bag(value:bool):
 
 func set_info(info:item):
 	self_item = info
-	$Sprite2D.texture = load(self_item.pic)
+	match self_item.type:
+		0:$Sprite2D.texture = load(self_item.pic)
+		1:
+			$Sprite2D.texture = load(self_item.pic)
+			$Sprite2D.set_hframes(16)
+			$Sprite2D.set_vframes(8)
+			$Sprite2D.set_frame(self_item.picset_id-1)
+		2:
+			$Sprite2D.texture = load(self_item.pic)
+			$Sprite2D.set_hframes(16)
+			$Sprite2D.set_vframes(8)
+			$Sprite2D.set_frame(self_item.picset_id-1)
+			#var a = AtlasTexture.new()
+			#a.atlas = load(self_item.pic)
+			#$Sprite2D.texture = a
+		
 
 func get_id():
 	return self_item.id

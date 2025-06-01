@@ -1,16 +1,32 @@
 extends Node2D
 @onready var test_item = load("res://scenes/item.tscn")
 @onready var inventory = $UI/Inventory
+@onready var camera = $player/Camera2D
+var zoom_value_range:int = 1
+###镜头控制 camera2d
+
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("resize_up"):
+		if camera.zoom.x <1.8:
+			camera.zoom += Vector2(0.2,0.2)
+	if Input.is_action_just_pressed("resize_down"):
+		if camera.zoom.x >0.8:
+			camera.zoom -= Vector2(0.2,0.2)
+
+func _process(delta: float) -> void:
+	#camera.set_position
+	pass
 
 
+
+
+###引用物品栏添加物品功能
 func inventory_add_item(itemid:int,id:int = -1):
 	inventory.add_item(itemid,id)
 	pass
 func inventory_delete_item(id:int):
 	inventory.del_item(id)
 	pass
-
-
 
 ### 处理命令
 func handle_command(text:String):
@@ -42,14 +58,14 @@ func handle_command(text:String):
 		"kill":super_print("kill指令",1)
 		
 		
-### 给予玩家物品(枪)
-func create_item_by_id(id:int):
+### 给予玩家物品(id)
+func create_item_by_id(itemid:int):
 	
 	var test_0 = test_item.instantiate()
-	test_0.set_info(AllItem.item_info(id))
+	test_0.set_info(AllItem.item_info(itemid))
 	self.add_child(test_0)
 	test_0.position = Vector2(100,0)
-
+	print(test_0.self_item.item_name)
 ### 命令窗回车信号
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	handle_command(new_text)
@@ -67,3 +83,8 @@ func super_print(text:String,color:int = 0):
 		2:message_color = "red"
 	#控制台输出
 	$UI/CommandWindow/console/RichTextLabel.text += "[color="+message_color+"]"+text+"[/color]"+"\n"
+
+
+func _on_timer_timeout() -> void:
+	create_item_by_id(randi()%27)
+	pass # Replace with function body.

@@ -4,8 +4,9 @@ var item_name:String
 var type:int
 var pic:String
 var id:int
-var stack:int
-
+var stack:bool = false   #堆叠默认为不可以堆叠
+var picset_id:int    #图集索引
+var effect:Array[int]
 
 
 func set_value(value:Array):
