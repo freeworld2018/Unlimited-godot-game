@@ -3,6 +3,12 @@ extends Node2D
 @onready var inventory = $UI/Inventory
 @onready var camera = $player/Camera2D
 var zoom_value_range:int = 1
+
+func _ready():
+	inventory.connect("item_bar_change", $UI/item_bar._on_item_bar_change)
+
+
+
 ###镜头控制 camera2d
 
 func _input(event: InputEvent) -> void:
@@ -90,7 +96,7 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 ### 命令响应窗口
 func super_print(text:String,color:int = 0):
 	var message_color:String
-	# 0 = 白色   1 = 红色  2 = 黄色 
+	# 0 = 白色   1 = 红色  2 = 黄色 aaaaaaaaaaaaaa
 	match color:
 		0:message_color = "white"
 		1:message_color = "yellow"

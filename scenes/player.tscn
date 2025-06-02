@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dx3ifleapc2nw"]
+[gd_scene load_steps=13 format=3 uid="uid://dx3ifleapc2nw"]
 
 [ext_resource type="Texture2D" uid="uid://bnwpjlav2hcy0" path="res://gane_assets/art/base_player/down_body.png" id="1_fjrip"]
 [ext_resource type="Script" uid="uid://dt4o5jk4carss" path="res://scenes/player.gd" id="1_smehm"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://di0iw48f45tlb" path="res://gane_assets/art/base_player/walk_4.png" id="5_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://yx4pxifggi44" path="res://gane_assets/art/base_player/up_body.png" id="6_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://db5gp54e2qe8n" path="res://gane_assets/art/base_player/arm.png" id="7_jej6c"]
+[ext_resource type="Texture2D" uid="uid://dgdndh5tiwqiv" path="res://gane_assets/art/weapon/pistol.png" id="9_ur7pv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ccap"]
 animations = [{
@@ -56,12 +57,16 @@ texture = ExtResource("6_3v2ag")
 
 [node name="arm" type="Sprite2D" parent="."]
 position = Vector2(-10, -30)
-rotation = -6.28319
 texture = ExtResource("7_jej6c")
 offset = Vector2(10, 30)
 
-[node name="Node2D" type="Node2D" parent="arm"]
+[node name="item_point" type="Node2D" parent="arm"]
+show_behind_parent = true
 position = Vector2(-6.29444e-06, 36)
+
+[node name="Sprite2D" type="Sprite2D" parent="arm/item_point"]
+rotation = 1.5708
+texture = ExtResource("9_ur7pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)

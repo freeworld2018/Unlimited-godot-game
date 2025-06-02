@@ -3,9 +3,10 @@ extends Control
 var switch_ctrl:bool
 var switch_shift:bool
 var switch_mouse_in:bool
-
+var switch_full:bool
+signal item_bar_change
 ###常量记录
-const offset_x = 17
+const offset_x = 17  #针对物品栏的偏移常量
 const offset_y = 45
 
 
@@ -14,10 +15,11 @@ const offset_y = 45
 @onready var hand = self.get_parent().get_node("hand")
 @onready var player = $"../../player"
 ###数据存储
-var item_group_id:Array[int] = []
-var item_group:Array = []
+var item_group_id:Array[int] = []   #id索引
+var item_group:Array = []   		#实例数组
+var item_emptyslots:int = 80  		#空位
 func _ready() -> void:
-	item_group_id.resize(64)
+	item_group_id.resize(80)
 	item_group_id.fill(-1)
 	item_group.resize(80)
 
@@ -40,8 +42,10 @@ func del_item(id:int):
 	print(item_group[id])
 	item_group[id].queue_free()
 	item_group[id] = null
+	set_item_emptyslots(+1)
+	emit_signal("item_bar_change")
 	pass
-func add_item(itemid:int,id:int = -1):
+func add_item(itemid:int,id:int = -1): #当int非-1时 将强制修改
 	#被zombie in village 引用
 	#itemid 物品id， id：数组位置。
 	if id != -1:
@@ -50,12 +54,12 @@ func add_item(itemid:int,id:int = -1):
 			item_group[id].queue_free()
 		set_item(itemid,id)
 		pass
-	for i in range(64):
+	for i in range(80):
 		if item_group_id[i] == -1:
 			item_group_id[i] = itemid
 			set_item(itemid,i)
 			return
-	
+	#emit_signal("item_bar_change")
 		#item_group.append(a)
 	pass
 
@@ -63,31 +67,44 @@ func add_item(itemid:int,id:int = -1):
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT :
-			print("?")
 			if switch_mouse_in:
-				#处理在物品栏进行单击的行为
+				#处理在物品栏进行左键单击的行为
 				var pos = get_local_mouse_position()-Vector2(17,45)
 				var pos_x = int(pos.x)/64
 				pos_x = clamp(pos_x,0,8)
 				var pos_y = int(pos.y)/64
 				pos_y = clamp(pos_y,0,10)
 				var select_id:int = pos_x+pos_y*8
-				if is_null(select_id):
+				emit_signal("item_bar_change")
+				if is_null(select_id): #当目标未知为空,且手上非空的时候执行放置物品
 					if hand.is_null():
 						return
+					#放置手中物品的逻辑
 					item_group_id[select_id] = hand.hand_item.get_id()
 					item_group[select_id] = hand.hand_item
 					item_group[select_id].reparent($InventoryBorder)
 					item_group[select_id].position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
-					
 					hand.clear()
+					set_item_emptyslots(-1)
 					return
 				#鼠标拿起物品
-				item_group[select_id].reparent(hand.get_node("hand_item"))
-				item_group[select_id].set_position(Vector2(0,0))
-				item_group_id[select_id] = -1
-				hand.hand_item = item_group[select_id]
-				item_group[select_id] = null
+				if hand.is_null():#手上空，目标位置不为空的时候
+					item_group[select_id].reparent(hand.get_node("hand_item"))
+					item_group[select_id].set_position(Vector2(0,0))
+					item_group_id[select_id] = -1
+					hand.hand_item = item_group[select_id]
+					item_group[select_id] = null
+					set_item_emptyslots(+1)
+					return
+				#交换物品
+				var exchange_item = item_group[select_id]
+				item_group_id[select_id] = hand.hand_item.get_id()
+				item_group[select_id] = hand.hand_item
+				item_group[select_id].reparent($InventoryBorder)
+				item_group[select_id].position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
+				exchange_item.reparent(hand.get_node("hand_item"))
+				exchange_item.set_position(Vector2(0,0))
+				hand.hand_item = exchange_item
 			pass
 	if Input.is_action_just_pressed("inventory"):
 		self.visible = !self.visible
@@ -102,13 +119,23 @@ func set_item(itemid:int,id:int):
 	var pos_x = id%8
 	var pos_y = id/8
 	test_0.position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
-	test_0.set_in_bag(true)
+	test_0.set_in_bag(true)#冷冻物理
 	item_group[id] = test_0
-
-func is_null(id:int):
+	emit_signal("item_bar_change")
+	set_item_emptyslots(-1)
+	
+func is_null(id:int): #判断某一位是否为-1（无物品）
 	if item_group_id[id] == -1:
 		return true
 
+func set_item_emptyslots(value:int):
+	if value == 0:
+		return
+	if item_emptyslots == 1 and value == -1:
+		player.set_mask(false)
+	if item_emptyslots == 0 and value > 0:
+		player.set_mask(true)
+	item_emptyslots += value
 func _on_area_2d_mouse_entered() -> void:
 	switch_mouse_in = true
 	$ColorRect.visible = true
