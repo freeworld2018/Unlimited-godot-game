@@ -6,7 +6,7 @@ var zoom_value_range:int = 1
 
 func _ready():
 	inventory.connect("item_bar_change", $UI/item_bar._on_item_bar_change)
-
+	self.inventory_add_item(0)
 
 
 ###镜头控制 camera2d
@@ -19,9 +19,6 @@ func _input(event: InputEvent) -> void:
 		if camera.zoom.x >0.8:
 			camera.zoom -= Vector2(0.2,0.2)
 
-func _process(delta: float) -> void:
-	#camera.set_position
-	pass
 
 
 
@@ -74,7 +71,7 @@ func create_item_by_id(itemid:int):
 	test_0.set_info(AllItem.item_info(itemid))
 	self.add_child(test_0)
 	test_0.position = Vector2(100,0)
-	print(test_0.self_item.item_name)
+	#print(test_0.self_item.item_name)
 	
 	
 ### 生成单位

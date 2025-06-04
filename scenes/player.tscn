@@ -44,7 +44,7 @@ size = Vector2(64, 128)
 [sub_resource type="CircleShape2D" id="CircleShape2D_smehm"]
 radius = 119.0
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["hurtable"]]
 collision_mask = 4
 script = ExtResource("1_smehm")
 

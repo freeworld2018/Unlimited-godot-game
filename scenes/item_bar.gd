@@ -2,6 +2,7 @@ extends Control
 @onready var inventroy = $"../Inventory"
 @onready var main = $"../.."
 @onready var player = $"../../player"
+@onready var hand = $"../hand"
 var item_bar_group_id =[] #物品栏 id数组
 var item_bar_group = []   #物品栏 实例数组（Sprite2d
 var item_bar_select_count:int = 0 #光标移动计数
@@ -37,7 +38,8 @@ func _on_item_bar_change():
 				item_bar_group[i].set_hframes(16)
 				item_bar_group[i].set_vframes(8)
 				item_bar_group[i].set_frame(a[1]-1)
-	player.set_current_item(item_bar_group_id[item_bar_select_count])
+	if hand.is_null():
+		player.set_current_item(item_bar_group_id[item_bar_select_count])
 	pass
 	
 	
@@ -45,7 +47,15 @@ func del_item():
 	inventroy.del_item(item_bar_select_count)
 
 func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed:  # 检查按键按下
+# 检测 1-8 数字键
+		for i in range(8):  # 0-7 对应 1-8
+			if event.keycode == KEY_1 + i:  # KEY_1 对应数字1，KEY_2对应数字2，依此类推
+				switch_current_item(i)  # 选中对应物品
+				break  # 避免重复检测
 	if Input.is_action_just_pressed("select"):
+		if not $ItemBarSelect.visible:
+			return
 		item_bar_select_count += 1
 		if item_bar_select_count >7:
 			item_bar_select_count =0
@@ -55,6 +65,7 @@ func switch_current_item(id:int = 0):#选择物品
 	$ItemBarSelect.position =Vector2(offset_x+id*64,offset_y)
 	item_bar_select_count = id
 	if item_bar_group_id[id] != -1:
-		player.set_current_item(item_bar_group_id[item_bar_select_count])
+		if hand.is_null():
+			player.set_current_item(item_bar_group_id[item_bar_select_count])
 	if item_bar_group_id[id] == -1:
 		player.set_current_item(-1)

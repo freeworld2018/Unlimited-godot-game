@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
 
-var SPEED:float = 500.0          #移速
-var toward_right:bool = true     #朝向
-var input_lock:bool =false       #输入锁定
+
 
 
 
@@ -18,19 +16,21 @@ var input_lock:bool =false       #输入锁定
 @onready var inventory = $"../UI/Inventory"
 @onready var current_item_point_pic = $arm/item_point/Sprite2D
 @onready var item_bar = $"../UI/item_bar"
-
+@onready var hand =$"../UI/hand"
 
 #角色属性
-var hp:int
-var mp:int
-var gravity = 3000
-
+var hp:float = 300.0
+var mp:float = 300.0
+var gravity:float = 3000
 var jump_level : int = 0
-
-
 var current_item_id:int = -1
 var player_bag: Array[int] = []###已弃用
 var equiped_weapon
+var SPEED:float = 500.0          #移速
+var toward_right:bool = true     #朝向
+var input_lock:bool =false       #输入锁定
+var can_use:bool = true         #使用锁定
+
 func _ready() -> void:
 	player_bag.resize(8)  # 调整大小为 64
 	player_bag.fill(-1)     # 填充默认值 0
@@ -42,7 +42,10 @@ func _input(event: InputEvent) -> void:
 	#对于鼠标点击的响应
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT :
-			if current_item_id != -1:
+			if inventory.switch_mouse_in:
+				return
+			if current_item_id != -1 and  can_use:
+				can_use = false
 				use_item(current_item_id)
 			pass
 			
@@ -101,8 +104,10 @@ func _physics_process(delta: float) -> void:
 ################核心功能####################
 func use_item(itemid:int):
 	var a = AllItem.item_info(itemid)
+	print("使用物品")
 	match a.type:
-		0:pass
+		0:
+			shoot_animate()
 		1:
 			eat_animate()
 			
@@ -119,20 +124,42 @@ func eat_animate():
 		tween.tween_method(arm.set_rotation_degrees,0,120.0,0.2)
 	await tween.finished
 	arm.set_rotation_degrees(0)
+	can_use = true
+	current_item_id =-1
+	current_item_point_pic.texture = null
+	if not hand.is_null():
+		print("吃掉了手上的东西！")
+		hand.del_item()
+		set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
+		return
 	item_bar.del_item()
 	pass
+func shoot_animate():
+	arm.look_at(get_global_mouse_position())
+	arm.rotate(deg_to_rad(-90))
+	var time_cold = get_tree().create_timer(0.3)
+	var a = load("res://scenes/Projectile/bullet.tscn")
+	var b = a.instantiate()
+	$arm/item_point.add_child(b)
+	await  time_cold.timeout
+	arm.set_rotation_degrees(0)
+	can_use = true
+	pass
+
+#受击处理
+func take_dammge(value:int):
+	print(self.name+"受到了"+str(value)+"点伤害！")
+	self.hp -= value
+	if self.hp <= 0:
+		self.die()
+#死亡
+func die():
+	#播放死亡动画等等。
+	self.queue_free() 
 
 
 
-
-
-
-
-
-
-
-
-
+#自动捡起物品
 func auto_pickup(pick_item:RigidBody2D):
 	#捡起物品
 	if not pick_item.can_pick:
@@ -143,25 +170,23 @@ func auto_pickup(pick_item:RigidBody2D):
 	await pick_item.picked
 	if inventory.item_emptyslots == 0:
 		return
-	inventory_add_item(pick_item.get_id())###已弃用aadd
+	inventory_add_item(pick_item.get_id())###弃用预备
 	super_print("获得了物品"+pick_item.self_item.item_name)
 	print("获得了物品"+pick_item.self_item.item_name)
 	pick_item.queue_free()
 	pass
 
 ###  调用场景内的方法 super_print(控制台打印）  inventory_set_get(物品栏操作)
-
 func super_print(text:String):
 	main.super_print(text)
-
-
-
 func inventory_add_item(itemid:int):
 	main.inventory_add_item(itemid)
 
-
-
-func set_current_item(value:int): #设置当前物品（提供id）
+#设置手上的物品
+func set_current_item(value:int): 
+	#被item_bar引用调用 
+	#设置当前物品（提供id）
+	print("current_item_seted"+str(value))
 	current_item_id =value
 	if current_item_id == -1:
 		current_item_point_pic.texture = null
@@ -177,6 +202,7 @@ func set_current_item(value:int): #设置当前物品（提供id）
 		current_item_point_pic .set_vframes(8)
 		current_item_point_pic .set_frame(a[1]-1)
 func set_mask(value:bool):
+	#设置玩家的pickup_range
 	$pickup_range.set_collision_mask_value(2,value)
 func _on_pickup_range_body_entered(body: Node2D) -> void:
 	#print(body.name)

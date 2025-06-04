@@ -75,8 +75,8 @@ func _input(event: InputEvent) -> void:
 				var pos_y = int(pos.y)/64
 				pos_y = clamp(pos_y,0,10)
 				var select_id:int = pos_x+pos_y*8
-				emit_signal("item_bar_change")
-				if is_null(select_id): #当目标未知为空,且手上非空的时候执行放置物品
+				
+				if is_null(select_id): #当目标位置为空,且手上非空的时候执行放置物品
 					if hand.is_null():
 						return
 					#放置手中物品的逻辑
@@ -86,15 +86,18 @@ func _input(event: InputEvent) -> void:
 					item_group[select_id].position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
 					hand.clear()
 					set_item_emptyslots(-1)
+					emit_signal("item_bar_change")
 					return
 				#鼠标拿起物品
 				if hand.is_null():#手上空，目标位置不为空的时候
 					item_group[select_id].reparent(hand.get_node("hand_item"))
 					item_group[select_id].set_position(Vector2(0,0))
 					item_group_id[select_id] = -1
-					hand.hand_item = item_group[select_id]
-					item_group[select_id] = null
+					
 					set_item_emptyslots(+1)
+					emit_signal("item_bar_change")
+					hand.set_item(item_group[select_id])
+					item_group[select_id] = null
 					return
 				#交换物品
 				var exchange_item = item_group[select_id]
@@ -104,7 +107,8 @@ func _input(event: InputEvent) -> void:
 				item_group[select_id].position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
 				exchange_item.reparent(hand.get_node("hand_item"))
 				exchange_item.set_position(Vector2(0,0))
-				hand.hand_item = exchange_item
+				emit_signal("item_bar_change")
+				hand.set_item(exchange_item)
 			pass
 	if Input.is_action_just_pressed("inventory"):
 		self.visible = !self.visible
@@ -136,13 +140,15 @@ func set_item_emptyslots(value:int):
 	if item_emptyslots == 0 and value > 0:
 		player.set_mask(true)
 	item_emptyslots += value
-func _on_area_2d_mouse_entered() -> void:
+
+
+func _on_container_mouse_entered() -> void:
 	switch_mouse_in = true
 	$ColorRect.visible = true
 	pass # Replace with function body.
 
 
-func _on_area_2d_mouse_exited() -> void:
+func _on_container_mouse_exited() -> void:
 	switch_mouse_in = false
 	$ColorRect.visible = false
 	pass # Replace with function body.

@@ -32,6 +32,7 @@ project/assembly_name="拼好游"
 [global_group]
 
 monster=""
+hurtable=""
 
 [input]
 
