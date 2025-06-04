@@ -33,6 +33,7 @@ project/assembly_name="拼好游"
 
 monster=""
 hurtable=""
+"主角"="我是正面人物——主角！"
 
 [input]
 

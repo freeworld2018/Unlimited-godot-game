@@ -16,7 +16,7 @@ const offset_y = 45
 @onready var player = $"../../player"
 ###数据存储
 var item_group_id:Array[int] = []   #id索引
-var item_group:Array = []   		#实例数组
+var item_group:Array[Sprite2D] = []   		#实例数组
 var item_emptyslots:int = 80  		#空位
 func _ready() -> void:
 	item_group_id.resize(80)
@@ -75,7 +75,7 @@ func _input(event: InputEvent) -> void:
 				var pos_y = int(pos.y)/64
 				pos_y = clamp(pos_y,0,10)
 				var select_id:int = pos_x+pos_y*8
-				
+				print(str(select_id))
 				if is_null(select_id): #当目标位置为空,且手上非空的时候执行放置物品
 					if hand.is_null():
 						return
@@ -117,13 +117,12 @@ func _input(event: InputEvent) -> void:
 
 func set_item(itemid:int,id:int):
 	#根据itemid生成物品并冷冻添加到节点中。
-	var test_0  = main_scene.test_item.instantiate()
+	var test_0  = main_scene.icon_item.instantiate()
 	test_0.set_info(AllItem.item_info(itemid))
 	$InventoryBorder.add_child(test_0)
 	var pos_x = id%8
 	var pos_y = id/8
 	test_0.position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
-	test_0.set_in_bag(true)#冷冻物理
 	item_group[id] = test_0
 	emit_signal("item_bar_change")
 	set_item_emptyslots(-1)

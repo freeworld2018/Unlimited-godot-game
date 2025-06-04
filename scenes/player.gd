@@ -137,17 +137,21 @@ func eat_animate():
 func shoot_animate():
 	arm.look_at(get_global_mouse_position())
 	arm.rotate(deg_to_rad(-90))
-	var time_cold = get_tree().create_timer(0.3)
+	var time_cold = get_tree().create_timer(0.1)
 	var a = load("res://scenes/Projectile/bullet.tscn")
 	var b = a.instantiate()
-	$arm/item_point.add_child(b)
+	self.add_child(b)
+	b.top_level = true
+	b.position  = $arm/item_point.global_position
+	b.direction = get_global_mouse_position()-$arm/item_point.global_position
+	b.look_at(get_global_mouse_position())
 	await  time_cold.timeout
 	arm.set_rotation_degrees(0)
 	can_use = true
 	pass
 
 #受击处理
-func take_dammge(value:int):
+func take_damage(value:int,point:Vector2):
 	print(self.name+"受到了"+str(value)+"点伤害！")
 	self.hp -= value
 	if self.hp <= 0:
@@ -155,7 +159,7 @@ func take_dammge(value:int):
 #死亡
 func die():
 	#播放死亡动画等等。
-	self.queue_free() 
+	pass
 
 
 

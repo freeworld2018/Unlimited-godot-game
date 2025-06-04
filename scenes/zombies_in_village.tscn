@@ -26,7 +26,7 @@ size = Vector2(512, 640)
 [sub_resource type="GDScript" id="GDScript_1ecd6"]
 script/source = "extends Control
 
-var hand_item:RigidBody2D
+var hand_item:Sprite2D
 @onready var player = $\"../../player\"
 @onready var item_bar = $\"../item_bar\"
 
@@ -34,10 +34,9 @@ var hand_item:RigidBody2D
 func del_item():
 	self.hand_item.queue_free()
 	self.hand_item = null
-func set_item(body:RigidBody2D):
-	self.hand_item = body
+func set_item(icon:Sprite2D):
+	self.hand_item = icon
 	player.set_current_item(hand_item.get_id())
-	item
 func _process(delta: float) -> void:
 	$hand_item.position = get_local_mouse_position()
 	pass
@@ -71,7 +70,7 @@ texture = ExtResource("2_ujykm")
 
 [node name="ground" type="StaticBody2D" parent="floor_0"]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 11
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="floor_0/ground"]
 position = Vector2(786.5, 564.75)
@@ -188,10 +187,6 @@ color = Color(1, 1, 1, 0.423529)
 [node name="hand_item" type="Control" parent="UI/hand"]
 anchors_preset = 0
 
-[node name="monster" parent="UI" instance=ExtResource("8_0ccap")]
-visible = false
-position = Vector2(1416, 500)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
@@ -206,8 +201,11 @@ position = Vector2(1220, 903)
 [node name="timernode" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="timernode"]
-wait_time = 0.25
+wait_time = 15.0
 autostart = true
+
+[node name="monster" parent="." instance=ExtResource("8_0ccap")]
+position = Vector2(1416, 500)
 
 [connection signal="mouse_entered" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7yhun3hprxat"]
+
+[ext_resource type="Script" uid="uid://cut2s0wggaph5" path="res://scenes/icon_item.gd" id="1_m2y4q"]
+
+[node name="Node2D" type="Sprite2D"]
+script = ExtResource("1_m2y4q")
