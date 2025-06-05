@@ -11,10 +11,11 @@ const offset_x = 17
 const offset_y = 45
 
 func _ready() -> void:
+	self.position = Vector2(get_window().size.x/2-$ItemBar.texture.get_size().x/2,get_window().size.y-10.0-$ItemBar.texture.get_size().y)
 	item_bar_group_id.resize(8)
 	item_bar_group_id.fill(-1)
 	for i in range(8):
-		var a = Sprite2D.new()
+		var a = main.icon_item.instantiate()
 		a.position = Vector2(offset_x+ i*64+32,offset_y+32)
 		self.get_node("ItemBarBorder").add_child(a)
 		item_bar_group.append(a)
@@ -26,8 +27,9 @@ func _on_item_bar_change():
 	for i in range(8):
 		if item_bar_group_id[i] == -1:
 			item_bar_group[i].texture = null
-
+			item_bar_group[i].set_number(1) #重置数字
 		if item_bar_group_id[i] != -1:
+			item_bar_group[i].set_number(inventroy.item_group[i].number)
 			var a =AllItem.get_pic(item_bar_group_id[i])
 			item_bar_group[i].texture = load(a[0])
 			if a[1] == 0:

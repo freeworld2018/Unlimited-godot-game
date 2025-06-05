@@ -1,12 +1,18 @@
 extends Node2D
-@onready var test_item = load("res://scenes/item.tscn")
-@onready var icon_item = load("res://scenes/icon_item.tscn")
+signal hurt_happen(damage:int,damage_point:Vector2)
+
+var test_item = load("res://scenes/item.tscn")
+var icon_item = load("res://scenes/icon_item.tscn")
+@onready var damage_number = load("res://scenes/effects/damage_number.tscn")
+
+
 @onready var inventory = $UI/Inventory
 @onready var camera = $player/Camera2D
 var zoom_value_range:int = 1
 
 func _ready():
 	inventory.connect("item_bar_change", $UI/item_bar._on_item_bar_change)
+	hurt_happen.connect(_on_hurt_happen)
 	self.inventory_add_item(0)
 
 
@@ -104,5 +110,11 @@ func super_print(text:String,color:int = 0):
 
 
 func _on_timer_timeout() -> void:
-	create_item_by_id(randi()%27)
+	create_item_by_id(0)
 	pass # Replace with function body.
+func _on_hurt_happen(value:int,point:Vector2):
+	var damage_num = damage_number.instantiate()
+	self.add_child(damage_num)
+	damage_num.set_damage_num(value)
+	damage_num.position = point
+	pass

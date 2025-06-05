@@ -1,8 +1,19 @@
 extends Sprite2D
 
 var self_item:item
-
-
+var number:int = 1
+func set_number(num:int):
+	number = num
+	if number == 1:
+		$Label.text = ""
+		return
+	$Label.text = str(number)
+func add(num:int):
+	number += num
+	if number == 1:
+		$Label.text = ""
+		return
+	$Label.text = str(number)
 func set_info(info:item):
 	self_item = info
 	match self_item.type:

@@ -36,16 +36,20 @@ func _process(delta: float) -> void:
 		$ColorRect.position = Vector2(int(pos.x)/64*64+17 ,int(pos.y)/64*64+45)
 
 func del_item(id:int):
-	print("删除物品"+str(id))
-	#被zombie in village 引用
-	item_group_id[id] = -1
-	print(item_group[id])
-	item_group[id].queue_free()
-	item_group[id] = null
-	set_item_emptyslots(+1)
+	item_group[id].add(-1)
+	if item_group[id].number == 0:
+		print("删除物品"+str(id))
+		item_group_id[id] = -1
+		item_group[id].queue_free()
+		item_group[id] = null
+		set_item_emptyslots(+1)
 	emit_signal("item_bar_change")
 	pass
 func add_item(itemid:int,id:int = -1): #当int非-1时 将强制修改
+	if itemid in item_group_id:
+		item_group[item_group_id.find(itemid)].add(1)
+		emit_signal("item_bar_change")
+		return
 	#被zombie in village 引用
 	#itemid 物品id， id：数组位置。
 	if id != -1:
@@ -58,6 +62,7 @@ func add_item(itemid:int,id:int = -1): #当int非-1时 将强制修改
 		if item_group_id[i] == -1:
 			item_group_id[i] = itemid
 			set_item(itemid,i)
+			emit_signal("item_bar_change")
 			return
 	#emit_signal("item_bar_change")
 		#item_group.append(a)
@@ -66,8 +71,8 @@ func add_item(itemid:int,id:int = -1): #当int非-1时 将强制修改
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:
-		if event.button_index == MOUSE_BUTTON_LEFT :
-			if switch_mouse_in:
+		if switch_mouse_in:
+			if event.button_index == MOUSE_BUTTON_LEFT:
 				#处理在物品栏进行左键单击的行为
 				var pos = get_local_mouse_position()-Vector2(17,45)
 				var pos_x = int(pos.x)/64
@@ -100,6 +105,12 @@ func _input(event: InputEvent) -> void:
 					item_group[select_id] = null
 					return
 				#交换物品
+				if hand.hand_item.get_id() == item_group_id[select_id]:
+					item_group[select_id].add(hand.hand_item.number)
+					hand.del_item()
+					hand.clear()
+					emit_signal("item_bar_change")
+					return
 				var exchange_item = item_group[select_id]
 				item_group_id[select_id] = hand.hand_item.get_id()
 				item_group[select_id] = hand.hand_item
@@ -109,6 +120,41 @@ func _input(event: InputEvent) -> void:
 				exchange_item.set_position(Vector2(0,0))
 				emit_signal("item_bar_change")
 				hand.set_item(exchange_item)
+			
+			if event.button_index == MOUSE_BUTTON_RIGHT:
+				var pos = get_local_mouse_position()-Vector2(17,45)
+				var pos_x = int(pos.x)/64
+				pos_x = clamp(pos_x,0,8)
+				var pos_y = int(pos.y)/64
+				pos_y = clamp(pos_y,0,10)
+				var select_id:int = pos_x+pos_y*8
+				print(str(select_id))
+				if is_null(select_id): #当目标位置为空,且手上非空的时候执行放置物品
+					return
+				#对目标未知的操作： 右键获取一个
+				if hand.is_null():
+					var test_0  = main_scene.icon_item.instantiate()
+					test_0.set_info(AllItem.item_info(item_group_id[select_id]))
+					hand.get_node("hand_item").add_child(test_0)
+					hand.hand_item = test_0
+					item_group[select_id].add(-1)
+					if item_group[select_id].number == 0:
+						item_group_id[select_id] = -1
+						item_group[select_id].queue_free()
+						item_group[select_id] = null
+					emit_signal("item_bar_change")
+					return
+				#当手上有东西的时候 对着同物品
+				if hand.hand_item.get_id() == item_group_id[select_id]:
+					hand.hand_item.add(1)
+					item_group[select_id].add(-1)
+					if item_group[select_id].number == 0:
+						item_group_id[select_id] = -1
+						item_group[select_id].queue_free()
+						item_group[select_id] = null
+					emit_signal("item_bar_change")
+				return
+				#对着不同物品啥都不做
 			pass
 	if Input.is_action_just_pressed("inventory"):
 		self.visible = !self.visible
@@ -124,7 +170,7 @@ func set_item(itemid:int,id:int):
 	var pos_y = id/8
 	test_0.position = Vector2(pos_x*64+offset_x+32,pos_y*64+offset_y+32)
 	item_group[id] = test_0
-	emit_signal("item_bar_change")
+	
 	set_item_emptyslots(-1)
 	
 func is_null(id:int): #判断某一位是否为-1（无物品）

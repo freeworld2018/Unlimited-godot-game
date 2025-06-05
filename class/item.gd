@@ -26,3 +26,7 @@ func info():
 	a.append(id)
 	a.append(stack)
 	return a
+func clone():#避免引用
+	var a =item.new()
+	a.set_value(self.info())
+	return a

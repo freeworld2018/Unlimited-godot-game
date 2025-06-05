@@ -11,9 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
 [ext_resource type="Script" uid="uid://ctw3i2bmaqm2u" path="res://scenes/item_bar.gd" id="7_0f5b0"]
 [ext_resource type="Texture2D" uid="uid://bq168obvq1b1s" path="res://gane_assets/art/ui/item_bar.png" id="7_tolyc"]
-[ext_resource type="PackedScene" uid="uid://cdn7q13hdhncj" path="res://scenes/monster.tscn" id="8_0ccap"]
 [ext_resource type="Texture2D" uid="uid://dorct7af5ievw" path="res://gane_assets/art/ui/item_bar_border.png" id="8_cu1yg"]
 [ext_resource type="Texture2D" uid="uid://c3ygcejqka6m5" path="res://gane_assets/art/ui/item_bar_select.png" id="9_mtrrn"]
+[ext_resource type="PackedScene" uid="uid://bs3ye1a1n0bh0" path="res://scenes/enemies/scarecrow.tscn" id="14_0f5b0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1929, 192.5)
@@ -47,6 +47,7 @@ func is_null():
 		return true
 func clear():
 	hand_item = null
+	
 "
 
 [node name="Node2D" type="Node2D"]
@@ -87,10 +88,10 @@ position = Vector2(958, 647)
 [node name="Inventory" type="Control" parent="UI"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 73.0
-offset_right = 263.0
-offset_bottom = 376.0
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 310.0
 mouse_filter = 1
 script = ExtResource("4_0ccap")
 
@@ -196,16 +197,17 @@ scale = Vector2(0.512346, 0.512346)
 texture = ExtResource("4_gp4an")
 
 [node name="Box" parent="." instance=ExtResource("5_b6kwy")]
-position = Vector2(1220, 903)
+position = Vector2(1478, 852)
 
 [node name="timernode" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="timernode"]
-wait_time = 15.0
 autostart = true
 
-[node name="monster" parent="." instance=ExtResource("8_0ccap")]
-position = Vector2(1416, 500)
+[node name="草人" parent="." instance=ExtResource("14_0f5b0")]
+position = Vector2(1230, 789)
+collision_layer = 8
+collision_mask = 4
 
 [connection signal="mouse_entered" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_exited"]

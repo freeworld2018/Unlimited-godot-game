@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca1a8dsr7s54c"
-path="res://.godot/imported/bullet (3).png-73dd2c2dcf857252a367b560d2456012.ctex"
+uid="uid://j8oelj0vftk4"
+path="res://.godot/imported/scarecrow.png-ee6244d1e5b7d546c51f4a8178babaf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/Projectile/bullet (3).png"
-dest_files=["res://.godot/imported/bullet (3).png-73dd2c2dcf857252a367b560d2456012.ctex"]
+source_file="res://gane_assets/art/enemy/scarecrow.png"
+dest_files=["res://.godot/imported/scarecrow.png-ee6244d1e5b7d546c51f4a8178babaf7.ctex"]
 
 [params]
 

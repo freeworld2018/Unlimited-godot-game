@@ -48,7 +48,12 @@ func _input(event: InputEvent) -> void:
 				can_use = false
 				use_item(current_item_id)
 			pass
-			
+		if event.button_index == MOUSE_BUTTON_RIGHT :
+			if inventory.switch_mouse_in:
+				return
+			if hand.is_null():
+				return
+			throw_item(current_item_id)
 			
 	elif event.is_action("jump"):
 		if jump_level < 2:
@@ -119,6 +124,7 @@ func use_item(itemid:int):
 func eat_animate():
 	var tween = get_tree().create_tween()
 	if toward_right:
+		#自定义函数可以对 左右吃东西移动进行修正，
 		tween.tween_method(arm.set_rotation_degrees,0,-120.0,0.2)
 	else:
 		tween.tween_method(arm.set_rotation_degrees,0,120.0,0.2)
@@ -129,10 +135,15 @@ func eat_animate():
 	current_item_point_pic.texture = null
 	if not hand.is_null():
 		print("吃掉了手上的东西！")
-		hand.del_item()
-		set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
+		hand.hand_item.add(-1)
+		if hand.hand_item.number ==0:
+			hand.del_item()
+			set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
+			return
+		set_current_item(hand.hand_item.get_id())
 		return
-	item_bar.del_item()
+	inventory.del_item(item_bar.item_bar_select_count)
+	set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
 	pass
 func shoot_animate():
 	arm.look_at(get_global_mouse_position())
@@ -149,6 +160,19 @@ func shoot_animate():
 	arm.set_rotation_degrees(0)
 	can_use = true
 	pass
+
+func throw_item(itemid:int):
+	var test_0 = main.test_item.instantiate()
+	test_0.set_info(AllItem.item_info(itemid))
+	main.add_child(test_0)
+	test_0.position = self.position
+	#print(test_0.self_item.item_name)
+
+
+
+
+
+
 
 #受击处理
 func take_damage(value:int,point:Vector2):

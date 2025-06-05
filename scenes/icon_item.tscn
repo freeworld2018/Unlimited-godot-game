@@ -1,6 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://b7yhun3hprxat"]
+[gd_scene load_steps=4 format=3 uid="uid://b7yhun3hprxat"]
 
+[ext_resource type="Texture2D" uid="uid://dgdndh5tiwqiv" path="res://gane_assets/art/weapon/pistol.png" id="1_f3rx2"]
 [ext_resource type="Script" uid="uid://cut2s0wggaph5" path="res://scenes/icon_item.gd" id="1_m2y4q"]
+[ext_resource type="FontFile" uid="uid://rhxjjebvv6hl" path="res://gane_assets/art/fonts/IPix中文像素字体.ttf" id="3_6nrsg"]
 
 [node name="Node2D" type="Sprite2D"]
+texture = ExtResource("1_f3rx2")
 script = ExtResource("1_m2y4q")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 10.0
+offset_top = 11.0
+offset_right = 50.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0, 0, 0.352941, 1)
+theme_override_fonts/font = ExtResource("3_6nrsg")
+theme_override_font_sizes/font_size = 17
