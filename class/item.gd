@@ -20,7 +20,7 @@ func get_id():
 	return id
 func info():
 	var a = []
-	a.append(name)
+	a.append(item_name)
 	a.append(type)
 	a.append(pic)
 	a.append(id)

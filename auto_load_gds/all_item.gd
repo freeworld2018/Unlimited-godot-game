@@ -21,9 +21,9 @@ func _ready() -> void:
 func item_info(id:int):
 	#通过id寻找物品
 	if id < 0 or  id>=len(item_group):
-		return item_group[0]
+		return item_group[0].clone()
 	else:
-		return item_group[id]
+		return item_group[id].clone()
 
 func get_pic(id:int):
 	if id < 0 or  id>=len(item_group):
