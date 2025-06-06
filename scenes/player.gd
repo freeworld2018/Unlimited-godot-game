@@ -175,6 +175,7 @@ func shoot_animate():
 	can_use = true
 	pass
 func attack_animate():
+	$arm/item_point/RayCast2D.hit_group.clear()
 	var tween = get_tree().create_tween()
 	if toward_right:
 		#自定义函数可以对 左右吃东西移动进行修正，

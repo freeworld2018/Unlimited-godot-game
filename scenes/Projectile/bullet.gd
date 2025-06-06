@@ -30,6 +30,7 @@ func _physics_process(delta):
 		if collider.is_in_group("hurtable") and not collider.is_in_group("主角") :
 			if not hit_group.has(collider):
 				collider.take_damage(damage,collision_point)
+				hit_group.append(collider)
 		if not collider.is_in_group("hurtable"):
 			running =false
 			print("撞击地面损毁")
