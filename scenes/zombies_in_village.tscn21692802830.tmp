@@ -1,0 +1,217 @@
+[gd_scene load_steps=19 format=3 uid="uid://cl22my813xjis"]
+
+[ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
+[ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
+[ext_resource type="PackedScene" uid="uid://dx3ifleapc2nw" path="res://scenes/player.tscn" id="3_ujykm"]
+[ext_resource type="Script" uid="uid://bv4ay0w2omeq7" path="res://scenes/inventory.gd" id="4_0ccap"]
+[ext_resource type="Script" uid="uid://cqvwvfyvgxsd" path="res://scenes/command_window.gd" id="4_e1ymp"]
+[ext_resource type="Texture2D" uid="uid://fo4gumkx6bxe" path="res://gane_assets/art/ui/info_wooden.png" id="4_gp4an"]
+[ext_resource type="Texture2D" uid="uid://f2v8x7moyqm3" path="res://gane_assets/art/ui/Inventory.png" id="5_1ecd6"]
+[ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
+[ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
+[ext_resource type="Script" uid="uid://ctw3i2bmaqm2u" path="res://scenes/item_bar.gd" id="7_0f5b0"]
+[ext_resource type="Texture2D" uid="uid://bq168obvq1b1s" path="res://gane_assets/art/ui/item_bar.png" id="7_tolyc"]
+[ext_resource type="Texture2D" uid="uid://dorct7af5ievw" path="res://gane_assets/art/ui/item_bar_border.png" id="8_cu1yg"]
+[ext_resource type="Texture2D" uid="uid://c3ygcejqka6m5" path="res://gane_assets/art/ui/item_bar_select.png" id="9_mtrrn"]
+[ext_resource type="PackedScene" uid="uid://bs3ye1a1n0bh0" path="res://scenes/enemies/scarecrow.tscn" id="14_0f5b0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
+size = Vector2(1929, 192.5)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0f5b0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ccap"]
+size = Vector2(512, 640)
+
+[sub_resource type="GDScript" id="GDScript_1ecd6"]
+script/source = "extends Control
+
+var hand_item:Sprite2D
+@onready var player = $\"../../player\"
+@onready var item_bar = $\"../item_bar\"
+
+
+func del_item():
+	self.hand_item.queue_free()
+	self.hand_item = null
+func set_item(icon:Sprite2D):
+	self.hand_item = icon
+	player.set_current_item(hand_item.get_id())
+func _process(delta: float) -> void:
+	$hand_item.position = get_local_mouse_position()
+	pass
+func is_null():
+	if $hand_item.get_child_count() > 0:
+		return false
+	else:
+		return true
+func clear():
+	hand_item = null
+	
+"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_pkn42")
+
+[node name="floor_0" type="Node2D" parent="."]
+position = Vector2(176, 474)
+
+[node name="ColorRect" type="ColorRect" parent="floor_0"]
+offset_left = -180.0
+offset_top = 494.0
+offset_right = 1753.0
+offset_bottom = 661.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Ground" type="Sprite2D" parent="floor_0"]
+position = Vector2(781.5, 517.75)
+scale = Vector2(1.38423, 1.60769)
+texture = ExtResource("2_ujykm")
+
+[node name="ground" type="StaticBody2D" parent="floor_0"]
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor_0/ground"]
+position = Vector2(786.5, 564.75)
+shape = SubResource("RectangleShape2D_ujykm")
+
+[node name="player" parent="." instance=ExtResource("3_ujykm")]
+material = SubResource("CanvasItemMaterial_0f5b0")
+position = Vector2(958, 647)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Inventory" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 16.0
+offset_top = 7.0
+offset_right = 256.0
+offset_bottom = 310.0
+mouse_filter = 1
+script = ExtResource("4_0ccap")
+
+[node name="Inventory2" type="Sprite2D" parent="UI/Inventory"]
+texture = ExtResource("5_1ecd6")
+centered = false
+
+[node name="InventoryBorder" type="Sprite2D" parent="UI/Inventory"]
+texture = ExtResource("6_0ccap")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="UI/Inventory"]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+color = Color(0, 0, 0.054902, 0.396078)
+
+[node name="Area2D" type="Area2D" parent="UI/Inventory"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Inventory/Area2D"]
+position = Vector2(273, 365)
+shape = SubResource("RectangleShape2D_0ccap")
+
+[node name="Container" type="Control" parent="UI/Inventory"]
+anchors_preset = 0
+offset_left = 17.0
+offset_top = 45.0
+offset_right = 529.0
+offset_bottom = 685.0
+
+[node name="item_bar" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 686.0
+offset_top = 891.0
+offset_right = 726.0
+offset_bottom = 931.0
+script = ExtResource("7_0f5b0")
+
+[node name="ItemBar" type="Sprite2D" parent="UI/item_bar"]
+texture = ExtResource("7_tolyc")
+centered = false
+
+[node name="ItemBarBorder" type="Sprite2D" parent="UI/item_bar"]
+texture = ExtResource("8_cu1yg")
+centered = false
+
+[node name="ItemBarSelect" type="Sprite2D" parent="UI/item_bar"]
+texture = ExtResource("9_mtrrn")
+centered = false
+
+[node name="CommandWindow" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_e1ymp")
+
+[node name="LineEdit" type="LineEdit" parent="UI/CommandWindow"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 975.0
+offset_right = 559.0
+offset_bottom = 1027.0
+placeholder_text = "command"
+keep_editing_on_text_submit = true
+
+[node name="console" type="PanelContainer" parent="UI/CommandWindow"]
+layout_mode = 0
+offset_right = 559.0
+offset_bottom = 974.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/CommandWindow/console"]
+layout_mode = 2
+bbcode_enabled = true
+scroll_following = true
+
+[node name="hand" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+script = SubResource("GDScript_1ecd6")
+
+[node name="ColorRect" type="ColorRect" parent="UI/hand"]
+visible = false
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+color = Color(1, 1, 1, 0.423529)
+
+[node name="hand_item" type="Control" parent="UI/hand"]
+anchors_preset = 0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="InfoWooden" type="Sprite2D" parent="."]
+position = Vector2(1752, 76)
+scale = Vector2(0.512346, 0.512346)
+texture = ExtResource("4_gp4an")
+
+[node name="Box" parent="." instance=ExtResource("5_b6kwy")]
+position = Vector2(1478, 852)
+
+[node name="timernode" type="Node" parent="."]
+
+[node name="Timer" type="Timer" parent="timernode"]
+autostart = true
+
+[node name="草人" parent="." instance=ExtResource("14_0f5b0")]
+position = Vector2(1230, 789)
+collision_layer = 8
+collision_mask = 4
+
+[connection signal="mouse_entered" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="UI/Inventory/Container" to="UI/Inventory" method="_on_container_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Inventory/Container" to="UI/Inventory" method="_on_container_mouse_exited"]
+[connection signal="text_submitted" from="UI/CommandWindow/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="timeout" from="timernode/Timer" to="." method="_on_timer_timeout"]

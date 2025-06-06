@@ -14,6 +14,7 @@ func _ready():
 	inventory.connect("item_bar_change", $UI/item_bar._on_item_bar_change)
 	hurt_happen.connect(_on_hurt_happen)
 	self.inventory_add_item(0)
+	self.inventory_add_item(27)
 
 
 ###镜头控制 camera2d
@@ -74,13 +75,12 @@ func handle_command(text:String):
 ### 给予玩家物品(id)
 func create_item_by_id(itemid:int):
 	
-	var test_0 = test_item.instantiate()
-	test_0.set_info(AllItem.item_info(itemid))
-	self.add_child(test_0)
+	var test_0 = test_item.instantiate()        ###实例化物品
+	test_0.set_info(AllItem.item_info(itemid))  ###从AllItem获取一个序号为itemid的item类 作为参数
+	self.add_child(test_0)                   
 	test_0.position = Vector2(100,0)
 	#print(test_0.self_item.item_name)
-	
-	
+
 ### 生成单位
 func create_monster_by_name(name:String):
 	
@@ -110,7 +110,7 @@ func super_print(text:String,color:int = 0):
 
 
 func _on_timer_timeout() -> void:
-	create_item_by_id(0)
+	#create_item_by_id(27)
 	pass # Replace with function body.
 func _on_hurt_happen(value:int,point:Vector2):
 	var damage_num = damage_number.instantiate()

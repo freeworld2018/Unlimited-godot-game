@@ -17,20 +17,22 @@ func add(num:int):
 func set_info(info:item):
 	self_item = info
 	match self_item.type:
-		0:self.texture = load(self_item.pic)
-		1:
+		0:self.texture = load(self_item.pic) #枪械
+		1:#食品
 			self.texture = load(self_item.pic)
 			self.set_hframes(16)
 			self.set_vframes(8)
 			self.set_frame(self_item.picset_id-1)
-		2:
+		2:#水
 			self.texture = load(self_item.pic)
 			self.set_hframes(16)
 			self.set_vframes(8)
 			self.set_frame(self_item.picset_id-1)
-			#var a = AtlasTexture.new()
-			#a.atlas = load(self_item.pic)
-			#self.texture = a
+		3:#近战
+			self.texture = load(self_item.pic)
+			#var image_icon = load(self_item.pic).get_image()
+			#image_icon.resize(64,64)
+			#self.texture = ImageTexture.create_from_image(image_icon)
 func get_id():
 	return self_item.id
 func info():

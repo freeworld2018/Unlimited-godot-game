@@ -1,19 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://k1xngoj2tsmq"]
+[gd_scene load_steps=3 format=3 uid="uid://k1xngoj2tsmq"]
 
 [ext_resource type="Texture2D" uid="uid://sywkdoyufxd2" path="res://scenes/Projectile/bullet (1).png" id="1_2ok84"]
 [ext_resource type="Script" uid="uid://dtmrsewsmfkjs" path="res://scenes/Projectile/bullet.gd" id="2_2ok84"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ok84"]
-size = Vector2(6, 3)
-
 [node name="bullet" type="Sprite2D"]
 texture = ExtResource("1_2ok84")
 script = ExtResource("2_2ok84")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_2ok84")
 
 [node name="LifetimeTimer" type="Timer" parent="."]
 
@@ -35,6 +27,6 @@ offset_bottom = 5.0
 color = Color(1, 0.054902, 1, 1)
 
 [node name="bullet_line" type="Line2D" parent="."]
+visible = false
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="LifetimeTimer" to="." method="_on_lifetime_timer_timeout"]

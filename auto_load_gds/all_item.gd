@@ -15,7 +15,7 @@ func _ready() -> void:
 		item_a.pic = i["pic"]
 		item_a.id = i["id"]
 		item_a.stack = i["stack"]
-		item_a.picset_id = i["piscset_id"]
+		item_a.picset_id = i["picset_id"]
 		#item_a.effect = i["effect"]
 		item_group.append(item_a)
 func item_info(id:int):

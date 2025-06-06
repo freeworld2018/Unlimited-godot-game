@@ -12,28 +12,30 @@ var target:Node2D
 var picking:bool
 var attraction_force:float = 2000.0
 
+func _ready():
+	pass
+
 func set_in_bag(value:bool):
-	in_bag = value
-	self.freeze = in_bag
-	self.process_mode =Node.PROCESS_MODE_DISABLED
+	pass
 
 func set_info(info:item):
-	self_item = info
+	self_item = info.clone()
+	var pic1 = $Sprite2D
 	match self_item.type:
-		0:$Sprite2D.texture = load(self_item.pic)
+		0:pic1.texture = load(self_item.pic)
 		1:
-			$Sprite2D.texture = load(self_item.pic)
-			$Sprite2D.set_hframes(16)
-			$Sprite2D.set_vframes(8)
-			$Sprite2D.set_frame(self_item.picset_id-1)
+			pic1.texture = load(self_item.pic)
+			pic1.set_hframes(16)
+			pic1.set_vframes(8)
+			pic1.set_frame(self_item.picset_id-1)
 		2:
-			$Sprite2D.texture = load(self_item.pic)
-			$Sprite2D.set_hframes(16)
-			$Sprite2D.set_vframes(8)
-			$Sprite2D.set_frame(self_item.picset_id-1)
-			#var a = AtlasTexture.new()
-			#a.atlas = load(self_item.pic)
-			#$Sprite2D.texture = a
+			pic1.texture = load(self_item.pic)
+			pic1.set_hframes(16)
+			pic1.set_vframes(8)
+			pic1.set_frame(self_item.picset_id-1)
+		3:
+			pic1.texture = load(self_item.pic)
+			
 		
 
 func get_id():
@@ -65,3 +67,9 @@ func apply_attraction_force():
 		gravity_scale = 1.0
 		picking= false
 		picked.emit()
+
+func throw_cold():
+	can_pick = false
+	var a =get_tree().create_timer(1.0)
+	await a.timeout
+	can_pick = true

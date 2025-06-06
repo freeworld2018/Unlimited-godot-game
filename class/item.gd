@@ -15,7 +15,7 @@ func set_value(value:Array):
 	pic  = value[2]
 	id  = value[3]
 	stack  = value[4]
-	
+	picset_id =value[5]
 func get_id():
 	return id
 func info():
@@ -25,6 +25,7 @@ func info():
 	a.append(pic)
 	a.append(id)
 	a.append(stack)
+	a.append(picset_id)
 	return a
 func clone():#避免引用
 	var a =item.new()

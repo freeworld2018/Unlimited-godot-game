@@ -46,6 +46,13 @@ func del_item(id:int):
 	emit_signal("item_bar_change")
 	pass
 func add_item(itemid:int,id:int = -1): #当int非-1时 将强制修改
+	if not AllItem.item_info(itemid).stack:
+		for i in range(80):
+			if item_group_id[i] == -1:
+				item_group_id[i] = itemid
+				set_item(itemid,i)
+				emit_signal("item_bar_change")
+				return
 	if itemid in item_group_id:
 		item_group[item_group_id.find(itemid)].add(1)
 		emit_signal("item_bar_change")
@@ -106,11 +113,13 @@ func _input(event: InputEvent) -> void:
 					return
 				#交换物品
 				if hand.hand_item.get_id() == item_group_id[select_id]:
-					item_group[select_id].add(hand.hand_item.number)
-					hand.del_item()
-					hand.clear()
-					emit_signal("item_bar_change")
-					return
+					if AllItem.item_info(hand.hand_item.get_id()).stack:
+						item_group[select_id].add(hand.hand_item.number)
+						hand.del_item()
+						hand.clear()
+						emit_signal("item_bar_change")
+						return 
+						pass
 				var exchange_item = item_group[select_id]
 				item_group_id[select_id] = hand.hand_item.get_id()
 				item_group[select_id] = hand.hand_item

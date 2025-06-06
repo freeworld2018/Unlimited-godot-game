@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dx3ifleapc2nw"]
+[gd_scene load_steps=14 format=3 uid="uid://dx3ifleapc2nw"]
 
 [ext_resource type="Texture2D" uid="uid://bnwpjlav2hcy0" path="res://gane_assets/art/base_player/down_body.png" id="1_fjrip"]
 [ext_resource type="Script" uid="uid://dt4o5jk4carss" path="res://scenes/player.gd" id="1_smehm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://yx4pxifggi44" path="res://gane_assets/art/base_player/up_body.png" id="6_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://db5gp54e2qe8n" path="res://gane_assets/art/base_player/arm.png" id="7_jej6c"]
 [ext_resource type="Texture2D" uid="uid://dgdndh5tiwqiv" path="res://gane_assets/art/weapon/pistol.png" id="9_ur7pv"]
+[ext_resource type="Script" uid="uid://dxmfdc2rwxd81" path="res://scenes/player_ray_cast.gd" id="10_y4r1p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0ccap"]
 animations = [{
@@ -67,6 +68,11 @@ position = Vector2(-6.29444e-06, 36)
 [node name="Sprite2D" type="Sprite2D" parent="arm/item_point"]
 rotation = 1.5708
 texture = ExtResource("9_ur7pv")
+
+[node name="RayCast2D" type="RayCast2D" parent="arm/item_point"]
+target_position = Vector2(90, 0)
+collision_mask = 8
+script = ExtResource("10_y4r1p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -1)
