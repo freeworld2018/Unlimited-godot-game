@@ -56,6 +56,8 @@ func _input(event: InputEvent) -> void:
 				switch_current_item(i)  # 选中对应物品
 				break  # 避免重复检测
 	if Input.is_action_just_pressed("select"):
+		if not player.can_use:
+			return
 		if not $ItemBarSelect.visible:
 			return
 		item_bar_select_count += 1
@@ -64,6 +66,7 @@ func _input(event: InputEvent) -> void:
 		switch_current_item(item_bar_select_count)
 
 func switch_current_item(id:int = 0):#选择物品
+	
 	$ItemBarSelect.position =Vector2(offset_x+id*64,offset_y)
 	item_bar_select_count = id
 	if item_bar_group_id[id] != -1:

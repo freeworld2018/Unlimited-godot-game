@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs3ye1a1n0bh0"]
+[gd_scene load_steps=5 format=3 uid="uid://bs3ye1a1n0bh0"]
 
 [ext_resource type="Script" uid="uid://b40erl3i5rik1" path="res://scenes/enemies/scarecrow.gd" id="1_buvgf"]
 [ext_resource type="Texture2D" uid="uid://j8oelj0vftk4" path="res://gane_assets/art/enemy/scarecrow.png" id="2_by6a8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bij6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_buvgf"]
 size = Vector2(45, 87.5)
@@ -12,6 +14,7 @@ collision_mask = 0
 script = ExtResource("1_buvgf")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_5bij6")
 texture = ExtResource("2_by6a8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -108,11 +108,12 @@ func _physics_process(delta: float) -> void:
 		arm.position = Vector2(-10,-30)
 		arm.offset = Vector2(10,30)
 		current_item_point_pic.position.x = weapon_offset
+		$arm/item_point/RayCast2D.target_position = Vector2(90,0)
 	else:
 		arm.position = Vector2(10,-30)
 		arm.offset = Vector2(-10,30)
 		current_item_point_pic.position.x = 0
-		
+		$arm/item_point/RayCast2D.target_position = Vector2(-90,0)
 		
 			
 		
@@ -178,7 +179,9 @@ func attack_animate():
 	$arm/item_point/RayCast2D.hit_group.clear()
 	var tween = get_tree().create_tween()
 	if toward_right:
+		########################################################################################
 		#自定义函数可以对 左右吃东西移动进行修正，
+		########################################################################################
 		tween.tween_method(arm.set_rotation_degrees,-120,60.0,0.4)
 	else:
 		tween.tween_method(arm.set_rotation_degrees,120,-60.0,0.4)
@@ -247,7 +250,14 @@ func set_current_item(itemid:int):
 	if current_item_id == -1:
 		current_item_point_pic.texture = null
 		return
+	#重置部分
 	current_item_point_pic.position.x = 0
+	weapon_offset = 0
+	current_item_point_pic.centered = true
+	current_item_point_pic.set_hframes(1)
+	current_item_point_pic.set_vframes(1)
+	
+	
 	match current_item.type:
 		0:current_item_point_pic.texture = load(current_item.pic) #枪械
 		1:#食品

@@ -15,6 +15,36 @@ func _ready():
 	hurt_happen.connect(_on_hurt_happen)
 	self.inventory_add_item(0)
 	self.inventory_add_item(27)
+	self.inventory_add_item(1)
+	create_base_ground()
+###用以生成初始基本地形
+func create_base_ground():
+	var g_group:Array[Texture2D]
+	for i in range(5):
+		var g_1:Texture2D = load("res://gane_assets/art/front_pic/ground_"+str(i+1)+".png")
+		g_group.append(g_1)
+	var set_pos_x = 0
+	var set_pos_x_left = 0
+	for i in range(10):
+		#右侧地图生成
+		var ground_piece = Sprite2D.new()
+		ground_piece.centered = false
+		var select_g = g_group[randi()%5]
+		ground_piece.texture = select_g
+		$ground.add_child(ground_piece)
+		ground_piece.position = Vector2(set_pos_x,1200)
+		set_pos_x +=select_g.get_width()
+		
+		#左侧地图生成
+		var ground_piece_left = Sprite2D.new()
+		ground_piece_left.centered = false
+		var select_g_left = g_group[randi()%5]
+		ground_piece_left.texture = select_g_left
+		$ground.add_child(ground_piece_left)
+		set_pos_x_left +=select_g_left.get_width()
+		ground_piece_left.position = Vector2(-set_pos_x_left,1200)
+		
+	$ground/ground/CollisionShape2D.shape.size.x = set_pos_x*2
 
 
 ###镜头控制 camera2d

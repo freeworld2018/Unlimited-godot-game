@@ -1,11 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=18 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/zombies_in_village.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
 [ext_resource type="PackedScene" uid="uid://dx3ifleapc2nw" path="res://scenes/player.tscn" id="3_ujykm"]
 [ext_resource type="Script" uid="uid://bv4ay0w2omeq7" path="res://scenes/inventory.gd" id="4_0ccap"]
 [ext_resource type="Script" uid="uid://cqvwvfyvgxsd" path="res://scenes/command_window.gd" id="4_e1ymp"]
-[ext_resource type="Texture2D" uid="uid://fo4gumkx6bxe" path="res://gane_assets/art/ui/info_wooden.png" id="4_gp4an"]
 [ext_resource type="Texture2D" uid="uid://f2v8x7moyqm3" path="res://gane_assets/art/ui/Inventory.png" id="5_1ecd6"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dycli02rpb86q" path="res://gane_assets/art/ui/Inventory_border.png" id="6_0ccap"]
@@ -16,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://bs3ye1a1n0bh0" path="res://scenes/enemies/scarecrow.tscn" id="14_0f5b0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
-size = Vector2(1929, 192.5)
+size = Vector2(1000, 200)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0f5b0"]
 
@@ -53,29 +52,31 @@ func clear():
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pkn42")
 
-[node name="floor_0" type="Node2D" parent="."]
-position = Vector2(176, 474)
+[node name="ground" type="Node2D" parent="."]
 
-[node name="ColorRect" type="ColorRect" parent="floor_0"]
-offset_left = -180.0
-offset_top = 494.0
-offset_right = 1753.0
-offset_bottom = 661.0
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="Ground" type="Sprite2D" parent="floor_0"]
-position = Vector2(781.5, 517.75)
-scale = Vector2(1.38423, 1.60769)
-texture = ExtResource("2_ujykm")
-
-[node name="ground" type="StaticBody2D" parent="floor_0"]
+[node name="ground" type="StaticBody2D" parent="ground"]
 collision_layer = 4
 collision_mask = 11
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="floor_0/ground"]
-position = Vector2(786.5, 564.75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/ground"]
+position = Vector2(0, 1300)
 shape = SubResource("RectangleShape2D_ujykm")
+
+[node name="floor_0" type="Node2D" parent="ground"]
+visible = false
+position = Vector2(959, 1200)
+
+[node name="ColorRect" type="ColorRect" parent="ground/floor_0"]
+offset_left = -962.0
+offset_top = -26.0
+offset_right = 971.0
+offset_bottom = 141.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Ground" type="Sprite2D" parent="ground/floor_0"]
+scale = Vector2(1.38423, 1.60769)
+texture = ExtResource("2_ujykm")
 
 [node name="player" parent="." instance=ExtResource("3_ujykm")]
 material = SubResource("CanvasItemMaterial_0f5b0")
@@ -191,11 +192,6 @@ anchors_preset = 0
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="InfoWooden" type="Sprite2D" parent="."]
-position = Vector2(1752, 76)
-scale = Vector2(0.512346, 0.512346)
-texture = ExtResource("4_gp4an")
-
 [node name="Box" parent="." instance=ExtResource("5_b6kwy")]
 position = Vector2(1478, 852)
 
@@ -208,6 +204,8 @@ autostart = true
 position = Vector2(1230, 789)
 collision_layer = 8
 collision_mask = 4
+
+[node name="enemy and bullets" type="Node2D" parent="."]
 
 [connection signal="mouse_entered" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Inventory/Area2D" to="UI/Inventory" method="_on_area_2d_mouse_exited"]
