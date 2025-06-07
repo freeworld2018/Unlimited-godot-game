@@ -7,7 +7,7 @@ var icon_item = load("res://scenes/icon_item.tscn")
 
 
 @onready var inventory = $UI/Inventory
-@onready var camera = $player/Camera2D
+@onready var camera = $Camera2D
 var zoom_value_range:int = 1
 
 func _ready():

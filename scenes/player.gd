@@ -39,8 +39,7 @@ func _ready() -> void:
 	player_bag.resize(8)  # 调整大小为 64
 	player_bag.fill(-1)     # 填充默认值 0
 	main = self.get_parent()
-	
-	
+
 
 func _input(event: InputEvent) -> void:
 	#对于鼠标点击的响应
