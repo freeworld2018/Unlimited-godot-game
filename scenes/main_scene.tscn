@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=15 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/main_scene.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://c6q25fvs28u46" path="res://gane_assets/art/back_pic/parallax_ground_1.png" id="2_0f5b0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dtec3dnwnlg7s" path="res://gane_assets/art/back_pic/mountain_1.png" id="3_dujm8"]
 [ext_resource type="PackedScene" uid="uid://dx3ifleapc2nw" path="res://scenes/player.tscn" id="3_ujykm"]
 [ext_resource type="Texture2D" uid="uid://qe51ylp0qjcy" path="res://gane_assets/art/back_pic/forest_shadow.png" id="4_7d12v"]
+[ext_resource type="Texture2D" uid="uid://b6jdqmlwr7r55" path="res://gane_assets/art/back_pic/parallax_black_tree_shadow_1.png" id="4_mngbo"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dvkqxi4m7xqu0" path="res://gane_assets/art/back_pic/tree_1.png" id="5_sojf6"]
 [ext_resource type="PackedScene" uid="uid://pomkjln67fbm" path="res://scenes/ui.tscn" id="10_0ccap"]
@@ -32,7 +33,7 @@ repeat_times = 9
 texture = ExtResource("2_0f5b0")
 
 [node name="Parallax2D_1" type="Parallax2D" parent="ParallaxBackground"]
-scroll_scale = Vector2(1.3, 1.3)
+scroll_scale = Vector2(1.4, 1.4)
 scroll_offset = Vector2(0, 330)
 repeat_times = 3
 
@@ -40,13 +41,19 @@ repeat_times = 3
 texture = ExtResource("3_dujm8")
 
 [node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground"]
-scroll_offset = Vector2(0, 330)
+scroll_scale = Vector2(1.3, 2)
+scroll_offset = Vector2(0, 1000)
 repeat_size = Vector2(1200, 0)
 
+[node name="ParallaxBlackTreeShadow1" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+texture = ExtResource("4_mngbo")
+
 [node name="ForestShadow" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+visible = false
 texture = ExtResource("4_7d12v")
 
 [node name="Tree1" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+visible = false
 position = Vector2(1034, 784)
 texture = ExtResource("5_sojf6")
 

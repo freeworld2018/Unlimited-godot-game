@@ -136,9 +136,9 @@ func super_print(text:String,color:int = 0):
 
 
 func _on_timer_timeout() -> void:
-	create_item_by_id(27)
-	create_item_by_id(0)
-	create_item_by_id(1)
+	#create_item_by_id(27)
+	#create_item_by_id(0)
+	#create_item_by_id(1)
 	pass # Replace with function body.
 func _on_hurt_happen(value:int,point:Vector2):
 	#处理伤害？   处理伤害数字！
