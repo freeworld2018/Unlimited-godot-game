@@ -5,9 +5,13 @@ var self_item:item
 var in_bag:bool = false
 var can_pick:bool =true
 var tag = [] 
+var quantity:int = 1
 
-signal picked
+
+
+
 #用以控制物体移动
+signal picked
 var target:Node2D
 var picking:bool
 var attraction_force:float = 2000.0

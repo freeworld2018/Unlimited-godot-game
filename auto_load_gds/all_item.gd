@@ -1,7 +1,7 @@
 extends Node
 
 var item_group = []
-
+var null_item:item
 
 func _ready() -> void:
 	var a = FileAccess.open("res://data/data_item.json",FileAccess.READ)
@@ -18,12 +18,21 @@ func _ready() -> void:
 		item_a.picset_id = i["picset_id"]
 		#item_a.effect = i["effect"]
 		item_group.append(item_a)
-func item_info(id:int):
+	null_item = item.new()
+	null_item.item_name ="空物品"
+	null_item.id = -1
+	
+		
+func get_item(id:int):
 	#通过id寻找物品
 	if id < 0 or  id>=len(item_group):
 		return item_group[0].clone()
 	else:
 		return item_group[id].clone()
+		
+func get_null_item():
+	#返回一个空物体，方便对空手等进行操作
+	return null_item
 
 func get_pic(id:int):
 	if id < 0 or  id>=len(item_group):

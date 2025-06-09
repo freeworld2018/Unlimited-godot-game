@@ -11,11 +11,14 @@ var icon_item = load("res://scenes/icon_item.tscn")
 var zoom_value_range:int = 1
 
 func _ready():
-	inventory.connect("item_bar_change", $UI/item_bar._on_item_bar_change)
-	hurt_happen.connect(_on_hurt_happen)
-	self.inventory_add_item(0)
-	self.inventory_add_item(27)
-	self.inventory_add_item(1)
+	
+	hurt_happen.connect(_on_hurt_happen)#处理伤害信号
+	
+	
+	SignalBus.invenetory_get_item.emit(AllItem.get_item(0),1)
+	SignalBus.invenetory_get_item.emit(AllItem.get_item(27),1)
+	SignalBus.invenetory_get_item.emit(AllItem.get_item(1),1)
+
 	create_base_ground()
 ###用以生成初始基本地形
 func create_base_ground():
@@ -61,13 +64,6 @@ func _input(event: InputEvent) -> void:
 
 
 
-###引用物品栏添加物品功能
-func inventory_add_item(itemid:int,id:int = -1):
-	inventory.add_item(itemid,id)
-	pass
-func inventory_delete_item(id:int):
-	inventory.del_item(id)
-	pass
 
 ### 处理命令
 func handle_command(text:String):
@@ -106,7 +102,7 @@ func handle_command(text:String):
 func create_item_by_id(itemid:int):
 	
 	var test_0 = test_item.instantiate()        ###实例化物品
-	test_0.set_info(AllItem.item_info(itemid))  ###从AllItem获取一个序号为itemid的item类 作为参数
+	test_0.set_info(AllItem.get_item(itemid))  ###从AllItem获取一个序号为itemid的item类 作为参数
 	self.add_child(test_0)                   
 	test_0.position = Vector2(100,0)
 	#print(test_0.self_item.item_name)
@@ -123,7 +119,7 @@ func create_monster_by_name(name:String):
 ### 命令窗回车信号
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	handle_command(new_text)
-	$UI/CommandWindow/LineEdit.clear()
+	$UI_layer/CommandWindow/LineEdit.clear()
 	super_print(new_text)
 	pass # Replace with function body.
 
@@ -135,14 +131,17 @@ func super_print(text:String,color:int = 0):
 		0:message_color = "white"
 		1:message_color = "yellow"
 		2:message_color = "red"
-	#控制台输出
-	$UI/CommandWindow/console/RichTextLabel.text += "[color="+message_color+"]"+text+"[/color]"+"\n"
+	#控制台输出$/CommandWindow
+	$UI_layer/CommandWindow/console/RichTextLabel.text += "[color="+message_color+"]"+text+"[/color]"+"\n"
 
 
 func _on_timer_timeout() -> void:
-	#create_item_by_id(27)
+	create_item_by_id(27)
+	create_item_by_id(0)
+	create_item_by_id(1)
 	pass # Replace with function body.
 func _on_hurt_happen(value:int,point:Vector2):
+	#处理伤害？   处理伤害数字！
 	var damage_num = damage_number.instantiate()
 	self.add_child(damage_num)
 	damage_num.set_damage_num(value)

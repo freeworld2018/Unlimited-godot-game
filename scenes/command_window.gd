@@ -7,8 +7,6 @@ func _input(event: InputEvent) -> void:
 		$LineEdit.unedit()
 		$LineEdit.release_focus()
 		return
-
-	
 	# 命令窗口显示
 	if Input.is_action_just_pressed("CommandWindow"):
 		self.visible = !self.visible

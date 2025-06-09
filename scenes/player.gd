@@ -5,18 +5,17 @@ extends CharacterBody2D
 
 
 
-#获得节点(子节点）
+#获得节点引用(子节点）
 @onready var up_body = $body
 @onready var arm = $arm
 @onready var down_body = $AnimatedSprite2D
 
 
-#获得节点(非子节点）
+#获得节点引用(非子节点）
 @onready var main = self.get_parent()
-@onready var inventory = $"../UI/Inventory"
+@onready var ui = $"../UI_layer/UI"
 @onready var current_item_point_pic = $arm/item_point/Sprite2D
-@onready var item_bar = $"../UI/item_bar"
-@onready var hand =$"../UI/hand"
+
 
 #角色属性
 var hp:float = 300.0
@@ -39,22 +38,23 @@ func _ready() -> void:
 	player_bag.resize(8)  # 调整大小为 64
 	player_bag.fill(-1)     # 填充默认值 0
 	main = self.get_parent()
-
+	
+	SignalBus.player_set_item.connect(set_current_item)
 
 func _input(event: InputEvent) -> void:
 	#对于鼠标点击的响应
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT :
-			if inventory.switch_mouse_in:
+			if ui.ui_mouse_in:
 				return
 			if current_item_id != -1 and  can_use:
 				can_use = false
 				use_item(current_item_id)
 			pass
 		if event.button_index == MOUSE_BUTTON_RIGHT :
-			if inventory.switch_mouse_in:
+			if ui.ui_mouse_in:
 				return
-			if hand.is_null():
+			if ui.hand_is_null:
 				return
 			throw_item(current_item_id)
 			
@@ -147,17 +147,12 @@ func eat_animate():
 	can_use = true
 	current_item_id =-1
 	current_item_point_pic.texture = null
-	if not hand.is_null():
+	if not ui.hand_is_null:
 		print("吃掉了手上的东西！")
-		hand.hand_item.add(-1)
-		if hand.hand_item.number ==0:
-			hand.del_item()
-			set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
-			return
-		set_current_item(hand.hand_item.get_id())
+		SignalBus.hand_reduce_item.emit(-1)
 		return
-	inventory.del_item(item_bar.item_bar_select_count)
-	set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
+	SignalBus.invenetory_reduce_item.emit(ui.get_select_count(),1)
+	#set_current_item(item_bar.item_bar_group_id[item_bar.item_bar_select_count])
 	pass
 func shoot_animate():
 	arm.look_at(get_global_mouse_position())
@@ -190,15 +185,12 @@ func attack_animate():
 	pass
 func throw_item(itemid:int):
 	var test_0 = main.test_item.instantiate()
-	test_0.set_info(current_item.clone())
+	test_0.set_info(ui.get_hand_item())
 	main.add_child(test_0)
 	test_0.position = self.position
 	test_0.throw_cold()
 	#print(test_0.self_item.item_name)s
-	hand.hand_item.add(-1)
-	if hand.hand_item.number ==0:
-		hand.del_item()
-		return
+	SignalBus.hand_del_item.emit()
 
 
 
@@ -225,9 +217,10 @@ func auto_pickup(pick_item:RigidBody2D):
 	pick_item.target = self
 	pick_item.picking= true
 	await pick_item.picked
-	if inventory.item_emptyslots == 0:
+	if not ui.can_pick(pick_item.self_item):
+		print("捡不起来！")
 		return
-	inventory_add_item(pick_item.get_id())###弃用预备
+	SignalBus.invenetory_get_item.emit(pick_item.self_item,pick_item.quantity)
 	super_print("获得了物品"+pick_item.self_item.item_name)
 	print("获得了物品"+pick_item.self_item.item_name)
 	pick_item.queue_free()
@@ -236,16 +229,16 @@ func auto_pickup(pick_item:RigidBody2D):
 ###  调用场景内的方法 super_print(控制台打印）  inventory_set_get(物品栏操作)
 func super_print(text:String):
 	main.super_print(text)
-func inventory_add_item(itemid:int):
-	main.inventory_add_item(itemid)
 
-#设置手上的物品
-func set_current_item(itemid:int): 
+
+#设置手上(物理）的物品
+func set_current_item(S_item:item): 
+	print("?????")
 	#被item_bar引用调用 
 	#设置当前物品（提供id）
-	print("current_item_seted   "+str(itemid))
-	current_item_id =itemid
-	current_item = AllItem.item_info(itemid)
+	print("current_item_seted "+str(S_item.item_name))
+	current_item_id =S_item.id
+	current_item = S_item
 	if current_item_id == -1:
 		current_item_point_pic.texture = null
 		return
