@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8tjabdgiclrg"]
+
+[ext_resource type="Texture2D" uid="uid://bgbrh1lvw4gj2" path="res://gane_assets/art/base_player/player_pieces/base_player_lower_leg.png" id="1_njj48"]
+
+[node name="player_bone_by_polygon" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+texture = ExtResource("1_njj48")
+polygon = PackedVector2Array(0.103546, -0.108295, 16.129, -0.899673, 15.9311, 12.7516, 13.9527, 16.115, 25.4277, 26.4029, 4.06043, 29.3706, -6.82101, 26.9964)
+uv = PackedVector2Array(0.103546, -0.108295, 16.129, -0.899673, 15.9311, 12.7516, 13.9527, 16.115, 25.4277, 26.4029, 4.06043, 29.3706, -6.82101, 26.9964)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Node2D"]
+
+[node name="Polygon2D3" type="Polygon2D" parent="Node2D"]
+
+[node name="Polygon2D4" type="Polygon2D" parent="Node2D"]
+
+[node name="骨骼控制器" type="Skeleton2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://docotfej45xef"]
+[gd_scene load_steps=15 format=3 uid="uid://docotfej45xef"]
 
 [ext_resource type="Texture2D" uid="uid://cdknplcs1cq4x" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_arm_2.png" id="1_lg5qc"]
 [ext_resource type="Texture2D" uid="uid://dxjp6oeuw3tdi" path="res://gane_assets/art/base_player/player_pieces/base_player_lower_arm.png" id="2_f71jm"]
@@ -8,65 +8,365 @@
 [ext_resource type="Texture2D" uid="uid://by4tvhi2l0qon" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_body.png" id="6_35v2f"]
 [ext_resource type="Texture2D" uid="uid://cnjjhyc5a0eki" path="res://gane_assets/art/base_player/player_pieces/base_player_head.png" id="7_aarxg"]
 
-[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_50t1q"]
-target_nodepath = NodePath("胯部节点/右大腿节点")
-tip_nodepath = NodePath("胯部节点/右大腿节点/右小腿节点/脚节点")
-ccdik_data_chain_length = 2
-joint_data/0/bone_index = 1
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_lg5qc"]
+enabled = false
+target_nodepath = NodePath("右脚指引点")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 7
 joint_data/0/bone2d_node = NodePath("胯部节点/右大腿节点")
-joint_data/0/rotate_from_joint = true
-joint_data/0/enable_constraint = true
-joint_data/0/constraint_angle_min = -30.0
-joint_data/0/constraint_angle_max = 15.0
-joint_data/0/constraint_angle_invert = true
-joint_data/0/constraint_in_localspace = true
-joint_data/0/editor_draw_gizmo = true
-joint_data/1/bone_index = 2
+joint_data/1/bone_index = 8
 joint_data/1/bone2d_node = NodePath("胯部节点/右大腿节点/右小腿节点")
-joint_data/1/rotate_from_joint = true
-joint_data/1/enable_constraint = true
-joint_data/1/constraint_angle_min = 0.0
-joint_data/1/constraint_angle_max = 117.108
-joint_data/1/constraint_angle_invert = false
-joint_data/1/constraint_in_localspace = false
-joint_data/1/editor_draw_gizmo = true
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_f71jm"]
+enabled = false
+target_nodepath = NodePath("左脚指引点")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 10
+joint_data/0/bone2d_node = NodePath("胯部节点/左大腿Bone2D")
+joint_data/1/bone_index = 11
+joint_data/1/bone2d_node = NodePath("胯部节点/左大腿Bone2D/左小腿Bone2D")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
 
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_cnb45"]
 enabled = true
-modification_count = 1
-modifications/0 = SubResource("SkeletonModification2DCCDIK_50t1q")
-
-[sub_resource type="Animation" id="Animation_22grl"]
-resource_name = "run"
+modification_count = 2
+modifications/0 = SubResource("SkeletonModification2DFABRIK_lg5qc")
+modifications/1 = SubResource("SkeletonModification2DFABRIK_f71jm")
 
 [sub_resource type="Animation" id="Animation_thm3a"]
-length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("骨骼/胯部节点/右大腿节点:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-4.00041, 6.0002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("骨骼/胯部节点/右大腿节点:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0422168]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("骨骼/胯部节点/右大腿节点/右小腿节点:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1.01717, 20.9845)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("骨骼/胯部节点/右大腿节点/右小腿节点:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0422257]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("骨骼/胯部节点/左大腿Bone2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("骨骼/胯部节点/左大腿Bone2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 22)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_lg5qc"]
+resource_name = "pre_run"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("骨骼/胯部节点/右大腿节点:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.99, 3, 4.02, 5.02, 6, 6.99933, 8.02933, 9.00933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("骨骼/胯部节点/右大腿节点:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 1.99, 3, 4.02, 5.02, 6, 6.99933, 8.02933, 9.00933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0422168, -0.405128, -0.927328, -0.678219, -0.364201, 0.0785302, 0.273309, 0.288919, -0.561901, -0.893521]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("骨骼/胯部节点/右大腿节点/右小腿节点:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4.02, 5.02, 6, 6.99933, 8.02933, 9.00933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01716, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("骨骼/胯部节点/右大腿节点/右小腿节点:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4.02, 5.02, 6, 6.99933, 8.02933, 9.00933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.0422257, 0.90715, 1.31563, 0.513764, 0.342561, -0.0422254, -0.0422251, 0.660522, 1.53612, 1.41625]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("骨骼/胯部节点/左大腿Bone2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 3, 4.03, 5.02, 6, 7.00933, 8.03933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("骨骼/胯部节点/左大腿Bone2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 3, 4.03, 5.02, 6, 7.00933, 8.03933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0444149, 0.0444149, 0.255182, -0.198326, -0.908466, -0.518516, 0.022723]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 3, 4.03, 5.02, 6, 7.00933, 8.03933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1.43051e-06, 22), Vector2(-1.43051e-06, 22), Vector2(-2.38419e-06, 22), Vector2(-9.53674e-07, 22), Vector2(-4.76837e-07, 22), Vector2(4.76837e-07, 22), Vector2(-1.43051e-06, 22)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 3, 4.03, 6, 7.00933, 8.03933),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.094951, -0.094951, -0.0949515, 1.6283, 0.561602, -0.0949509]
+}
+
+[sub_resource type="Animation" id="Animation_22grl"]
+resource_name = "walk"
+length = 1.65
+loop_mode = 1
+step = 0.0111111
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("骨骼/胯部节点/右大腿节点:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.644444, 0.944444, 1.37778, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002), Vector2(-4.00041, 6.0002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("骨骼/胯部节点/右大腿节点:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.222222, 0.644444, 0.944444, 1.37778, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.628135, -0.678219, -0.364201, 0.0785302, -0.176472, -0.628135]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("骨骼/胯部节点/右大腿节点/右小腿节点:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.222222, 0.644444, 0.944444, 1.36667, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1.01717, 20.9845), Vector2(-1.01716, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845), Vector2(-1.01717, 20.9845)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("骨骼/胯部节点/右大腿节点/右小腿节点:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.222222, 0.644444, 0.944444, 1.36667, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [1.03326, 0.513764, 0.342561, -0.0422254, 0.807753, 1.03326]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("骨骼/胯部节点/左大腿Bone2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.222222, 0.498889, 0.866667, 1.03369, 1.11075, 1.20111, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5), Vector2(4, 5)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("骨骼/胯部节点/左大腿Bone2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.222222, 0.498889, 0.866667, 1.03369, 1.11075, 1.20111, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.022723, 0.0444149, 0.255182, -0.198326, -0.49792, -0.510446, -0.518516, 0.022723]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(1.19209e-07, 0.133333, 0.366667, 0.866667, 0.955556, 1.14444, 1.34444, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1.43051e-06, 22), Vector2(-1.43051e-06, 22), Vector2(-1.0492e-06, 22), Vector2(-4.76837e-07, 22), Vector2(-9.53674e-07, 22), Vector2(1.66893e-06, 22), Vector2(-1.43051e-06, 22), Vector2(-1.43051e-06, 22)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(1.19209e-07, 0.133333, 0.355556, 0.866667, 1.14444, 1.34444, 1.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.094951, -0.094951, 0.356579, 0.610865, 0.610865, -0.0949509, -0.094951]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eh1bk"]
 _data = {
 &"RESET": SubResource("Animation_thm3a"),
-&"run": SubResource("Animation_22grl")
+&"pre_run": SubResource("Animation_lg5qc"),
+&"walk": SubResource("Animation_22grl")
 }
 
-[node name="player_bone" type="Node2D"]
-position = Vector2(156, 134)
+[node name="player_bone_by_no_polygan" type="Node2D"]
 
 [node name="左臂" type="Sprite2D" parent="."]
-position = Vector2(9, -30)
-rotation = -0.00599808
+position = Vector2(7.86847, -30.4716)
+rotation = -0.0392752
+scale = Vector2(0.999365, 0.999365)
 texture = ExtResource("1_lg5qc")
 
 [node name="左小臂" type="Sprite2D" parent="."]
-position = Vector2(8, -5)
-rotation = -0.00599808
+position = Vector2(7.70091, -5.46803)
+rotation = -0.0392752
+scale = Vector2(0.999365, 0.999365)
 texture = ExtResource("2_f71jm")
 
 [node name="右大腿" type="Sprite2D" parent="."]
-position = Vector2(3, 13)
+position = Vector2(3.69427, 13.9933)
+rotation = 0.0339823
+scale = Vector2(0.999832, 0.999832)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿" type="Sprite2D" parent="."]
-position = Vector2(5, 38)
+position = Vector2(6.97711, 38.7749)
+rotation = -0.0609688
+scale = Vector2(0.999693, 0.999693)
 texture = ExtResource("4_ptjvs")
 
 [node name="骨骼" type="Skeleton2D" parent="."]
@@ -74,63 +374,81 @@ modification_stack = SubResource("SkeletonModificationStack2D_cnb45")
 
 [node name="胯部节点" type="Bone2D" parent="骨骼"]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
+editor_settings/show_bone_gizmo = false
 
 [node name="胯部" type="Sprite2D" parent="骨骼/胯部节点"]
 texture = ExtResource("5_270br")
 
-[node name="躯干" type="Sprite2D" parent="骨骼/胯部节点/胯部"]
+[node name="躯干Bone2D" type="Bone2D" parent="骨骼/胯部节点"]
 position = Vector2(0, -10)
+scale = Vector2(0.999884, 0.999884)
+rest = Transform2D(0.999884, 0, 0, 0.999884, 0, -10)
+editor_settings/show_bone_gizmo = false
+
+[node name="躯干" type="Sprite2D" parent="骨骼/胯部节点/躯干Bone2D"]
 texture = ExtResource("6_35v2f")
 offset = Vector2(-0.5, -17)
 
-[node name="头" type="Sprite2D" parent="骨骼/胯部节点/胯部/躯干"]
-position = Vector2(0, -49)
+[node name="头Bone2D" type="Bone2D" parent="骨骼/胯部节点/躯干Bone2D"]
+position = Vector2(2.38419e-07, -48.0056)
+scale = Vector2(1.0004, 1.0004)
+rest = Transform2D(1.0004, 0, 0, 1.0004, 2.38419e-07, -48.0056)
+editor_settings/show_bone_gizmo = false
+
+[node name="头" type="Sprite2D" parent="骨骼/胯部节点/躯干Bone2D/头Bone2D"]
 texture = ExtResource("7_aarxg")
 
-[node name="左臂" type="RemoteTransform2D" parent="骨骼/胯部节点/胯部/躯干"]
-position = Vector2(9, -20)
-rotation = -0.00599808
+[node name="左臂Bone2D" type="Bone2D" parent="骨骼/胯部节点/躯干Bone2D"]
+position = Vector2(7.86938, -20.474)
+rotation = -0.0392752
+scale = Vector2(0.999481, 0.999481)
+rest = Transform2D(0.99871, -0.0392447, 0.0392447, 0.99871, 7.86938, -20.474)
+editor_settings/show_bone_gizmo = false
+
+[node name="左臂" type="RemoteTransform2D" parent="骨骼/胯部节点/躯干Bone2D/左臂Bone2D"]
 remote_path = NodePath("../../../../../左臂")
 
-[node name="左小臂" type="RemoteTransform2D" parent="骨骼/胯部节点/胯部/躯干/左臂"]
+[node name="左小臂Bone2D" type="Bone2D" parent="骨骼/胯部节点/躯干Bone2D/左臂Bone2D"]
 position = Vector2(-1.14993, 24.9936)
+rest = Transform2D(1, 0, 0, 1, -1.14993, 24.9936)
+editor_settings/show_bone_gizmo = false
+
+[node name="左小臂" type="RemoteTransform2D" parent="骨骼/胯部节点/躯干Bone2D/左臂Bone2D/左小臂Bone2D"]
 remote_path = NodePath("../../../../../../左小臂")
 
-[node name="右臂" type="Sprite2D" parent="骨骼/胯部节点/胯部/躯干"]
+[node name="右臂Bone2D" type="Bone2D" parent="骨骼/胯部节点/躯干Bone2D"]
 position = Vector2(-12, -21)
+rest = Transform2D(1, 0, 0, 1, -12, -21)
+editor_settings/show_bone_gizmo = false
+
+[node name="右臂" type="Sprite2D" parent="骨骼/胯部节点/躯干Bone2D/右臂Bone2D"]
 texture = ExtResource("1_lg5qc")
 
-[node name="右小臂" type="Sprite2D" parent="骨骼/胯部节点/胯部/躯干/右臂"]
+[node name="右小臂Bone2D" type="Bone2D" parent="骨骼/胯部节点/躯干Bone2D/右臂Bone2D"]
 position = Vector2(-1, 25)
+rest = Transform2D(1, 0, 0, 1, -1, 25)
+editor_settings/show_bone_gizmo = false
+
+[node name="右小臂" type="Sprite2D" parent="骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D"]
 texture = ExtResource("2_f71jm")
-
-[node name="Marker2D" type="Marker2D" parent="骨骼/胯部节点/胯部/躯干/右臂"]
-position = Vector2(-2, 33)
-
-[node name="左大腿" type="RemoteTransform2D" parent="骨骼/胯部节点/胯部"]
-position = Vector2(3, 13)
-remote_path = NodePath("../../../../右大腿")
-
-[node name="左小腿" type="RemoteTransform2D" parent="骨骼/胯部节点/胯部/左大腿"]
-position = Vector2(2, 25)
-remote_path = NodePath("../../../../../右小腿")
 
 [node name="右大腿节点" type="Bone2D" parent="骨骼/胯部节点"]
 position = Vector2(-4.00041, 6.0002)
-scale = Vector2(0.999888, 0.999888)
-rest = Transform2D(1, 0, 0, 1, -4, 6)
-metadata/_local_pose_override_enabled_ = true
+rotation = 0.0422168
+scale = Vector2(0.999845, 0.999845)
+rest = Transform2D(0.998986, 0.042199, -0.042199, 0.998986, -4.00041, 6.0002)
+editor_settings/show_bone_gizmo = false
 
 [node name="右大腿" type="Sprite2D" parent="骨骼/胯部节点/右大腿节点"]
 position = Vector2(-1, 9)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿节点" type="Bone2D" parent="骨骼/胯部节点/右大腿节点"]
-position = Vector2(-0.998672, 20.9847)
-rotation = -2.97404
-scale = Vector2(0.99963, 0.99963)
-rest = Transform2D(1, 0, 0, 1, -1, 21)
-metadata/_local_pose_override_enabled_ = true
+position = Vector2(-1.01717, 20.9845)
+rotation = -0.0422257
+scale = Vector2(0.999854, 0.999854)
+rest = Transform2D(0.998947, -0.0422063, 0.0422063, 0.998947, -1.01717, 20.9845)
+editor_settings/show_bone_gizmo = false
 
 [node name="右小腿" type="Sprite2D" parent="骨骼/胯部节点/右大腿节点/右小腿节点"]
 position = Vector2(2, 12)
@@ -138,10 +456,47 @@ texture = ExtResource("4_ptjvs")
 
 [node name="脚节点" type="Bone2D" parent="骨骼/胯部节点/右大腿节点/右小腿节点"]
 position = Vector2(-2, 22)
-rest = Transform2D(1, 0, 0, 1, -2, 22)
+scale = Vector2(0.999795, 0.999795)
+rest = Transform2D(0.999795, 0, 0, 0.999795, -2, 22)
+editor_settings/show_bone_gizmo = false
 
 [node name="Marker2D" type="Marker2D" parent="骨骼/胯部节点/右大腿节点/右小腿节点/脚节点"]
-position = Vector2(12, 0)
+visible = false
+position = Vector2(10.0246, 0.031724)
+gizmo_extents = 13.9
+
+[node name="左大腿Bone2D" type="Bone2D" parent="骨骼/胯部节点"]
+position = Vector2(4, 5)
+scale = Vector2(0.999832, 0.999832)
+rest = Transform2D(0.998993, 0.0443993, -0.0443993, 0.998993, 4, 5)
+editor_settings/show_bone_gizmo = false
+
+[node name="左大腿" type="RemoteTransform2D" parent="骨骼/胯部节点/左大腿Bone2D"]
+position = Vector2(0, 9)
+remote_path = NodePath("../../../../右大腿")
+
+[node name="左小腿Bone2D" type="Bone2D" parent="骨骼/胯部节点/左大腿Bone2D"]
+position = Vector2(0, 22)
+scale = Vector2(0.999861, 0.999861)
+rest = Transform2D(0.995491, -0.094808, 0.094808, 0.995491, -1.43051e-06, 22)
+editor_settings/show_bone_gizmo = false
+
+[node name="左小腿" type="RemoteTransform2D" parent="骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D"]
+position = Vector2(3, 12)
+remote_path = NodePath("../../../../../右小腿")
+
+[node name="Bone2D" type="Bone2D" parent="骨骼/胯部节点/左大腿Bone2D/左小腿Bone2D"]
+position = Vector2(-2, 21)
+rest = Transform2D(1, 0, 0, 1, -2, 21)
+editor_settings/show_bone_gizmo = false
+
+[node name="右脚指引点" type="Marker2D" parent="骨骼"]
+visible = false
+position = Vector2(-3, 43)
+gizmo_extents = 131.7
+
+[node name="左脚指引点" type="Marker2D" parent="骨骼"]
+position = Vector2(-6, 40)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

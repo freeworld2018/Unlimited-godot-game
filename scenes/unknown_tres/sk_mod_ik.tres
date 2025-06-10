@@ -1,0 +1,29 @@
+[gd_resource type="SkeletonModification2DCCDIK" format=3 uid="uid://dh2c5dfjgleix"]
+
+[resource]
+target_nodepath = NodePath("胯部节点/右大腿节点")
+tip_nodepath = NodePath("胯部节点/右大腿节点/右小腿节点/脚节点")
+ccdik_data_chain_length = 3
+joint_data/0/bone_index = 1
+joint_data/0/bone2d_node = NodePath("胯部节点/右大腿节点")
+joint_data/0/rotate_from_joint = true
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = -30.0
+joint_data/0/constraint_angle_max = 15.0
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 2
+joint_data/1/bone2d_node = NodePath("胯部节点/右大腿节点/右小腿节点")
+joint_data/1/rotate_from_joint = true
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = -10.0
+joint_data/1/constraint_angle_max = 10.0
+joint_data/1/constraint_angle_invert = true
+joint_data/1/constraint_in_localspace = false
+joint_data/1/editor_draw_gizmo = true
+joint_data/2/bone_index = -1
+joint_data/2/bone2d_node = NodePath("")
+joint_data/2/rotate_from_joint = false
+joint_data/2/enable_constraint = false
+joint_data/2/editor_draw_gizmo = true
