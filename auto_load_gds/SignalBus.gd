@@ -18,6 +18,7 @@ signal hand_reduce_item(num:int)
 signal hand_get_item(S_tiem,num:int)
 signal hand_del_item()
 
+signal npc_handle_create_npc_by_id()
 
 signal item_bar_change()
 

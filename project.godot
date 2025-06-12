@@ -19,9 +19,12 @@ config/icon="uid://b7ro6bmnp0o57"
 
 AllItem="*res://auto_load_gds/all_item.gd"
 SignalBus="*res://auto_load_gds/SignalBus.gd"
+AllNpc="*res://auto_load_gds/all_npc.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 mouse_cursor/custom_image="uid://dav38ayrv3o0l"
 
 [dotnet]
@@ -84,6 +87,7 @@ select={
 2d_physics/layer_3="地面"
 2d_physics/layer_4="怪物"
 2d_physics/layer_5="建筑"
+2d_physics/layer_6="NPC"
 
 [rendering]
 

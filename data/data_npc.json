@@ -1,0 +1,22 @@
+[
+ {
+  "npc_name": "耄耋",
+  "type": 0,
+  "pic": "res://gane_assets/art/npc/maodie.png",
+  "id": 0,
+  "box_collide_height": 0.53,
+  "box_collide_width": 1.0,
+  "sprite_scale": 0.23,
+  "dialogue": 0,
+ },
+ {
+  "npc_name": "Doro",
+  "type": 0,
+  "pic": "res://gane_assets/art/npc/Doro.png",
+  "id": 1,
+  "box_collide_height": 0.41,
+  "box_collide_width": 1.0,
+  "sprite_scale": 0.09,
+  "dialogue": 0,
+ },
+]
