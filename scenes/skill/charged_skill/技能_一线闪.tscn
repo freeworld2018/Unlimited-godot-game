@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3t30voed6amp"]
+
+[ext_resource type="Script" uid="uid://drs04jv2slac2" path="res://node_2d.gd" id="1_h1stc"]
+
+[node name="技能_一线闪" type="Node2D"]
+script = ExtResource("1_h1stc")

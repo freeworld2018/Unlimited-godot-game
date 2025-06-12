@@ -23,3 +23,9 @@ signal npc_handle_create_npc_by_id()
 signal item_bar_change()
 
 signal player_set_item(S_item:item)
+
+###技能释放信号
+
+signal player_start_charge()
+signal player_release_charge(time:float)
+signal player_skill_end()
