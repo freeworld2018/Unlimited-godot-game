@@ -1,6 +1,7 @@
 extends Node2D
 signal hurt_happen(damage:int,damage_point:Vector2)
 
+var test_npc = load("res://scenes/npcTemplate/npc_template.tscn")
 var test_item = load("res://scenes/item.tscn")
 var icon_item = load("res://scenes/icon_item.tscn")
 @onready var damage_number = load("res://scenes/effects/damage_number.tscn")
@@ -20,6 +21,7 @@ func _ready():
 	SignalBus.invenetory_get_item.emit(AllItem.get_item(1),1)
 
 	create_base_ground()
+
 ###用以生成初始基本地形
 func create_base_ground():
 	var g_group:Array[Texture2D]
@@ -49,9 +51,7 @@ func create_base_ground():
 		
 	$ground/ground/CollisionShape2D.shape.size.x = set_pos_x*2
 
-
 ###镜头控制 camera2d
-
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("resize_up"):
 		if camera.zoom.x <1.8:
@@ -59,11 +59,6 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("resize_down"):
 		if camera.zoom.x >0.8:
 			camera.zoom -= Vector2(0.2,0.2)
-
-
-
-
-
 
 ### 处理命令
 func handle_command(text:String):
@@ -80,7 +75,7 @@ func handle_command(text:String):
 	# 筛选指令
 	if command_1 == "quit":
 		get_tree().quit()
-	if command_1 not in ["spawn","get","kill"]:
+	if command_1 not in ["spawn","get","kill","createNPC"]:
 		super_print("未知指令")
 		return
 	if typeof(command_2) != 2:
@@ -96,6 +91,9 @@ func handle_command(text:String):
 				create_monster_by_name(command_2)
 		"get":super_print("get指令",1)
 		"kill":super_print("kill指令",1)
+		"createNPC":
+			super_print("生成NPC指令", 1)
+			create_npc_by_id(command_2, $player.position + Vector2(0, -200))
 		
 		
 ### 给予玩家物品(id)
@@ -140,6 +138,7 @@ func _on_timer_timeout() -> void:
 	#create_item_by_id(0)
 	#create_item_by_id(1)
 	pass # Replace with function body.
+
 func _on_hurt_happen(value:int,point:Vector2):
 	#处理伤害？   处理伤害数字！
 	var damage_num = damage_number.instantiate()
@@ -147,3 +146,10 @@ func _on_hurt_happen(value:int,point:Vector2):
 	damage_num.set_damage_num(value)
 	damage_num.position = point
 	pass
+
+### 生成NPC
+func create_npc_by_id(npcid:int, create_pos: Vector2):
+	var npc_0 = test_npc.instantiate()
+	npc_0.set_info(AllNpc.npc_info(npcid))
+	npc_0.position = create_pos
+	$NPCNode.add_child(npc_0)

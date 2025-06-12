@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=3 uid="uid://ciorncj0cdv5g"]
+
+[ext_resource type="Script" uid="uid://dmy72oyjmsb62" path="res://scenes/npcTemplate/npc_template.gd" id="1_1y102"]
+[ext_resource type="Shader" uid="uid://bd15f1kpe3sim" path="res://shader/outline.gdshader" id="2_e36fa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m1y75"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_em1b2"]
+shader = ExtResource("2_e36fa")
+shader_parameter/outline_color = Color(0.97486, 0.803005, 0.160474, 1)
+shader_parameter/outline_width = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yr4qw"]
+size = Vector2(64, 128)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yr4qw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e36fa"]
+
+[node name="NPC_template" type="CharacterBody2D" groups=["hurtable", "monster"]]
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_1y102")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_m1y75")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_em1b2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 0.53)
+shape = SubResource("RectangleShape2D_yr4qw")
+
+[node name="interaction_display" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_display"]
+scale = Vector2(8.87, 7.045)
+shape = SubResource("CapsuleShape2D_yr4qw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 2)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="interaction_mouse_left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interaction_mouse_left"]
+shape = SubResource("RectangleShape2D_e36fa")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = 1.5708
+collision_mask = 4
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="interaction_display" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="interaction_display" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="interaction_display" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="interaction_display" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="mouse_entered" from="interaction_mouse_left" to="." method="_on_interaction_mouse_left_mouse_entered"]
+[connection signal="mouse_exited" from="interaction_mouse_left" to="." method="_on_interaction_mouse_left_mouse_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -40,12 +40,13 @@ func _physics_process(delta):
 	if travelled_distance > max_distance:
 		print("子弹超距销毁")
 		destroy_no_collsion()
+
 func destroy_no_collsion():
 	queue_free() 
 	pass
+
 # 销毁子弹
 func destroy(collision_point:Vector2):
-	
 	var timer = get_tree().create_timer(2.0)
 	await  timer.timeout
 	print("子弹碰撞后超时销毁")
@@ -55,7 +56,6 @@ func destroy(collision_point:Vector2):
 func _on_LifetimeTimer_timeout():
 	print("子弹超时销毁")
 	destroy_no_collsion()
-
 
 func _on_lifetime_timer_timeout() -> void:
 	pass # Replace with function body.

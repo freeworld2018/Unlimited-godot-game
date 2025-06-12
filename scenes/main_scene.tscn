@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=43 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/main_scene.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://c6q25fvs28u46" path="res://gane_assets/art/back_pic/parallax_ground_1.png" id="2_0f5b0"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dvkqxi4m7xqu0" path="res://gane_assets/art/back_pic/tree_1.png" id="5_sojf6"]
 [ext_resource type="PackedScene" uid="uid://pomkjln67fbm" path="res://scenes/ui.tscn" id="10_0ccap"]
 [ext_resource type="Script" uid="uid://cqvwvfyvgxsd" path="res://scenes/command_window.gd" id="11_e1cbu"]
+[ext_resource type="Texture2D" uid="uid://bcajl3rl38ygx" path="res://gane_assets/art/effects/md03.png" id="13_4w45t"]
 [ext_resource type="PackedScene" uid="uid://bs3ye1a1n0bh0" path="res://scenes/enemies/scarecrow.tscn" id="14_0f5b0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
@@ -18,52 +19,346 @@ size = Vector2(1000, 200)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0f5b0"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r6p65"]
+content_margin_left = 15.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0.94902, 0.74902, 0.388235, 0.27451)
+corner_radius_top_left = 25
+corner_radius_bottom_right = 25
+shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_si52b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01n6w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6u1mn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bcnxi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nt27"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k6f3i"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xdqt8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_adb74"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_58gk3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_to7gp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u0fll"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6p3nn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k67gn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k3g67"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bgka"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_02d50"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pgk25"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kkokr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lhwp2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l40q6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iav3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_womr8"]
+
+[sub_resource type="Animation" id="Animation_4w45t"]
+resource_name = "DialogBoxOFF"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("UI_layer/DialogBox:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("UI_layer/DialogBox:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("UI_layer/DialogBox:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_layer/DialogBox:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.0333333, 0, 0, -0.966667, 3, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:offset:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:offset:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(-300, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI_layer/DialogBox:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_r6p65"]
+resource_name = "DialogBoxON"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath("UI_layer/DialogBox:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("UI_layer/DialogBox:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("UI_layer/DialogBox:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_layer/DialogBox:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.0333333, -2, 1, -1.00833, 2, 0.133333, -37),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:offset:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 1)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:offset:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, -300, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.3)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI_layer/DialogBox:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_si52b"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI_layer/DialogBox:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI_layer/DialogBox:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI_layer/DialogBox:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI_layer/DialogBox:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:offset:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:offset:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI_layer/DialogBox:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_01n6w"]
+_data = {
+&"DialogBoxOFF": SubResource("Animation_4w45t"),
+&"DialogBoxON": SubResource("Animation_r6p65"),
+&"RESET": SubResource("Animation_si52b")
+}
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pkn42")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
-[node name="sky" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Parallax2D_0" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.5, 1.5)
 scroll_offset = Vector2(0, 660)
 repeat_size = Vector2(1408, 0)
 repeat_times = 9
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Parallax2D_0"]
 texture = ExtResource("2_0f5b0")
 
-[node name="peak" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Parallax2D_1" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.4, 1.4)
 scroll_offset = Vector2(0, 330)
 repeat_times = 3
 
-[node name="Mountain1" type="Sprite2D" parent="ParallaxBackground/peak"]
+[node name="Mountain1" type="Sprite2D" parent="ParallaxBackground/Parallax2D_1"]
 texture = ExtResource("3_dujm8")
 
-[node name="far_backpic" type="Parallax2D" parent="ParallaxBackground"]
+[node name="Parallax2D" type="Parallax2D" parent="ParallaxBackground"]
 scroll_scale = Vector2(1.3, 2)
 scroll_offset = Vector2(0, 1000)
-repeat_size = Vector2(1434, 0)
-repeat_times = 10
+repeat_size = Vector2(1200, 0)
 
-[node name="ForestShadow" type="Sprite2D" parent="ParallaxBackground/far_backpic"]
-texture = ExtResource("4_7d12v")
-
-[node name="middle_backpic" type="Parallax2D" parent="ParallaxBackground"]
-scroll_scale = Vector2(1.3, 2)
-scroll_offset = Vector2(0, 1000)
-repeat_size = Vector2(1434, 0)
-repeat_times = 10
-
-[node name="ParallaxBlackTreeShadow1" type="Sprite2D" parent="ParallaxBackground/middle_backpic"]
+[node name="ParallaxBlackTreeShadow1" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
 texture = ExtResource("4_mngbo")
 
-[node name="near_backpic" type="Parallax2D" parent="ParallaxBackground"]
-scroll_offset = Vector2(0, 1050)
-repeat_size = Vector2(240, 0)
-repeat_times = 40
+[node name="ForestShadow" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+visible = false
+texture = ExtResource("4_7d12v")
 
-[node name="Tree1" type="Sprite2D" parent="ParallaxBackground/near_backpic"]
+[node name="Tree1" type="Sprite2D" parent="ParallaxBackground/Parallax2D"]
+visible = false
+position = Vector2(1034, 784)
 texture = ExtResource("5_sojf6")
 
 [node name="ground" type="Node2D" parent="."]
@@ -149,4 +444,128 @@ layout_mode = 2
 bbcode_enabled = true
 scroll_following = true
 
+[node name="DialogBox" type="Control" parent="UI_layer"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="UI_layer/DialogBox"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+
+[node name="ColorRect" type="ColorRect" parent="UI_layer/DialogBox/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.331144, 0.916444, 1, 0.321569)
+
+[node name="NPCName" type="RichTextLabel" parent="UI_layer/DialogBox/Control"]
+layout_mode = 2
+offset_left = 460.0
+offset_top = 320.0
+offset_right = 679.0
+offset_bottom = 375.0
+theme_override_font_sizes/normal_font_size = 29
+theme_override_styles/normal = SubResource("StyleBoxFlat_r6p65")
+text = "耄耋"
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="UI_layer/DialogBox/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -200.0
+offset_right = 500.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 60
+
+[node name="content" type="RichTextLabel" parent="UI_layer/DialogBox/Control/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 30
+text = "Ha!!!!!!!!!!!!!!!!!!!!!!!"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_layer/DialogBox/Control"]
+layout_mode = 0
+offset_left = 1297.9
+offset_top = 575.62
+offset_right = 1499.9
+offset_bottom = 777.62
+
+[node name="NPCImg" type="TextureRect" parent="UI_layer/DialogBox/Control/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_4w45t")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI_layer/DialogBox"]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 690.0
+offset_right = 690.0
+offset_bottom = 753.0
+
+[node name="prompt" type="Button" parent="UI_layer/DialogBox/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_si52b")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_01n6w")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_6u1mn")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_bcnxi")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_7nt27")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_k6f3i")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_xdqt8")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_adb74")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_58gk3")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_to7gp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u0fll")
+text = " 提 示 "
+
+[node name="Help" type="Button" parent="UI_layer/DialogBox/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6p3nn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_k67gn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_k3g67")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4bgka")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_02d50")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_pgk25")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_kkokr")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_lhwp2")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_l40q6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_iav3h")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_womr8")
+text = " 帮 助 "
+
+[node name="MainTreeAnim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_01n6w")
+}
+
+[node name="NPCNode" type="Node2D" parent="."]
+
 [connection signal="timeout" from="timernode/Timer" to="." method="_on_timer_timeout"]
+[connection signal="text_submitted" from="UI_layer/CommandWindow/LineEdit" to="." method="_on_line_edit_text_submitted"]
