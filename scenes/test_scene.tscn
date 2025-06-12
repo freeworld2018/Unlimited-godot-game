@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://dp5ac3q3apiiw"]
+
+[ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="1_j8ivh"]
+[ext_resource type="PackedScene" uid="uid://docotfej45xef" path="res://scenes/player_bone.tscn" id="2_nd71p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ddre"]
+size = Vector2(1210, 200)
+
+[node name="test_scene" type="Node2D"]
+
+[node name="ground" type="Node2D" parent="."]
+position = Vector2(638, 645)
+
+[node name="ground" type="StaticBody2D" parent="ground"]
+collision_layer = 4
+collision_mask = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/ground"]
+position = Vector2(-61, 0)
+shape = SubResource("RectangleShape2D_7ddre")
+
+[node name="floor_0" type="Node2D" parent="ground"]
+position = Vector2(-29, -52)
+
+[node name="ColorRect" type="ColorRect" parent="ground/floor_0"]
+offset_left = -963.0
+offset_top = -37.0
+offset_right = 970.0
+offset_bottom = 130.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Ground" type="Sprite2D" parent="ground/floor_0"]
+position = Vector2(-7, -1)
+scale = Vector2(1.38423, 1.60769)
+texture = ExtResource("1_j8ivh")
+
+[node name="player_bone_by_no_polygan" parent="." instance=ExtResource("2_nd71p")]
+position = Vector2(584, 189)
