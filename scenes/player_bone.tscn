@@ -1635,14 +1635,12 @@ script = ExtResource("1_b8lcn")
 [node name="骨骼层" type="Node2D" parent="."]
 
 [node name="左臂" type="Sprite2D" parent="骨骼层"]
-position = Vector2(20.5432, -18.1969)
-rotation = -0.314803
+position = Vector2(9.00001, -32)
 scale = Vector2(0.999366, 0.999366)
 texture = ExtResource("1_lg5qc")
 
 [node name="左小臂" type="Sprite2D" parent="骨骼层"]
-position = Vector2(36.403, -0.696424)
-rotation = -1.10541
+position = Vector2(8, -6.00007)
 scale = Vector2(0.999366, 0.999366)
 texture = ExtResource("2_f71jm")
 
@@ -1652,12 +1650,12 @@ scale = Vector2(1.00052, 1.00052)
 texture = ExtResource("8_f71jm")
 
 [node name="右大腿" type="Sprite2D" parent="骨骼层"]
-position = Vector2(1, 23.3185)
+position = Vector2(1, 13.9985)
 scale = Vector2(0.999833, 0.999833)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿" type="Sprite2D" parent="骨骼层"]
-position = Vector2(3.99908, 48.3127)
+position = Vector2(3.99908, 38.9927)
 scale = Vector2(0.999694, 0.999694)
 texture = ExtResource("4_ptjvs")
 
@@ -1687,7 +1685,7 @@ position = Vector2(-1, 9)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点/右大腿节点"]
-scale = Vector2(0.999855, 0.999855)
+scale = Vector2(0.999854, 0.999854)
 rest = Transform2D(0.998964, -0.042207, 0.042207, 0.998964, -1.01717, 20.9845)
 editor_settings/show_bone_gizmo = false
 
@@ -1865,5 +1863,20 @@ shape = SubResource("RectangleShape2D_ptjvs")
 [node name="skills" type="Node2D" parent="."]
 
 [node name="技能_一线闪" parent="skills" instance=ExtResource("11_270br")]
+
+[node name="临时充能条" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="临时充能条"]
+offset_left = 9.0
+offset_top = -84.0
+offset_right = 49.0
+offset_bottom = -75.0
+
+[node name="ColorRect2" type="ColorRect" parent="临时充能条"]
+offset_left = 9.0
+offset_top = -84.0
+offset_right = 9.0
+offset_bottom = -75.0
+color = Color(1, 0.792157, 0.341176, 1)
 
 [connection signal="animation_finished" from="AnimationPlayer_hand" to="." method="_on_animation_player_animation_finished"]

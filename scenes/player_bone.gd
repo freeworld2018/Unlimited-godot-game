@@ -81,114 +81,11 @@ var can_use:bool = true         #使用锁定
 @onready  var animationplayer = $AnimationPlayer_hand
 @onready  var body = $"骨骼层"
 
+##########生命周期函数###################
+
 func _ready() -> void:
-	
 	animationplayer.play("RESET")
 	SignalBus.player_skill_end.connect(_on_skill_end)
-
-func _on_skill_end():
-	change_state(CharacterState.IDLE)
-
-func enter_state(new_state:int):
-	match new_state:
-		CharacterState.IDLE:
-			animationplayer.play("RESET")
-			pass
-		CharacterState.WALKING:
-			animationplayer.play("主角行走/walk")
-			pass
-		CharacterState.ATTACKING:
-			pass
-		CharacterState.USING_SKILL:
-			pass
-		CharacterState.CHARGING:
-			SignalBus.player_start_charge.emit()
-		CharacterState.RELEASING:
-			SignalBus.player_release_charge.emit(charge_time)
-func exit_state(state:int):
-	
-	
-	pass
-func change_state(new_state:int):
-	if new_state == current_state:
-		return
-	exit_state(current_state)
-	
-	previous_state = current_state
-	current_state = new_state
-	
-	enter_state(current_state)
-
-
-func update_state(delta:float):
-	match current_state:
-		CharacterState.IDLE:
-			update_idle(delta)
-			pass
-		CharacterState.WALKING:
-			update_walking(delta)
-			pass
-		CharacterState.ATTACKING:
-			pass
-		CharacterState.USING_SKILL:
-			pass
-		CharacterState.CHARGING:
-			update_charging(delta)
-			pass
-		CharacterState.RELEASING:
-			pass
-		
-	pass
-
-func update_idle(delta:float):
-	
-	var direction2 = Input.get_axis("move_left", "move_right")
-	if direction2:
-		velocity.x = direction2 * SPEED
-		if direction2 < 0:
-			toward_right = false
-			
-		if direction2 > 0:
-			toward_right = true
-		change_state(CharacterState.WALKING)
-	if toward_right:
-		body.scale.x = 1
-	else:
-		body.scale.x = -1
-	
-	
-func update_walking(delta:float):
-	var direction2 = Input.get_axis("move_left", "move_right")
-	if direction2:
-		velocity.x = direction2 * SPEED
-		if direction2 < 0:
-			toward_right = false
-		
-		if direction2 > 0:
-			toward_right = true
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		change_state(CharacterState.IDLE)
-	if toward_right:
-		body.scale.x = 1
-	else:
-		body.scale.x = -1
-	
-	
-func update_charging(delta:float):
-	charge_time += delta
-	pass
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 func _physics_process(delta: float) -> void:
 	
 	update_state(delta)
@@ -259,6 +156,108 @@ func _input(event: InputEvent) -> void:
 					boxing  = 0
 					input_lock = true
 					return
+
+
+
+##########状态机处理###################
+func enter_state(new_state:int):	
+	match new_state:
+		CharacterState.IDLE:
+			animationplayer.play("RESET")
+			pass
+		CharacterState.WALKING:
+			animationplayer.play("主角行走/walk")
+			pass
+		CharacterState.ATTACKING:
+			pass
+		CharacterState.USING_SKILL:
+			pass
+		CharacterState.CHARGING:
+			SignalBus.player_start_charge.emit()
+		CharacterState.RELEASING:
+			SignalBus.player_release_charge.emit(charge_time)
+func exit_state(state:int):
+	
+	
+	pass
+func change_state(new_state:int):
+	if new_state == current_state:
+		return
+	exit_state(current_state)
+	
+	previous_state = current_state
+	current_state = new_state
+	
+	enter_state(current_state)
+
+func update_state(delta:float):
+	match current_state:
+		CharacterState.IDLE:
+			update_idle(delta)
+			pass
+		CharacterState.WALKING:
+			update_walking(delta)
+			pass
+		CharacterState.ATTACKING:
+			pass
+		CharacterState.USING_SKILL:
+			pass
+		CharacterState.CHARGING:
+			update_charging(delta)
+			pass
+		CharacterState.RELEASING:
+			pass
+		
+	pass
+
+func update_idle(delta:float):
+	
+	var direction2 = Input.get_axis("move_left", "move_right")
+	if direction2:
+		velocity.x = direction2 * SPEED
+		if direction2 < 0:
+			toward_right = false
+			
+		if direction2 > 0:
+			toward_right = true
+		change_state(CharacterState.WALKING)
+	if toward_right:
+		body.scale.x = 1
+	else:
+		body.scale.x = -1
+	
+func update_walking(delta:float):
+	var direction2 = Input.get_axis("move_left", "move_right")
+	if direction2:
+		velocity.x = direction2 * SPEED
+		if direction2 < 0:
+			toward_right = false
+		
+		if direction2 > 0:
+			toward_right = true
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		change_state(CharacterState.IDLE)
+	if toward_right:
+		body.scale.x = 1
+	else:
+		body.scale.x = -1
+	
+func update_charging(delta:float):
+	charge_time += delta
+	
+	pass
+	
+	
+	
+	
+	
+	
+	
+##############信号处理#####################	
+func _on_skill_end():
+	change_state(CharacterState.IDLE)
+	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	print(anim_name)
 	if anim_name.find("技能"):

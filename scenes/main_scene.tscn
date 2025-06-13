@@ -1,22 +1,20 @@
-[gd_scene load_steps=15 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=14 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/main_scene.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://c6q25fvs28u46" path="res://gane_assets/art/back_pic/parallax_ground_1.png" id="2_0f5b0"]
 [ext_resource type="Texture2D" uid="uid://cxgnmpwvqeyge" path="res://gane_assets/art/front_pic/ground.png" id="2_ujykm"]
 [ext_resource type="Texture2D" uid="uid://dtec3dnwnlg7s" path="res://gane_assets/art/back_pic/mountain_1.png" id="3_dujm8"]
-[ext_resource type="PackedScene" uid="uid://dx3ifleapc2nw" path="res://scenes/player.tscn" id="3_ujykm"]
 [ext_resource type="Texture2D" uid="uid://qe51ylp0qjcy" path="res://gane_assets/art/back_pic/forest_shadow.png" id="4_7d12v"]
 [ext_resource type="Texture2D" uid="uid://b6jdqmlwr7r55" path="res://gane_assets/art/back_pic/parallax_black_tree_shadow_1.png" id="4_mngbo"]
 [ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dvkqxi4m7xqu0" path="res://gane_assets/art/back_pic/tree_1.png" id="5_sojf6"]
+[ext_resource type="PackedScene" uid="uid://docotfej45xef" path="res://scenes/player_bone.tscn" id="8_mngbo"]
 [ext_resource type="PackedScene" uid="uid://pomkjln67fbm" path="res://scenes/ui.tscn" id="10_0ccap"]
 [ext_resource type="Script" uid="uid://cqvwvfyvgxsd" path="res://scenes/command_window.gd" id="11_e1cbu"]
 [ext_resource type="PackedScene" uid="uid://bs3ye1a1n0bh0" path="res://scenes/enemies/scarecrow.tscn" id="14_0f5b0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1000, 200)
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0f5b0"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_pkn42")
@@ -102,13 +100,12 @@ scale = Vector2(1.38423, 1.60769)
 texture = ExtResource("2_ujykm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(958, 647)
+position = Vector2(564, 813)
 
-[node name="player" parent="." instance=ExtResource("3_ujykm")]
-material = SubResource("CanvasItemMaterial_0f5b0")
-position = Vector2(958, 647)
+[node name="player_bone_by_no_polygan" parent="." instance=ExtResource("8_mngbo")]
+position = Vector2(564, 813)
 
-[node name="控制相机" type="RemoteTransform2D" parent="player"]
+[node name="控制相机" type="RemoteTransform2D" parent="player_bone_by_no_polygan"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Box" parent="." instance=ExtResource("5_b6kwy")]
