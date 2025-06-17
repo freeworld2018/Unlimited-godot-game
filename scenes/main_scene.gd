@@ -2,7 +2,7 @@ extends Node2D
 signal hurt_happen(damage:int,damage_point:Vector2)
 
 var test_npc = load("res://scenes/npcTemplate/npc_template.tscn")
-var test_item = load("res://scenes/item.tscn")
+var test_item = load("res://scenes/dropped_item.tscn")
 var icon_item = load("res://scenes/icon_item.tscn")
 @onready var damage_number = load("res://scenes/effects/damage_number.tscn")
 

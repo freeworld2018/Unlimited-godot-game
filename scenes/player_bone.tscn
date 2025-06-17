@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://docotfej45xef"]
+[gd_scene load_steps=35 format=3 uid="uid://docotfej45xef"]
 
 [ext_resource type="Script" uid="uid://dhvnlghapbglr" path="res://scenes/player_bone.gd" id="1_b8lcn"]
 [ext_resource type="Texture2D" uid="uid://cdknplcs1cq4x" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_arm_2.png" id="1_lg5qc"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://c4c3huuo632m6" path="res://gane_assets/art/base_player/player_pieces/base_player_joint.png" id="8_f71jm"]
 [ext_resource type="Animation" uid="uid://5151m4siqhvo" path="res://animationplayer_assets/walk.res" id="10_ptjvs"]
 [ext_resource type="PackedScene" uid="uid://d3t30voed6amp" path="res://scenes/skill/charged_skill/技能_一线闪.tscn" id="11_270br"]
+[ext_resource type="Texture2D" uid="uid://by5cdfn10o875" path="res://gane_assets/art/weapon/rapier_16.png" id="12_aarxg"]
+[ext_resource type="Texture2D" uid="uid://cm1ljwgqybnib" path="res://gane_assets/art/weapon/test_weapon/长刀.png" id="13_50t1q"]
 
 [sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_lg5qc"]
 enabled = false
@@ -1878,5 +1880,13 @@ offset_top = -84.0
 offset_right = 9.0
 offset_bottom = -75.0
 color = Color(1, 0.792157, 0.341176, 1)
+
+[node name="Rapier16" type="Sprite2D" parent="."]
+position = Vector2(-15, -94)
+texture = ExtResource("12_aarxg")
+
+[node name="LongKnife16" type="Sprite2D" parent="."]
+position = Vector2(21, -3)
+texture = ExtResource("13_50t1q")
 
 [connection signal="animation_finished" from="AnimationPlayer_hand" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,20 @@
+1.   基类 item.gd
+
+子类: 装备、武器、消耗品、材料、家具/建筑
+equipment_item.gd  
+weapon_item.gd  
+Consumable_item.gd  
+material_item.gd    
+furniture_item.gd
+只能被继承使用
+
+consumable_item_________
+int * 4 string *2  =  4b*4+32b*2 = 80b * 200(预计物品数量)   = 1.6kb
+material_item_________
+furniture_item_________
+equipment_item_________
+weapon_item_________
+
+
+2.  物品图片的资源管理
+   内存监控 > 2G   对引用频率的物品进行删除
