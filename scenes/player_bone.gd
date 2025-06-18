@@ -10,8 +10,19 @@ var current_item_id:int = -1
 var current_item:item
 var toward_right:bool = true     #朝向
 
+#region节点引用
+#获得节点引用(子节点）
+@onready var up_body = $body
+@onready var arm = $arm
+@onready var down_body = $AnimatedSprite2D
 
 
+#获得节点引用(非子节点）
+@onready var main = self.get_parent()
+@onready var ui = $"../UI_layer/UI"
+@onready var current_item_point_pic = $arm/item_point/Sprite2D
+
+#endregion 
 
 #region 角色的所有属性
 #角色属性
@@ -270,4 +281,56 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	
 	input_lock = false
 		
+	pass # Replace with function body.
+
+#############信息导出######################
+func get_player_info():
+	var  a = {}
+	a["玩家姓名"] = player_name
+	a["称号"] = nick_name
+	a["认定等级"]= level
+	a["战斗等级"] = battle_level
+	a["饥饿度"] = hunger
+	a["口渴度"] = thirst
+	a["体温"] = temperature
+	a["疲劳度"] = fatigue
+	a["生命值"] = HP
+	a["法力值"] = MP
+	a["移动速度"] = SPEED
+	a["每秒生命回复"] = HPS
+	a["每秒法力回复"] = MPS
+	a["力量"] = STR
+	a["敏捷"] = AGI
+	a["智力"] = INT
+	a["意志"] = WIL
+	a["体质"] = CON
+	a["魅力"] = CHA
+	a["知识"] = KNW
+	a["魔力"] = MAG
+	return a
+
+
+
+
+############捡起物品#######################
+#自动捡起物品
+func auto_pickup(pick_item:RigidBody2D):
+	#捡起物品
+	pick_item.can_pick = false
+	pick_item.target = self
+	pick_item.picking= true
+	await pick_item.picked
+	if not ui.can_pick(pick_item.self_item):
+		print("捡不起来！")
+		return
+	SignalBus.invenetory_get_item.emit(pick_item.self_item,pick_item.quantity)
+	
+	print("获得了物品"+pick_item.self_item.item_name)
+	pick_item.queue_free()
+	pass
+func _on_pickup_range_body_entered(body: Node2D) -> void:
+	#print(body.name)
+	if body is RigidBody2D:
+		if body.can_pick:
+			auto_pickup(body)
 	pass # Replace with function body.

@@ -12,7 +12,8 @@ const offset_x = 17
 const offset_y = 45
 
 func _ready() -> void:
-	SignalBus.item_bar_change.connect(_on_item_bar_change)
+	#SignalBus.item_bar_change.connect(_on_item_bar_change)
+	####!!!!!!!!!以上代码注释于2025年6越18日17：00。。将在第二天得到修改
 	self.position = Vector2(get_window().size.x/2-$ItemBar.texture.get_size().x/2,get_window().size.y-10.0-$ItemBar.texture.get_size().y)
 	item_bar_group_id.resize(8)
 	item_bar_group_id.fill(-1)

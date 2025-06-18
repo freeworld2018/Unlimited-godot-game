@@ -3,18 +3,27 @@ extends Node
 ##############################################
 
 var weapon_pic_group = []
+var weapon_icon_pic_group = []
 
 var consumable_item_group = []
+var consumable_item_icon_pic_group= []
+
+
 var null_item:item
 
 func _ready() -> void:
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/长剑.png"))
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/sword.png"))
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/sword.png"))
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/sword.png"))
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/sword.png"))
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/sword.png"))
-	weapon_pic_group.append(load("res://gane_assets/art/weapon/sword.png"))
+	weapon_icon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/weapon.png"))
+	consumable_item_icon_pic_group.append(load("res://gane_assets/art/consumable_item/food.png"))
+	consumable_item_icon_pic_group.append(load("res://gane_assets/art/consumable_item/water.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/长剑.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/法杖.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/长刀.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/细剑.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/短剑.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/短刀.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/匕首.png"))
+	weapon_pic_group.append(load("res://gane_assets/art/weapon/test_weapon/魔杖.png"))
+	load_consumable_item()
 	return
 
 	
@@ -24,23 +33,21 @@ func load_weapon_item():
 func load_equipment_item():
 	pass
 func load_consumable_item():
-	var a = FileAccess.open("res://data/data_item.json",FileAccess.READ)
+	#item_name	type	icon_pic	id	value	effect
+
+	var a = FileAccess.open("res://data/data_Consumable_item.json",FileAccess.READ)
 	var c = JSON.parse_string(a.get_as_text())
 	a.close()
 	#var id_count:int = 0
 	for i in c:
-		var item_a = item.new()
+		var item_a = consumablue_item.new()
 		item_a.item_name = i["item_name"]
 		item_a.type = i["type"]
-		item_a.pic = i["pic"]
+		item_a.icon_pic = i["icon_pic"]
 		item_a.id = i["id"]
-		item_a.stack = i["stack"]
-		item_a.picset_id = i["picset_id"]
-		#item_a.effect = i["effect"]
+		item_a.stack = i["value"]
+		item_a.effect = []
 		consumable_item_group.append(item_a)
-	null_item = item.new()
-	null_item.item_name ="空物品"
-	null_item.id = -1
 	pass
 func load_material_item():
 	pass
@@ -74,6 +81,9 @@ func create_weapon_by_power_level(power_level:int):
 	
 	#弥补值确定
 	var gap_value = power_level - mulit_power_factor + new_weapon.weight
+	new_weapon.icon_pic = "0"
+	new_weapon.pic = weapon_pic_group[new_weapon.type]
+	new_weapon.id = -1
 	return new_weapon
 func create_weapon_by_data(data:Array):
 	var new_weapon = weapon.new()

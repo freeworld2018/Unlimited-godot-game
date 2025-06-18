@@ -44,10 +44,16 @@ var good_desp= []
 var bad_desp= [] 
 var tag = []
 
+var pic
+var stack:bool = false
+
 func set_value(value:Array):
 	#参数举例  value=[name,type,icon_pic,id,material]
-	super.set_value(value)
 	self.weapon_name=value[0]
+	self.type = value[1]
+	self.icon_pic  = value[2]
+	self.id  = value[3]
+	
 	self.material =value[4]
 	self.attack_power=value[5]
 	self.weight = value[6]

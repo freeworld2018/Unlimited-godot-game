@@ -21,24 +21,24 @@ func reduce(num:int):
 		return
 	$Label.text = str(quantity)
 func set_info(info:item):
+	if info.id == -1:
+		self_item = info
+		self.texture = AllItem.weapon_icon_pic_group[0]
+		self.set_hframes(3)
+		self.set_vframes(3)
+		self.set_frame(self_item.type)
+		return
 	self_item = info
-	match self_item.type:
-		0:self.texture = load(self_item.pic) #枪械
-		1:#食品
-			self.texture = load(self_item.pic)
-			self.set_hframes(16)
-			self.set_vframes(8)
-			self.set_frame(self_item.picset_id-1)
-		2:#水
-			self.texture = load(self_item.pic)
-			self.set_hframes(16)
-			self.set_vframes(8)
-			self.set_frame(self_item.picset_id-1)
-		3:#近战
-			self.texture = load(self_item.pic)
-			#var image_icon = load(self_item.pic).get_image()
-			#image_icon.resize(64,64)
-			#self.texture = ImageTexture.create_from_image(image_icon)
+	if self_item.id > 81:
+		self.texture = AllItem.consumable_item_icon_pic_group[1]
+		self.set_hframes(3)
+		self.set_vframes(4)
+		self.set_frame(self_item.id-81-1)
+	else:
+		self.texture = AllItem.consumable_item_icon_pic_group[0]
+		self.set_hframes(9)
+		self.set_vframes(9)
+		self.set_frame(self_item.id-1)
 func get_id():
 	return self_item.id
 func info():

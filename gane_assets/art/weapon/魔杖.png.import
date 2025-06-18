@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfg5tvjcktchl"
-path="res://.godot/imported/food_asset.png-49b7ba917e739806dafeb41a3a86ad8d.ctex"
+uid="uid://cebc8qrf03xpi"
+path="res://.godot/imported/魔杖.png-31ad78639a7d3f1b51a7c460a7f6ac52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gane_assets/art/food/food_asset.png"
-dest_files=["res://.godot/imported/food_asset.png-49b7ba917e739806dafeb41a3a86ad8d.ctex"]
+source_file="res://gane_assets/art/weapon/魔杖.png"
+dest_files=["res://.godot/imported/魔杖.png-31ad78639a7d3f1b51a7c460a7f6ac52.ctex"]
 
 [params]
 

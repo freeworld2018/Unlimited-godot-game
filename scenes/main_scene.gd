@@ -14,11 +14,12 @@ var zoom_value_range:int = 1
 func _ready():
 	
 	hurt_happen.connect(_on_hurt_happen)#处理伤害信号
-	
-	
-	SignalBus.invenetory_get_item.emit(AllItem.get_item(0),1)
-	SignalBus.invenetory_get_item.emit(AllItem.get_item(27),1)
-	SignalBus.invenetory_get_item.emit(AllItem.get_item(1),1)
+	create_item_by_id(10)
+	create_weapon_by_power_level(50)
+	SignalBus.invenetory_get_item.emit(AllItem.create_weapon_by_power_level(50))
+	#SignalBus.invenetory_get_item.emit(AllItem.get_item(0),1)
+	#SignalBus.invenetory_get_item.emit(AllItem.get_item(27),1)
+	#SignalBus.invenetory_get_item.emit(AllItem.get_item(1),1)
 
 	create_base_ground()
 
@@ -98,12 +99,17 @@ func handle_command(text:String):
 		
 ### 给予玩家物品(id)
 func create_item_by_id(itemid:int):
-	
-	var test_0 = test_item.instantiate()        ###实例化物品
-	test_0.set_info(AllItem.get_item(itemid))  ###从AllItem获取一个序号为itemid的item类 作为参数
+	var test_0 = test_item.instantiate()        
+	test_0.set_info(AllItem.get_item(itemid))  
 	self.add_child(test_0)                   
 	test_0.position = Vector2(100,0)
 	#print(test_0.self_item.item_name)
+
+func create_weapon_by_power_level(power_level:int):
+	var test_0 = test_item.instantiate()        
+	test_0.set_info(AllItem.create_weapon_by_power_level(power_level))  
+	self.add_child(test_0)                   
+	test_0.position = Vector2(100,0)
 
 ### 生成单位
 func create_monster_by_name(name:String):

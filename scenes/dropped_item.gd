@@ -19,26 +19,31 @@ var attraction_force:float = 2000.0
 func _ready():
 	pass
 
-func set_in_bag(value:bool):
-	pass
 
 func set_info(info:item):
-	self_item = info.clone()
 	var pic1 = $Sprite2D
-	match self_item.type:
-		0:pic1.texture = load(self_item.pic)
-		1:
-			pic1.texture = load(self_item.pic)
-			pic1.set_hframes(16)
-			pic1.set_vframes(8)
-			pic1.set_frame(self_item.picset_id-1)
-		2:
-			pic1.texture = load(self_item.pic)
-			pic1.set_hframes(16)
-			pic1.set_vframes(8)
-			pic1.set_frame(self_item.picset_id-1)
-		3:
-			pic1.texture = load(self_item.pic)
+	
+	#1.
+	if info.id == -1:
+		self_item = info
+		pic1.texture = AllItem.weapon_icon_pic_group[0]
+		pic1.set_hframes(3)
+		pic1.set_vframes(3)
+		pic1.set_frame(self_item.type)
+		return
+	self_item = info
+	
+	if self_item.id > 81:
+		pic1.texture = AllItem.consumable_item_icon_pic_group[1]
+		pic1.set_hframes(3)
+		pic1.set_vframes(4)
+		pic1.set_frame(self_item.id-81-1)
+	else:
+		pic1.texture = AllItem.consumable_item_icon_pic_group[0]
+		pic1.set_hframes(9)
+		pic1.set_vframes(9)
+		pic1.set_frame(self_item.id-1)
+	
 			
 		
 

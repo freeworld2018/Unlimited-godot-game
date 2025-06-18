@@ -102,10 +102,10 @@ texture = ExtResource("2_ujykm")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(564, 813)
 
-[node name="player_bone_by_no_polygan" parent="." instance=ExtResource("8_mngbo")]
+[node name="player" parent="." instance=ExtResource("8_mngbo")]
 position = Vector2(564, 813)
 
-[node name="控制相机" type="RemoteTransform2D" parent="player_bone_by_no_polygan"]
+[node name="控制相机" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
 
 [node name="Box" parent="." instance=ExtResource("5_b6kwy")]

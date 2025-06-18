@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://docotfej45xef"]
+[gd_scene load_steps=34 format=3 uid="uid://docotfej45xef"]
 
 [ext_resource type="Script" uid="uid://dhvnlghapbglr" path="res://scenes/player_bone.gd" id="1_b8lcn"]
 [ext_resource type="Texture2D" uid="uid://cdknplcs1cq4x" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_arm_2.png" id="1_lg5qc"]
@@ -11,8 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c4c3huuo632m6" path="res://gane_assets/art/base_player/player_pieces/base_player_joint.png" id="8_f71jm"]
 [ext_resource type="Animation" uid="uid://5151m4siqhvo" path="res://animationplayer_assets/walk.res" id="10_ptjvs"]
 [ext_resource type="PackedScene" uid="uid://d3t30voed6amp" path="res://scenes/skill/charged_skill/技能_一线闪.tscn" id="11_270br"]
-[ext_resource type="Texture2D" uid="uid://by5cdfn10o875" path="res://gane_assets/art/weapon/rapier_16.png" id="12_aarxg"]
-[ext_resource type="Texture2D" uid="uid://cm1ljwgqybnib" path="res://gane_assets/art/weapon/test_weapon/长刀.png" id="13_50t1q"]
 
 [sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_lg5qc"]
 enabled = false
@@ -1630,6 +1628,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ptjvs"]
 size = Vector2(28, 122)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_270br"]
+radius = 119.0
+
 [node name="player_bone_by_no_polygan" type="CharacterBody2D"]
 collision_mask = 4
 script = ExtResource("1_b8lcn")
@@ -1687,7 +1688,7 @@ position = Vector2(-1, 9)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点/右大腿节点"]
-scale = Vector2(0.999854, 0.999854)
+scale = Vector2(0.999853, 0.999853)
 rest = Transform2D(0.998964, -0.042207, 0.042207, 0.998964, -1.01717, 20.9845)
 editor_settings/show_bone_gizmo = false
 
@@ -1881,12 +1882,11 @@ offset_right = 9.0
 offset_bottom = -75.0
 color = Color(1, 0.792157, 0.341176, 1)
 
-[node name="Rapier16" type="Sprite2D" parent="."]
-position = Vector2(-15, -94)
-texture = ExtResource("12_aarxg")
+[node name="pickup_range" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="LongKnife16" type="Sprite2D" parent="."]
-position = Vector2(21, -3)
-texture = ExtResource("13_50t1q")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
+shape = SubResource("CircleShape2D_270br")
 
 [connection signal="animation_finished" from="AnimationPlayer_hand" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="pickup_range" to="." method="_on_pickup_range_body_entered"]

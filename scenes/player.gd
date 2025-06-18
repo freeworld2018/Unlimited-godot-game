@@ -210,21 +210,6 @@ func die():
 
 
 
-#自动捡起物品
-func auto_pickup(pick_item:RigidBody2D):
-	#捡起物品
-	pick_item.can_pick = false
-	pick_item.target = self
-	pick_item.picking= true
-	await pick_item.picked
-	if not ui.can_pick(pick_item.self_item):
-		print("捡不起来！")
-		return
-	SignalBus.invenetory_get_item.emit(pick_item.self_item,pick_item.quantity)
-	super_print("获得了物品"+pick_item.self_item.item_name)
-	print("获得了物品"+pick_item.self_item.item_name)
-	pick_item.queue_free()
-	pass
 
 ###  调用场景内的方法 super_print(控制台打印）  inventory_set_get(物品栏操作)
 func super_print(text:String):
@@ -276,6 +261,23 @@ func set_current_item(S_item:item):
 func set_mask(value:bool):
 	#设置玩家的pickup_range
 	$pickup_range.set_collision_mask_value(2,value)
+	
+
+#自动捡起物品
+func auto_pickup(pick_item:RigidBody2D):
+	#捡起物品
+	pick_item.can_pick = false
+	pick_item.target = self
+	pick_item.picking= true
+	await pick_item.picked
+	if not ui.can_pick(pick_item.self_item):
+		print("捡不起来！")
+		return
+	SignalBus.invenetory_get_item.emit(pick_item.self_item,pick_item.quantity)
+	super_print("获得了物品"+pick_item.self_item.item_name)
+	print("获得了物品"+pick_item.self_item.item_name)
+	pick_item.queue_free()
+	pass
 func _on_pickup_range_body_entered(body: Node2D) -> void:
 	#print(body.name)
 	if body is RigidBody2D:
