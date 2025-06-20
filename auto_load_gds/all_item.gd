@@ -4,6 +4,10 @@ extends Node
 
 var weapon_pic_group = []
 var weapon_icon_pic_group = []
+# 武器生成id管理器
+var weapon_create_id:int = 1000
+
+
 
 var consumable_item_group = []
 var consumable_item_icon_pic_group= []
@@ -59,12 +63,15 @@ func load_furniture_item():
 #武器生成  create_weapon   依据强度掉落物品，会按照输入强度来生成一个物品。
 #武器生成2 create_weapon(Array) 按照给定的数据产生物品。
 
-func create_weapon_by_power_level(power_level:int):
+func create_weapon_by_power_level(power_level:int,type:int = -1):
 	#用力量等级生成一把武器， 
 	var new_weapon = weapon.new()
 	new_weapon.level = power_level
 	var random_num = randi()%100
-	new_weapon.type = randi()%8
+	if type == -1:
+		new_weapon.type = randi()%8
+	else:
+		new_weapon.type = type
 	new_weapon.material = randi()%4
 	if randi()%2>0:
 		new_weapon.material = randi()%8
@@ -81,9 +88,12 @@ func create_weapon_by_power_level(power_level:int):
 	
 	#弥补值确定
 	var gap_value = power_level - mulit_power_factor + new_weapon.weight
+	new_weapon.item_name = weapon.WeaponType_group[new_weapon.type]
 	new_weapon.icon_pic = "0"
 	new_weapon.pic = weapon_pic_group[new_weapon.type]
-	new_weapon.id = -1
+	weapon_create_id += 1
+	new_weapon.id = weapon_create_id
+	new_weapon.type += 5
 	return new_weapon
 func create_weapon_by_data(data:Array):
 	var new_weapon = weapon.new()

@@ -24,12 +24,12 @@ func set_info(info:item):
 	var pic1 = $Sprite2D
 	
 	#1.
-	if info.id == -1:
+	if info.id >1000:
 		self_item = info
 		pic1.texture = AllItem.weapon_icon_pic_group[0]
-		pic1.set_hframes(3)
-		pic1.set_vframes(3)
-		pic1.set_frame(self_item.type)
+		pic1.set_hframes(8)
+		pic1.set_vframes(1)
+		pic1.set_frame(self_item.type-5)
 		return
 	self_item = info
 	

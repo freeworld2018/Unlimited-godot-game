@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://pomkjln67fbm"]
+[gd_scene load_steps=14 format=3 uid="uid://pomkjln67fbm"]
 
 [ext_resource type="Script" uid="uid://cph1lkb1yeqxd" path="res://scenes/ui.gd" id="1_cgfq5"]
 [ext_resource type="Script" uid="uid://bv4ay0w2omeq7" path="res://scenes/inventory.gd" id="1_ktti3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://c55rw3uewrdcr" path="res://gane_assets/art/ui/PaperUiPanel.png" id="10_7dvkv"]
 [ext_resource type="FontFile" uid="uid://rhxjjebvv6hl" path="res://gane_assets/art/fonts/IPix中文像素字体.ttf" id="11_vdcm2"]
 [ext_resource type="Texture2D" uid="uid://y0bc7a3u5blg" path="res://gane_assets/art/ui/PaperUiPanelCartoony.png" id="12_6rmj2"]
+[ext_resource type="Script" uid="uid://dvqqo3mpp235p" path="res://scenes/player_equipment.gd" id="12_vsj0x"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -19,7 +20,6 @@ anchors_preset = 0
 script = ExtResource("1_cgfq5")
 
 [node name="Inventory" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = 16.0
@@ -88,7 +88,6 @@ color = Color(1, 1, 1, 0.423529)
 anchors_preset = 0
 
 [node name="player_info" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -133,8 +132,10 @@ horizontal_alignment = 1
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("12_vsj0x")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="player_equipment"]
+layout_mode = 0
 offset_left = 646.0
 offset_top = 42.0
 offset_right = 1102.0
@@ -147,6 +148,7 @@ patch_margin_right = 25
 patch_margin_bottom = 25
 
 [node name="Label" type="Label" parent="player_equipment/NinePatchRect"]
+layout_mode = 0
 offset_left = 5.0
 offset_top = 11.0
 offset_right = 440.0
@@ -159,283 +161,62 @@ horizontal_alignment = 1
 
 [node name="背部" type="Control" parent="player_equipment/NinePatchRect"]
 anchors_preset = 0
-offset_left = 31.0
-offset_top = -7.0
-offset_right = 71.0
-offset_bottom = 33.0
+offset_left = 94.0
+offset_top = 38.0
+offset_right = 134.0
+offset_bottom = 78.0
 
 [node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/背部"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
+offset_right = 143.0
+offset_bottom = 139.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_6rmj2")
 
 [node name="Label" type="Label" parent="player_equipment/NinePatchRect/背部"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
+layout_mode = 0
+offset_left = -41.0
+offset_top = 25.0
+offset_right = -1.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_vdcm2")
 theme_override_font_sizes/font_size = 20
 text = "背部"
 horizontal_alignment = 1
 
-[node name="右肩甲" type="Control" parent="player_equipment/NinePatchRect"]
+[node name="Sprite2D" type="Sprite2D" parent="player_equipment/NinePatchRect/背部"]
+position = Vector2(36, 35)
+
+[node name="腰部" type="Control" parent="player_equipment/NinePatchRect"]
 layout_mode = 3
 anchors_preset = 0
-offset_left = -7.0
-offset_top = 72.0
-offset_right = 33.0
-offset_bottom = 112.0
+offset_left = 344.0
+offset_top = 256.0
+offset_right = 384.0
+offset_bottom = 296.0
 
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/右肩甲"]
+[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/腰部"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
+offset_right = 143.0
+offset_bottom = 139.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("12_6rmj2")
 
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/右肩甲"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "肩膀"
-horizontal_alignment = 1
-
-[node name="右臂甲" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -7.0
-offset_top = 145.0
-offset_right = 33.0
-offset_bottom = 185.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/右臂甲"]
+[node name="Label" type="Label" parent="player_equipment/NinePatchRect/腰部"]
 layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/右臂甲"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
+offset_left = -41.0
+offset_top = 25.0
+offset_right = -1.0
+offset_bottom = 45.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("11_vdcm2")
 theme_override_font_sizes/font_size = 20
-text = "大臂"
+text = "腰部"
 horizontal_alignment = 1
 
-[node name="右小臂甲" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -7.0
-offset_top = 220.0
-offset_right = 33.0
-offset_bottom = 260.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/右小臂甲"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/右小臂甲"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "小臂"
-horizontal_alignment = 1
-
-[node name="右大腿甲" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -6.0
-offset_top = 293.0
-offset_right = 34.0
-offset_bottom = 333.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/右大腿甲"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/右大腿甲"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "大腿"
-horizontal_alignment = 1
-
-[node name="右小腿甲" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -6.0
-offset_top = 366.0
-offset_right = 34.0
-offset_bottom = 406.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/右小腿甲"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/右小腿甲"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "小腿"
-horizontal_alignment = 1
-
-[node name="鞋子" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 32.0
-offset_top = 441.0
-offset_right = 72.0
-offset_bottom = 481.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/鞋子"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/鞋子"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "脚
-"
-horizontal_alignment = 1
-
-[node name="项链" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 300.0
-offset_top = 80.0
-offset_right = 340.0
-offset_bottom = 120.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/项链"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/项链"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "脖子"
-horizontal_alignment = 1
-
-[node name="项链2" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 300.0
-offset_top = 160.0
-offset_right = 340.0
-offset_bottom = 200.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/项链2"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/项链2"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "手指"
-horizontal_alignment = 1
-
-[node name="项链3" type="Control" parent="player_equipment/NinePatchRect"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 300.0
-offset_top = 240.0
-offset_right = 340.0
-offset_bottom = 280.0
-
-[node name="TextureRect" type="TextureRect" parent="player_equipment/NinePatchRect/项链3"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 48.0
-offset_right = 201.0
-offset_bottom = 187.0
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("12_6rmj2")
-
-[node name="Label" type="Label" parent="player_equipment/NinePatchRect/项链3"]
-offset_left = 10.0
-offset_top = 75.0
-offset_right = 50.0
-offset_bottom = 95.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("11_vdcm2")
-theme_override_font_sizes/font_size = 20
-text = "腰间"
-horizontal_alignment = 1
+[node name="Sprite2D" type="Sprite2D" parent="player_equipment/NinePatchRect/腰部"]
+position = Vector2(36, 35)
 
 [connection signal="mouse_entered" from="Inventory/Container" to="Inventory" method="_on_container_mouse_entered"]
 [connection signal="mouse_exited" from="Inventory/Container" to="Inventory" method="_on_container_mouse_exited"]

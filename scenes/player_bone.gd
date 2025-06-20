@@ -10,6 +10,14 @@ var current_item_id:int = -1
 var current_item:item
 var toward_right:bool = true     #朝向
 
+#region 开关组
+var pre_fight:bool = false
+
+
+
+#endregion
+
+
 #region节点引用
 #获得节点引用(子节点）
 @onready var up_body = $body
@@ -85,11 +93,21 @@ var charge_time:float = 0
 
 
 #endregion
+
+#region 装备
+var equipment_0:item #背部
+var equipment_1:item #腰间
+
+
+#endregion
+
+
 #var input_lock:bool =false       #输入锁定
 var can_use:bool = true         #使用锁定
 
 
 @onready  var animationplayer = $AnimationPlayer_hand
+@onready  var animationplayer_2 = $AnimationPlayer_foot
 @onready  var body = $"骨骼层"
 
 ##########生命周期函数###################
@@ -97,6 +115,8 @@ var can_use:bool = true         #使用锁定
 func _ready() -> void:
 	animationplayer.play("RESET")
 	SignalBus.player_skill_end.connect(_on_skill_end)
+	SignalBus.player_use_item.connect(_on_use_item)
+	SignalBus.player_equip_item.connect(_on_equip_item)
 func _physics_process(delta: float) -> void:
 	
 	update_state(delta)
@@ -144,6 +164,13 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_1:
 			if current_state == CharacterState.CHARGING:
 				change_state(CharacterState.RELEASING)
+	if Input.is_action_just_pressed("背部武器"):
+		if pre_fight:
+			animationplayer.play_backwards("抽出武器_2")
+			return
+		animationplayer.play("抽出武器")
+		
+	
 	
 	return
 	if event is InputEventMouseButton and event.pressed:
@@ -174,10 +201,10 @@ func _input(event: InputEvent) -> void:
 func enter_state(new_state:int):	
 	match new_state:
 		CharacterState.IDLE:
-			animationplayer.play("RESET")
+			animationplayer_2.play("RESET")
 			pass
 		CharacterState.WALKING:
-			animationplayer.play("主角行走/walk")
+			animationplayer_2.play("walk")
 			pass
 		CharacterState.ATTACKING:
 			pass
@@ -270,18 +297,38 @@ func _on_skill_end():
 	change_state(CharacterState.IDLE)
 	
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	print(anim_name)
-	if anim_name.find("技能"):
-		pass
-	
-	
-	
-	if anim_name == "boxing_pre":
-		return
-	
-	input_lock = false
+	if anim_name == "抽出武器":
+		if pre_fight:
+			pre_fight = false
+			return
+		animationplayer.play("抽出武器_2")
 		
+	if anim_name == "抽出武器_2":
+		if pre_fight:
+			$"骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D/武器持有".texture = null
+			$"骨骼层/背部武器".texture = equipment_0.pic
+			animationplayer.play_backwards("抽出武器")
+			return
+		$"骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D/武器持有".texture = equipment_0.pic
+		$"骨骼层/背部武器".texture = null
+		pre_fight = true
 	pass # Replace with function body.
+
+func _on_use_item(S_item:item):
+	pass
+func _on_equip_item(S_item:item):
+	if S_item.type in  [5,6,7,8]:
+		equipment_0 = S_item
+		if S_item.type == 6:
+			$"骨骼层/背部武器".flip_h = false
+		else:
+			$"骨骼层/背部武器".flip_h = true
+		$"骨骼层/背部武器".texture= S_item.pic
+	if S_item.type in  [9,10,11,12]:
+		equipment_1 = S_item
+		$"骨骼层/腰部武器".texture= S_item.pic
+	pass
+
 
 #############信息导出######################
 func get_player_info():

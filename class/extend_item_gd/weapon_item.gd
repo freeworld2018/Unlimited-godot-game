@@ -27,7 +27,7 @@ enum MaterialType {
 	黄金 = 9,
 	白银 = 10
 }
-const WeaponType_group = ["长剑", "法杖", "刀", "细剑", "短剑", "短刀", "匕首", "魔杖"]
+const WeaponType_group = ["长剑", "法杖", "刀", "细剑", "短剑", "短刀", "匕首", "魔杖"]	
 const MaterialTypes_group = ["铁", "橡木", "松木", "钢", "合金", "玻璃", "水晶",\
  "魔力回应石", "骨头", "黄金", "白银"]
 const type_volume_factor =  [8,8,8,6,4,4,4,4]

@@ -19,14 +19,17 @@ func reduce(num:int):
 	if quantity == 1:
 		$Label.text = ""
 		return
+	if quantity == 0:
+		return true
 	$Label.text = str(quantity)
+	
 func set_info(info:item):
-	if info.id == -1:
+	if info.id > 1000:
 		self_item = info
 		self.texture = AllItem.weapon_icon_pic_group[0]
-		self.set_hframes(3)
-		self.set_vframes(3)
-		self.set_frame(self_item.type)
+		self.set_hframes(8)
+		self.set_vframes(1)
+		self.set_frame(self_item.type-5)
 		return
 	self_item = info
 	if self_item.id > 81:

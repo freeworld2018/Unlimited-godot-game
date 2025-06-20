@@ -23,6 +23,8 @@ signal npc_handle_create_npc_by_id()
 signal item_bar_change()
 
 signal player_set_item(S_item:item)
+signal player_use_item(S_item:item)
+signal player_equip_item(S_item:item)
 
 ###技能释放信号
 

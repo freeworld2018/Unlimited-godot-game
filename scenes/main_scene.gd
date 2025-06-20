@@ -15,11 +15,16 @@ func _ready():
 	
 	hurt_happen.connect(_on_hurt_happen)#处理伤害信号
 	create_item_by_id(10)
-	create_weapon_by_power_level(50)
-	SignalBus.invenetory_get_item.emit(AllItem.create_weapon_by_power_level(50))
-	#SignalBus.invenetory_get_item.emit(AllItem.get_item(0),1)
-	#SignalBus.invenetory_get_item.emit(AllItem.get_item(27),1)
-	#SignalBus.invenetory_get_item.emit(AllItem.get_item(1),1)
+	create_weapon_by_power_level(50,0)
+	create_weapon_by_power_level(50,1)
+	create_weapon_by_power_level(50,2)
+	create_weapon_by_power_level(50,3)
+	create_weapon_by_power_level(50,4)
+	create_weapon_by_power_level(50,5)
+	create_weapon_by_power_level(50,6)
+	create_weapon_by_power_level(50,7)
+	#SignalBus.invenetory_get_item.emit(AllItem.create_weapon_by_power_level(50))
+
 
 	create_base_ground()
 
@@ -105,9 +110,9 @@ func create_item_by_id(itemid:int):
 	test_0.position = Vector2(100,0)
 	#print(test_0.self_item.item_name)
 
-func create_weapon_by_power_level(power_level:int):
+func create_weapon_by_power_level(power_level:int,type:int = -1):
 	var test_0 = test_item.instantiate()        
-	test_0.set_info(AllItem.create_weapon_by_power_level(power_level))  
+	test_0.set_info(AllItem.create_weapon_by_power_level(power_level,type))  
 	self.add_child(test_0)                   
 	test_0.position = Vector2(100,0)
 

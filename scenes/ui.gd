@@ -5,6 +5,10 @@ extends Control
 var ui_mouse_in:bool = false
 var hand_is_null:bool = true
 
+func _ready() -> void:
+	$Inventory.visible = false
+	$player_info.visible = false
+	$player_equipment.visible = false
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("角色信息"):

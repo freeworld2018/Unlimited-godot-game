@@ -36,46 +36,7 @@ func _process(delta: float) -> void:
 		pos_y = clamp(pos_y,0,10)
 		$ColorRect.position = Vector2(int(pos.x)/64*64+17 ,int(pos.y)/64*64+45)
 
-func del_item(index:int):
-	
-	if item_group[index].quantity == 0:
-		print("删除物品"+str(index))
-		item_group_id[index] = -1
-		item_group[index].queue_free()
-		item_group[index] = null
-		set_item_emptyslots(+1)
-	if index < 8:
-		SignalBus.item_bar_change.emit()
-	pass
-func add_item_by_id(itemid:int,id:int = -1): #暂时弃用
-	if not AllItem.get_item(itemid).stack:
-		for i in range(80):
-			if item_group_id[i] == -1:
-				item_group_id[i] = itemid
-				set_item(AllItem.get_item(itemid),i)
-				SignalBus.item_bar_change.emit()
-				return
-	if itemid in item_group_id:
-		item_group[item_group_id.find(itemid)].add(1)
-		SignalBus.item_bar_change.emit()
-		return
-	#被zombie in village 引用
-	#itemid 物品id， id：数组位置。
-	if id != -1:
-		item_group_id[id] == itemid 
-		if item_group[id] != null:
-			item_group[id].queue_free()
-		set_item(AllItem.get_item(itemid),id)
-		pass
-	for i in range(80):
-		if item_group_id[i] == -1:
-			item_group_id[i] = itemid
-			set_item(AllItem.get_item(itemid),i)
-			SignalBus.item_bar_change.emit()
-			return
-	#SignalBus.item_bar_change.emit()
-		#item_group.append(a)
-	pass
+
 
 
 func _input(event: InputEvent) -> void:
@@ -139,33 +100,31 @@ func _input(event: InputEvent) -> void:
 				pos_y = clamp(pos_y,0,10)
 				var select_id:int = pos_x+pos_y*8
 				print(str(select_id))
-				if is_null(select_id): #当目标位置为空,且手上非空的时候执行放置物品
+				if item_group_id[select_id] == -1:
 					return
-				#对目标位置的操作： 右键获取一个
+				var select_item = item_group[select_id].self_item
 				if hand.is_null():
-					var test_0  = icon_item.instantiate()
-					test_0.set_info(AllItem.get_item(item_group_id[select_id]))
-					hand.get_node("hand_item").add_child(test_0)
-					hand.hand_item = test_0
-					item_group[select_id].add(-1)
-					if item_group[select_id].quantity == 0:
-						item_group_id[select_id] = -1
-						item_group[select_id].queue_free()
-						item_group[select_id] = null
-					SignalBus.item_bar_change.emit()
+					if select_item.type > 5 and select_item.type < 13:
+						SignalBus.player_equip_item.emit(select_item)
+						print("装备物品1")
+						return
+						
+					var hand_item = icon_item.instantiate()
+					hand_item.set_info(select_item)
+					hand.get_node("hand_item").add_child(hand_item)
+					hand_item.set_position(Vector2(0,0))
+					hand.hand_item = hand_item
+					
+					if item_group[select_id].reduce(1):
+						del_item(select_id)
 					return
-				#当手上有东西的时候 对着同物品
-				if hand.hand_item.get_id() == item_group_id[select_id]:
-					if not hand.hand_item.self_item.stack:
+				if select_item.type < 5:
+					if select_item.id != hand.hand_item.get_id():
 						return
 					hand.hand_item.add(1)
-					item_group[select_id].add(-1)
-					if item_group[select_id].quantity == 0:
-						item_group_id[select_id] = -1
-						item_group[select_id].queue_free()
-						item_group[select_id] = null
-					SignalBus.item_bar_change.emit()
-				return
+					if item_group[select_id].reduce(1):
+						del_item(select_id)
+				
 				#对着不同物品啥都不做
 			pass
 	if Input.is_action_just_pressed("inventory"):
@@ -211,7 +170,7 @@ func add_item(S_item:item,num:int):  #添加物品
 			return
 	pass
 
-func set_item(S_item:item,id:int):#从未使用
+func set_item(S_item:item,id:int):
 	#根据itemid生成物品并冷冻添加到节点中。
 	var test_0  = icon_item.instantiate()
 	test_0.set_info(S_item)
@@ -234,6 +193,48 @@ func is_null(id:int): #判断某一位是否为-1（无物品）
 	if item_group_id[id] == -1:
 		return true
 
+func del_item(index:int):
+	
+	if item_group[index].quantity == 0:
+		print("删除物品"+str(index))
+		item_group_id[index] = -1
+		item_group[index].queue_free()
+		item_group[index] = null
+		set_item_emptyslots(+1)
+	if index < 8:
+		SignalBus.item_bar_change.emit()
+	pass
+func add_item_by_id(itemid:int,id:int = -1): #暂时弃用
+	if not AllItem.get_item(itemid).stack:
+		for i in range(80):
+			if item_group_id[i] == -1:
+				item_group_id[i] = itemid
+				set_item(AllItem.get_item(itemid),i)
+				SignalBus.item_bar_change.emit()
+				return
+	if itemid in item_group_id:
+		item_group[item_group_id.find(itemid)].add(1)
+		SignalBus.item_bar_change.emit()
+		return
+	#被zombie in village 引用
+	#itemid 物品id， id：数组位置。
+	if id != -1:
+		item_group_id[id] == itemid 
+		if item_group[id] != null:
+			item_group[id].queue_free()
+		set_item(AllItem.get_item(itemid),id)
+		pass
+	for i in range(80):
+		if item_group_id[i] == -1:
+			item_group_id[i] = itemid
+			set_item(AllItem.get_item(itemid),i)
+			SignalBus.item_bar_change.emit()
+			return
+	#SignalBus.item_bar_change.emit()
+		#item_group.append(a)
+	pass
+
+
 func set_item_emptyslots(value:int):
 	if value == 0:
 		return
@@ -244,6 +245,7 @@ func set_item_emptyslots(value:int):
 		pass
 		#player.set_mask(true)
 	item_emptyslots += value
+
 
 
 func _on_container_mouse_entered() -> void:

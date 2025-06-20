@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://docotfej45xef"]
+[gd_scene load_steps=35 format=3 uid="uid://docotfej45xef"]
 
 [ext_resource type="Script" uid="uid://dhvnlghapbglr" path="res://scenes/player_bone.gd" id="1_b8lcn"]
 [ext_resource type="Texture2D" uid="uid://cdknplcs1cq4x" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_arm_2.png" id="1_lg5qc"]
@@ -1159,7 +1159,7 @@ tracks/18/keys = {
 
 [sub_resource type="Animation" id="Animation_aarxg"]
 resource_name = "抽出武器"
-length = 0.4
+length = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1167,10 +1167,10 @@ tracks/0/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-11.0013, -31.0036), Vector2(-11.0013, -31.0036), Vector2(-11.0013, -31.0036)]
+"values": [Vector2(-11.0013, -31.0036), Vector2(-11.0013, -31.0036)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1179,10 +1179,10 @@ tracks/1/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -2.75506, 0.0]
+"values": [0.0, -2.75506]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1191,10 +1191,10 @@ tracks/2/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-1.00015, 19.0029), Vector2(-1.00015, 19.0029), Vector2(-1.00015, 19.0029)]
+"values": [Vector2(-1.00015, 19.0029), Vector2(-1.00015, 19.0029)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1203,10 +1203,10 @@ tracks/3/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, -1.59154, 0.0]
+"values": [0.0, -1.59154]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1215,10 +1215,10 @@ tracks/4/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(9.00105, -29.0034), Vector2(9.00105, -29.0034), Vector2(9.00105, -29.0034)]
+"values": [Vector2(9.00105, -29.0034), Vector2(9.00105, -29.0034)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1227,10 +1227,10 @@ tracks/5/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.0]
+"values": [0.0, 0.0]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
@@ -1239,10 +1239,10 @@ tracks/6/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-1.00064, 18.0114), Vector2(-1.00064, 18.0114), Vector2(-1.00064, 18.0114)]
+"values": [Vector2(-1.00064, 18.0114), Vector2(-1.00064, 18.0114)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -1251,10 +1251,10 @@ tracks/7/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.0, 0.0]
+"values": [0.0, 0.0]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
@@ -1275,10 +1275,10 @@ tracks/9/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D:position")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, -10), Vector2(0, -10), Vector2(0, -10)]
+"values": [Vector2(0, -10), Vector2(0, -10)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -1287,10 +1287,146 @@ tracks/10/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D:rotation")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [0.0, 0.261799, 0.0]
+"values": [0.0, 0.261799]
+}
+
+[sub_resource type="Animation" id="Animation_agjap"]
+resource_name = "抽出武器_2"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-11.0013, -31.0036), Vector2(-11.0013, -31.0036)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-2.75506, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1.00015, 19.0029), Vector2(-1.00015, 19.0029)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.59154, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(9.00105, -29.0034), Vector2(9.00105, -29.0034)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2D/左小臂Bone2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-1.00064, 18.0114), Vector2(-1.00064, 18.0114)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2D/左小臂Bone2D:rotation")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("骨骼层/骨骼/胯部节点:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -10), Vector2(0, -10)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.261799, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_eh1bk"]
@@ -1302,7 +1438,8 @@ _data = {
 &"pre_run": SubResource("Animation_lg5qc"),
 &"技能_一线闪_发射": SubResource("Animation_cnb45"),
 &"技能_一线闪_蓄力": SubResource("Animation_50t1q"),
-&"抽出武器": SubResource("Animation_aarxg")
+&"抽出武器": SubResource("Animation_aarxg"),
+&"抽出武器_2": SubResource("Animation_agjap")
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_270br"]
@@ -1334,7 +1471,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [0.0422168]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1346,7 +1483,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(-1.01717, 20.9845)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1358,7 +1495,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0.0]
+"values": [-0.0422257]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1370,7 +1507,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(1, 5)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1394,7 +1531,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(0, 22)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -1637,14 +1774,24 @@ script = ExtResource("1_b8lcn")
 
 [node name="骨骼层" type="Node2D" parent="."]
 
+[node name="背部武器" type="Sprite2D" parent="骨骼层"]
+position = Vector2(-5.99993, -18.9999)
+rotation = -1.97364
+scale = Vector2(0.999871, 0.999871)
+
+[node name="腰部武器" type="Sprite2D" parent="骨骼层"]
+position = Vector2(-10.9999, 4.99977)
+rotation = 2.52215
+scale = Vector2(0.999871, 0.999871)
+
 [node name="左臂" type="Sprite2D" parent="骨骼层"]
-position = Vector2(9.00001, -32)
-scale = Vector2(0.999366, 0.999366)
+position = Vector2(8.99989, -31.9998)
+scale = Vector2(0.999353, 0.999353)
 texture = ExtResource("1_lg5qc")
 
 [node name="左小臂" type="Sprite2D" parent="骨骼层"]
-position = Vector2(8, -6.00007)
-scale = Vector2(0.999366, 0.999366)
+position = Vector2(7.9999, -6.00014)
+scale = Vector2(0.999352, 0.999352)
 texture = ExtResource("2_f71jm")
 
 [node name="BasePlayerJoints" type="Sprite2D" parent="骨骼层/左小臂"]
@@ -1653,12 +1800,12 @@ scale = Vector2(1.00052, 1.00052)
 texture = ExtResource("8_f71jm")
 
 [node name="右大腿" type="Sprite2D" parent="骨骼层"]
-position = Vector2(1, 13.9985)
+position = Vector2(4, 13.9985)
 scale = Vector2(0.999833, 0.999833)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿" type="Sprite2D" parent="骨骼层"]
-position = Vector2(3.99908, 38.9927)
+position = Vector2(6.99908, 38.9927)
 scale = Vector2(0.999694, 0.999694)
 texture = ExtResource("4_ptjvs")
 
@@ -1679,7 +1826,8 @@ texture = ExtResource("5_270br")
 
 [node name="右大腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点"]
 position = Vector2(-4.00041, 6.0002)
-scale = Vector2(0.999847, 0.999847)
+rotation = 0.0422168
+scale = Vector2(0.999846, 0.999846)
 rest = Transform2D(0.998956, 0.0421978, -0.0421978, 0.998956, -4.00041, 6.0002)
 editor_settings/show_bone_gizmo = false
 
@@ -1688,6 +1836,8 @@ position = Vector2(-1, 9)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点/右大腿节点"]
+position = Vector2(-1.01717, 20.9845)
+rotation = -0.0422257
 scale = Vector2(0.999853, 0.999853)
 rest = Transform2D(0.998964, -0.042207, 0.042207, 0.998964, -1.01717, 20.9845)
 editor_settings/show_bone_gizmo = false
@@ -1716,9 +1866,19 @@ gizmo_extents = 13.9
 
 [node name="躯干Bone2D" type="Bone2D" parent="骨骼层/骨骼/胯部节点"]
 position = Vector2(0, -10)
-scale = Vector2(0.999884, 0.999884)
+scale = Vector2(0.999871, 0.999871)
 rest = Transform2D(0.999884, 0, 0, 0.999884, 0, -10)
 editor_settings/show_bone_gizmo = false
+
+[node name="背后武器" type="RemoteTransform2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D"]
+position = Vector2(-6.0007, -9.00104)
+rotation = -1.97364
+remote_path = NodePath("../../../../背部武器")
+
+[node name="腰部武器" type="RemoteTransform2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D"]
+position = Vector2(-11.0013, 15.0017)
+rotation = 2.52215
+remote_path = NodePath("../../../../腰部武器")
 
 [node name="躯干" type="Sprite2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D"]
 texture = ExtResource("6_35v2f")
@@ -1748,6 +1908,7 @@ remote_path = NodePath("../../../../../左臂")
 
 [node name="左小臂Bone2D" type="Bone2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D/左臂Bone2D"]
 position = Vector2(-1.00064, 18.0114)
+scale = Vector2(0.999999, 0.999999)
 rest = Transform2D(1, 0, 0, 1, -1.00064, 18.0114)
 editor_settings/show_bone_gizmo = false
 
@@ -1765,7 +1926,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="右臂Bone2D" type="Bone2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D"]
 position = Vector2(-11.0013, -31.0036)
-scale = Vector2(0.999948, 0.999948)
+scale = Vector2(0.999933, 0.999933)
 rest = Transform2D(0.999948, 0, 0, 0.999948, -11.0013, -31.0036)
 editor_settings/show_bone_gizmo = false
 
@@ -1780,9 +1941,12 @@ texture = ExtResource("8_f71jm")
 [node name="右小臂Bone2D" type="Bone2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D"]
 show_behind_parent = true
 position = Vector2(-1.00015, 19.0029)
-scale = Vector2(0.999989, 0.999989)
+scale = Vector2(0.99997, 0.99997)
 rest = Transform2D(0.999989, 0, 0, 0.999989, -1.00015, 19.0029)
 editor_settings/show_bone_gizmo = false
+
+[node name="武器持有" type="Sprite2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D"]
+position = Vector2(35.0063, 18.0035)
 
 [node name="右小臂" type="Sprite2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D"]
 position = Vector2(1.81317e-08, 13.0021)
@@ -1797,6 +1961,7 @@ bone_angle = 0.0
 editor_settings/show_bone_gizmo = false
 
 [node name="左大腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点"]
+position = Vector2(1, 5)
 scale = Vector2(0.999833, 0.999833)
 rest = Transform2D(0.999833, 0, 0, 0.999833, 1, 5)
 editor_settings/show_bone_gizmo = false
@@ -1806,6 +1971,7 @@ position = Vector2(0, 9)
 remote_path = NodePath("../../../../右大腿")
 
 [node name="左小腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点/左大腿节点"]
+position = Vector2(0, 22)
 scale = Vector2(0.999861, 0.999861)
 rest = Transform2D(0.999861, 0, 0, 0.999861, 0, 22)
 editor_settings/show_bone_gizmo = false
@@ -1887,6 +2053,20 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
 shape = SubResource("CircleShape2D_270br")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(146, 6)
+amount = 150
+lifetime = 3.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+radial_accel_min = -20.0
+radial_accel_max = -20.0
+damping_min = 1.0
+damping_max = 1.0
 
 [connection signal="animation_finished" from="AnimationPlayer_hand" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="pickup_range" to="." method="_on_pickup_range_body_entered"]
