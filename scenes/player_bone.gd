@@ -10,9 +10,17 @@ var current_item_id:int = -1
 var current_item:item
 var toward_right:bool = true     #朝向
 
+#region 实时数据
+var  enemy_in_view = []
+var  enemy_in_view_count:int = 0
+#endregion
+
+
+
 #region 开关组
 var pre_fight:bool = false
-
+var equip_weapon:bool = false
+var see_enemy:bool = false
 
 
 #endregion
@@ -23,7 +31,8 @@ var pre_fight:bool = false
 @onready var up_body = $body
 @onready var arm = $arm
 @onready var down_body = $AnimatedSprite2D
-
+@onready var 背部武器 = $"骨骼层/背部武器"
+@onready var 腰部武器 = $"骨骼层/腰部武器"
 
 #获得节点引用(非子节点）
 @onready var main = self.get_parent()
@@ -166,13 +175,16 @@ func _input(event: InputEvent) -> void:
 				change_state(CharacterState.RELEASING)
 	if Input.is_action_just_pressed("背部武器"):
 		if pre_fight:
-			animationplayer.play_backwards("抽出武器_2")
+			leave_fight()
+			
 			return
-		animationplayer.play("抽出武器")
+		perpare_fight()
+
 		
 	
 	
 	return
+	#region 旧拳击代码
 	if event is InputEventMouseButton and event.pressed:
 		if boxing_pre:
 			pass
@@ -194,7 +206,7 @@ func _input(event: InputEvent) -> void:
 					boxing  = 0
 					input_lock = true
 					return
-
+		#endregion
 
 
 ##########状态机处理###################
@@ -288,9 +300,17 @@ func update_charging(delta:float):
 	
 	
 	
-	
-	
-	
+func perpare_fight():
+	if equip_weapon:
+		animationplayer.play("抽出武器")
+	else:
+		animationplayer.play("boxing_pre")
+
+func leave_fight():
+	if equip_weapon:
+		animationplayer.play_backwards("抽出武器_2")
+	else:
+		animationplayer.play_backwards("boxing_pre")
 	
 ##############信号处理#####################	
 func _on_skill_end():
@@ -306,11 +326,11 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "抽出武器_2":
 		if pre_fight:
 			$"骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D/武器持有".texture = null
-			$"骨骼层/背部武器".texture = equipment_0.pic
+			背部武器.texture = equipment_0.pic
 			animationplayer.play_backwards("抽出武器")
 			return
 		$"骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D/武器持有".texture = equipment_0.pic
-		$"骨骼层/背部武器".texture = null
+		背部武器.texture = null
 		pre_fight = true
 	pass # Replace with function body.
 
@@ -320,13 +340,14 @@ func _on_equip_item(S_item:item):
 	if S_item.type in  [5,6,7,8]:
 		equipment_0 = S_item
 		if S_item.type == 6:
-			$"骨骼层/背部武器".flip_h = false
+			背部武器.flip_h = false
 		else:
-			$"骨骼层/背部武器".flip_h = true
-		$"骨骼层/背部武器".texture= S_item.pic
+			背部武器.flip_h = true
+		背部武器.texture= S_item.pic
 	if S_item.type in  [9,10,11,12]:
 		equipment_1 = S_item
-		$"骨骼层/腰部武器".texture= S_item.pic
+		腰部武器.texture= S_item.pic
+	equip_weapon = true
 	pass
 
 
@@ -380,4 +401,29 @@ func _on_pickup_range_body_entered(body: Node2D) -> void:
 	if body is RigidBody2D:
 		if body.can_pick:
 			auto_pickup(body)
+	pass # Replace with function body.
+
+
+func _on_战斗感知_body_entered(body: Node2D) -> void:
+	if body.is_in_group("monster"):
+		#enemy_in_view.append(body)
+		enemy_in_view_count+=1
+		see_enemy = true
+		if pre_fight:
+			return
+		animationplayer.play("抽出武器")
+	pass # Replace with function body.
+
+
+func _on_战斗感知_body_exited(body: Node2D) -> void:
+	if body.is_in_group("monster"):
+		###缺乏一个对怪物的管理系统
+		enemy_in_view_count-=1
+		if enemy_in_view_count != 0:
+			return
+		var leave_battle_timer = get_tree().create_timer(5.0)
+		await leave_battle_timer.timeout
+		if enemy_in_view_count == 0:
+			see_enemy = false
+			
 	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://docotfej45xef"]
+[gd_scene load_steps=36 format=3 uid="uid://docotfej45xef"]
 
 [ext_resource type="Script" uid="uid://dhvnlghapbglr" path="res://scenes/player_bone.gd" id="1_b8lcn"]
 [ext_resource type="Texture2D" uid="uid://cdknplcs1cq4x" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_arm_2.png" id="1_lg5qc"]
@@ -1768,6 +1768,9 @@ size = Vector2(28, 122)
 [sub_resource type="CircleShape2D" id="CircleShape2D_270br"]
 radius = 119.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_270br"]
+size = Vector2(2331.75, 1343)
+
 [node name="player_bone_by_no_polygan" type="CharacterBody2D"]
 collision_mask = 4
 script = ExtResource("1_b8lcn")
@@ -1800,12 +1803,12 @@ scale = Vector2(1.00052, 1.00052)
 texture = ExtResource("8_f71jm")
 
 [node name="右大腿" type="Sprite2D" parent="骨骼层"]
-position = Vector2(4, 13.9985)
+position = Vector2(1, 13.9985)
 scale = Vector2(0.999833, 0.999833)
 texture = ExtResource("3_b8lcn")
 
 [node name="右小腿" type="Sprite2D" parent="骨骼层"]
-position = Vector2(6.99908, 38.9927)
+position = Vector2(3.99908, 38.9927)
 scale = Vector2(0.999694, 0.999694)
 texture = ExtResource("4_ptjvs")
 
@@ -1838,7 +1841,7 @@ texture = ExtResource("3_b8lcn")
 [node name="右小腿节点" type="Bone2D" parent="骨骼层/骨骼/胯部节点/右大腿节点"]
 position = Vector2(-1.01717, 20.9845)
 rotation = -0.0422257
-scale = Vector2(0.999853, 0.999853)
+scale = Vector2(0.999852, 0.999852)
 rest = Transform2D(0.998964, -0.042207, 0.042207, 0.998964, -1.01717, 20.9845)
 editor_settings/show_bone_gizmo = false
 
@@ -2055,18 +2058,26 @@ collision_mask = 2
 shape = SubResource("CircleShape2D_270br")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+visible = false
 position = Vector2(146, 6)
-amount = 150
-lifetime = 3.0
-emission_shape = 1
-emission_sphere_radius = 50.0
+emitting = false
+amount = 10
+emission_shape = 5
+emission_points = PackedVector2Array(10, 0, 9.24, 3.83, 7.07, 7.07, 3.84, 9.24, 0, 10, -3.83, 9.24, -7.07, 7.07, -9.24, -3.83, -7.07, -7.07, -3.83, -9.24, 0, -10, 3.83, -9.24, 7.07, -7.07, -9.24, 3.83, -10, 0, 9.24, -3.83)
+emission_normals = PackedVector2Array()
+emission_colors = PackedColorArray()
 direction = Vector2(0, 0)
 spread = 0.0
 gravity = Vector2(0, 0)
 radial_accel_min = -20.0
-radial_accel_max = -20.0
-damping_min = 1.0
-damping_max = 1.0
+
+[node name="战斗感知" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="战斗感知"]
+position = Vector2(-1, -2)
+shape = SubResource("RectangleShape2D_270br")
 
 [connection signal="animation_finished" from="AnimationPlayer_hand" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="pickup_range" to="." method="_on_pickup_range_body_entered"]
+[connection signal="body_entered" from="战斗感知" to="." method="_on_战斗感知_body_entered"]
+[connection signal="body_exited" from="战斗感知" to="." method="_on_战斗感知_body_exited"]
