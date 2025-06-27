@@ -1,0 +1,51 @@
+[gd_resource type="SkeletonModificationStack2D" load_steps=5 format=3 uid="uid://d1f1t63f7dwc2"]
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_lg5qc"]
+enabled = false
+target_nodepath = NodePath("右脚指引点")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 1
+joint_data/0/bone2d_node = NodePath("胯部节点/右大腿节点")
+joint_data/1/bone_index = 2
+joint_data/1/bone2d_node = NodePath("胯部节点/右大腿节点/右小腿节点")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_f71jm"]
+enabled = false
+target_nodepath = NodePath("左脚指引点")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 12
+joint_data/0/bone2d_node = NodePath("胯部节点/左大腿节点")
+joint_data/1/bone_index = 13
+joint_data/1/bone2d_node = NodePath("胯部节点/左大腿节点/左小腿节点")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_b8lcn"]
+target_nodepath = NodePath("右手指引点")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 9
+joint_data/0/bone2d_node = NodePath("胯部节点/躯干Bone2D/右臂Bone2D")
+joint_data/1/bone_index = 10
+joint_data/1/bone2d_node = NodePath("胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D")
+joint_data/1/magnet_position = Vector2(-200, 200)
+joint_data/1/use_target_rotation = false
+
+[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_ptjvs"]
+enabled = false
+target_nodepath = NodePath("左手指引点")
+fabrik_data_chain_length = 2
+joint_data/0/bone_index = 6
+joint_data/0/bone2d_node = NodePath("胯部节点/躯干Bone2D/左臂Bone2D")
+joint_data/1/bone_index = 7
+joint_data/1/bone2d_node = NodePath("胯部节点/躯干Bone2D/左臂Bone2D/左小臂Bone2D")
+joint_data/1/magnet_position = Vector2(0, 0)
+joint_data/1/use_target_rotation = false
+
+[resource]
+modification_count = 4
+modifications/0 = SubResource("SkeletonModification2DFABRIK_lg5qc")
+modifications/1 = SubResource("SkeletonModification2DFABRIK_f71jm")
+modifications/2 = SubResource("SkeletonModification2DFABRIK_b8lcn")
+modifications/3 = SubResource("SkeletonModification2DFABRIK_ptjvs")

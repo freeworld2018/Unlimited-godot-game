@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://docotfej45xef"]
+[gd_scene load_steps=32 format=3 uid="uid://docotfej45xef"]
 
 [ext_resource type="Script" uid="uid://dhvnlghapbglr" path="res://scenes/player_bone.gd" id="1_b8lcn"]
 [ext_resource type="Texture2D" uid="uid://cdknplcs1cq4x" path="res://gane_assets/art/base_player/player_pieces/base_player_upper_arm_2.png" id="1_lg5qc"]
@@ -11,57 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://c4c3huuo632m6" path="res://gane_assets/art/base_player/player_pieces/base_player_joint.png" id="8_f71jm"]
 [ext_resource type="Animation" uid="uid://5151m4siqhvo" path="res://animationplayer_assets/walk.res" id="10_ptjvs"]
 [ext_resource type="PackedScene" uid="uid://d3t30voed6amp" path="res://scenes/skill/charged_skill/技能_一线闪.tscn" id="11_270br"]
-
-[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_lg5qc"]
-enabled = false
-target_nodepath = NodePath("右脚指引点")
-fabrik_data_chain_length = 2
-joint_data/0/bone_index = 1
-joint_data/0/bone2d_node = NodePath("胯部节点/右大腿节点")
-joint_data/1/bone_index = 2
-joint_data/1/bone2d_node = NodePath("胯部节点/右大腿节点/右小腿节点")
-joint_data/1/magnet_position = Vector2(0, 0)
-joint_data/1/use_target_rotation = false
-
-[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_f71jm"]
-enabled = false
-target_nodepath = NodePath("左脚指引点")
-fabrik_data_chain_length = 2
-joint_data/0/bone_index = 12
-joint_data/0/bone2d_node = NodePath("胯部节点/左大腿节点")
-joint_data/1/bone_index = 13
-joint_data/1/bone2d_node = NodePath("胯部节点/左大腿节点/左小腿节点")
-joint_data/1/magnet_position = Vector2(0, 0)
-joint_data/1/use_target_rotation = false
-
-[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_b8lcn"]
-enabled = false
-target_nodepath = NodePath("右手指引点")
-fabrik_data_chain_length = 2
-joint_data/0/bone_index = 9
-joint_data/0/bone2d_node = NodePath("胯部节点/躯干Bone2D/右臂Bone2D")
-joint_data/1/bone_index = 10
-joint_data/1/bone2d_node = NodePath("胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D")
-joint_data/1/magnet_position = Vector2(-200, 200)
-joint_data/1/use_target_rotation = false
-
-[sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_ptjvs"]
-enabled = false
-target_nodepath = NodePath("左手指引点")
-fabrik_data_chain_length = 2
-joint_data/0/bone_index = 6
-joint_data/0/bone2d_node = NodePath("胯部节点/躯干Bone2D/左臂Bone2D")
-joint_data/1/bone_index = 7
-joint_data/1/bone2d_node = NodePath("胯部节点/躯干Bone2D/左臂Bone2D/左小臂Bone2D")
-joint_data/1/magnet_position = Vector2(0, 0)
-joint_data/1/use_target_rotation = false
-
-[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_cnb45"]
-modification_count = 4
-modifications/0 = SubResource("SkeletonModification2DFABRIK_lg5qc")
-modifications/1 = SubResource("SkeletonModification2DFABRIK_f71jm")
-modifications/2 = SubResource("SkeletonModification2DFABRIK_b8lcn")
-modifications/3 = SubResource("SkeletonModification2DFABRIK_ptjvs")
 
 [sub_resource type="Animation" id="Animation_thm3a"]
 tracks/0/type = "value"
@@ -691,6 +640,58 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [-0.094951, -0.094951, -0.0949515, 1.6283, 0.561602, -0.0949509]
+}
+
+[sub_resource type="Animation" id="Animation_15wv4"]
+resource_name = "weapon_attack_长剑"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-11.016, -31.0166), Vector2(-11.0196, -31.0166), Vector2(-11.022, -31.0166)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.93181, -0.838148, 0.466564]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-1.00016, 19.0029), Vector2(-1.00015, 19.0029), Vector2(-1.00015, 19.0029)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D/右小臂Bone2D:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-0.225797, -0.574748, -0.143536]
 }
 
 [sub_resource type="Animation" id="Animation_cnb45"]
@@ -1436,6 +1437,7 @@ _data = {
 &"boxing_punch_1": SubResource("Animation_b8lcn"),
 &"boxing_punch_2": SubResource("Animation_ptjvs"),
 &"pre_run": SubResource("Animation_lg5qc"),
+&"weapon_attack_长剑": SubResource("Animation_15wv4"),
 &"技能_一线闪_发射": SubResource("Animation_cnb45"),
 &"技能_一线闪_蓄力": SubResource("Animation_50t1q"),
 &"抽出武器": SubResource("Animation_aarxg"),
@@ -1818,7 +1820,6 @@ scale = Vector2(1.00027, 1.00027)
 texture = ExtResource("8_f71jm")
 
 [node name="骨骼" type="Skeleton2D" parent="骨骼层"]
-modification_stack = SubResource("SkeletonModificationStack2D_cnb45")
 
 [node name="胯部节点" type="Bone2D" parent="骨骼层/骨骼"]
 rest = Transform2D(1, 0, 0, 1, 0, 0)
@@ -1929,7 +1930,7 @@ editor_settings/show_bone_gizmo = false
 
 [node name="右臂Bone2D" type="Bone2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D"]
 position = Vector2(-11.0013, -31.0036)
-scale = Vector2(0.999933, 0.999933)
+scale = Vector2(1.00216, 1.00216)
 rest = Transform2D(0.999948, 0, 0, 0.999948, -11.0013, -31.0036)
 editor_settings/show_bone_gizmo = false
 
@@ -1944,7 +1945,7 @@ texture = ExtResource("8_f71jm")
 [node name="右小臂Bone2D" type="Bone2D" parent="骨骼层/骨骼/胯部节点/躯干Bone2D/右臂Bone2D"]
 show_behind_parent = true
 position = Vector2(-1.00015, 19.0029)
-scale = Vector2(0.99997, 0.99997)
+scale = Vector2(0.999964, 0.999964)
 rest = Transform2D(0.999989, 0, 0, 0.999989, -1.00015, 19.0029)
 editor_settings/show_bone_gizmo = false
 
@@ -2005,8 +2006,7 @@ visible = false
 position = Vector2(44, 2)
 
 [node name="右手指引点" type="Marker2D" parent="骨骼层/骨骼"]
-visible = false
-position = Vector2(142, -87)
+position = Vector2(-29, 1)
 gizmo_extents = 155.3
 
 [node name="AnimationPlayer_hand" type="AnimationPlayer" parent="."]
@@ -2052,6 +2052,7 @@ offset_bottom = -75.0
 color = Color(1, 0.792157, 0.341176, 1)
 
 [node name="pickup_range" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pickup_range"]
@@ -2072,6 +2073,7 @@ gravity = Vector2(0, 0)
 radial_accel_min = -20.0
 
 [node name="战斗感知" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="战斗感知"]
 position = Vector2(-1, -2)

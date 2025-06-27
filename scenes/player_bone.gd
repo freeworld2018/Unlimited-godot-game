@@ -140,7 +140,7 @@ func _physics_process(delta: float) -> void:
 		jump_level = 0
 	else:
 		velocity.y += gravity * delta
-	
+
 	var direction2 = Input.get_axis("move_left", "move_right")
 	if direction2:
 		velocity.x = direction2 * SPEED
@@ -176,7 +176,6 @@ func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("背部武器"):
 		if pre_fight:
 			leave_fight()
-			
 			return
 		perpare_fight()
 
@@ -219,6 +218,7 @@ func enter_state(new_state:int):
 			animationplayer_2.play("walk")
 			pass
 		CharacterState.ATTACKING:
+			
 			pass
 		CharacterState.USING_SKILL:
 			pass
@@ -249,6 +249,7 @@ func update_state(delta:float):
 			update_walking(delta)
 			pass
 		CharacterState.ATTACKING:
+			update_attacking(delta)
 			pass
 		CharacterState.USING_SKILL:
 			pass
@@ -297,7 +298,8 @@ func update_charging(delta:float):
 	charge_time += delta
 	
 	pass
-	
+func update_attacking(delta:float):
+	pass
 	
 	
 func perpare_fight():
@@ -305,12 +307,16 @@ func perpare_fight():
 		animationplayer.play("抽出武器")
 	else:
 		animationplayer.play("boxing_pre")
+		await animationplayer.animation_finished
+		pre_fight = true
 
 func leave_fight():
 	if equip_weapon:
 		animationplayer.play_backwards("抽出武器_2")
 	else:
 		animationplayer.play_backwards("boxing_pre")
+		await animationplayer.animation_finished
+		pre_fight = false
 	
 ##############信号处理#####################	
 func _on_skill_end():

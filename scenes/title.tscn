@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddr64jk40d0sj"]
+
+[ext_resource type="Texture2D" uid="uid://c6q25fvs28u46" path="res://gane_assets/art/back_pic/parallax_ground_1.png" id="1_p6dhs"]
+[ext_resource type="Script" uid="uid://cwl6oq6jityll" path="res://scenes/title.gd" id="1_pyl7j"]
+[ext_resource type="Texture2D" uid="uid://ctjtpjbp3875a" path="res://gane_assets/art/ui/title_1.png" id="2_pyl7j"]
+[ext_resource type="Shader" uid="uid://d20d2xk87jqxl" path="res://shader/flash.gdshader" id="3_4rr2b"]
+[ext_resource type="Texture2D" uid="uid://ig7j2qap4rh1" path="res://gane_assets/art/ui/卢恩文字集.png" id="3_b3w7a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yql1r"]
+shader = ExtResource("3_4rr2b")
+shader_parameter/Process = 2.0
+shader_parameter/Line_Smoothness = 0.037
+shader_parameter/Line_Width = 0.366
+shader_parameter/Brightness = 6.51
+shader_parameter/Rotation_deg = 8.961
+shader_parameter/Distortion = 1.8
+shader_parameter/Speed = 0.3
+shader_parameter/Position = 0.383
+shader_parameter/Position_Min = 0.25
+shader_parameter/Position_Max = 0.5
+shader_parameter/Alpha = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3w7a"]
+size = Vector2(766.897, 65.8995)
+
+[node name="title" type="Node2D"]
+script = ExtResource("1_pyl7j")
+
+[node name="ParallaxGround1" type="Sprite2D" parent="."]
+position = Vector2(616, 542)
+scale = Vector2(1.64666, 1.94727)
+texture = ExtResource("1_p6dhs")
+
+[node name="Title2" type="Sprite2D" parent="."]
+position = Vector2(586, 151)
+scale = Vector2(1.36785, 1.38089)
+texture = ExtResource("2_pyl7j")
+
+[node name="Title1" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_yql1r")
+position = Vector2(586, 151)
+scale = Vector2(1.36785, 1.38089)
+texture = ExtResource("2_pyl7j")
+
+[node name="Area2D" type="Area2D" parent="Title1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Title1/Area2D"]
+position = Vector2(-1.82767, -5.43127)
+shape = SubResource("RectangleShape2D_b3w7a")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(400, 450)
+texture = ExtResource("3_b3w7a")
+hframes = 17
+vframes = 8
+frame = 22
+
+[node name="Sprite2D2" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(450, 450)
+texture = ExtResource("3_b3w7a")
+hframes = 17
+vframes = 8
+
+[node name="Sprite2D3" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(500, 450)
+texture = ExtResource("3_b3w7a")
+hframes = 17
+vframes = 8
+
+[node name="Sprite2D4" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(550, 450)
+texture = ExtResource("3_b3w7a")
+hframes = 17
+vframes = 8
+frame = 4
+
+[node name="Sprite2D5" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(600, 450)
+texture = ExtResource("3_b3w7a")
+hframes = 17
+vframes = 8
+
+[node name="Button" type="Button" parent="."]
+offset_left = 412.0
+offset_top = 431.0
+offset_right = 738.0
+offset_bottom = 510.0
+text = "开始游戏"
+
+[connection signal="mouse_entered" from="Title1/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Title1/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

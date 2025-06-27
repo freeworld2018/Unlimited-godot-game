@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0y6nx80kyjey"]
+
+[ext_resource type="Script" uid="uid://cgs8mtoutqoo" path="res://scenes/unknown_tres/触手模拟.gd" id="1_bl218"]
+[ext_resource type="Texture2D" uid="uid://b7ro6bmnp0o57" path="res://icon.jpg" id="2_eq67r"]
+
+[sub_resource type="Curve2D" id="Curve2D_bl218"]
+
+[node name="触手模拟" type="Node2D"]
+script = ExtResource("1_bl218")
+
+[node name="Icon" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(226, 487)
+scale = Vector2(0.27, 0.289735)
+texture = ExtResource("2_eq67r")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(334, 214)
+
+[node name="ColorRect" type="ColorRect" parent="Marker2D"]
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(210, 364)
+
+[node name="ColorRect" type="ColorRect" parent="Marker2D2"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 0, 0, 1)
+
+[node name="Marker2D3" type="Marker2D" parent="."]
+position = Vector2(598, 503)
+
+[node name="ColorRect" type="ColorRect" parent="Marker2D3"]
+offset_right = 40.0
+offset_bottom = 40.0
+color = Color(1, 1, 0, 1)
+
+[node name="Marker2D4" type="Marker2D" parent="."]
+position = Vector2(840, 410)
+
+[node name="ColorRect" type="ColorRect" parent="Marker2D4"]
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_bl218")
+
+[node name="Line2D" type="Line2D" parent="Path2D"]
+width = 2.0
