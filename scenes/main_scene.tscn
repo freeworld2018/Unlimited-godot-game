@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cl22my813xjis"]
+[gd_scene load_steps=16 format=3 uid="uid://cl22my813xjis"]
 
 [ext_resource type="Script" uid="uid://qvw5sxx3exu2" path="res://scenes/main_scene.gd" id="1_pkn42"]
 [ext_resource type="Texture2D" uid="uid://c6q25fvs28u46" path="res://gane_assets/art/back_pic/parallax_ground_1.png" id="2_0f5b0"]
@@ -6,12 +6,26 @@
 [ext_resource type="Texture2D" uid="uid://dtec3dnwnlg7s" path="res://gane_assets/art/back_pic/mountain_1.png" id="3_dujm8"]
 [ext_resource type="Texture2D" uid="uid://qe51ylp0qjcy" path="res://gane_assets/art/back_pic/forest_shadow.png" id="4_7d12v"]
 [ext_resource type="Texture2D" uid="uid://b6jdqmlwr7r55" path="res://gane_assets/art/back_pic/parallax_black_tree_shadow_1.png" id="4_mngbo"]
-[ext_resource type="PackedScene" uid="uid://cblbvmecsh7eh" path="res://scenes/building/box.tscn" id="5_b6kwy"]
 [ext_resource type="Texture2D" uid="uid://dvkqxi4m7xqu0" path="res://gane_assets/art/back_pic/tree_1.png" id="5_sojf6"]
 [ext_resource type="PackedScene" uid="uid://docotfej45xef" path="res://scenes/player_bone.tscn" id="8_mngbo"]
 [ext_resource type="PackedScene" uid="uid://pomkjln67fbm" path="res://scenes/ui.tscn" id="10_0ccap"]
 [ext_resource type="Script" uid="uid://cqvwvfyvgxsd" path="res://scenes/command_window.gd" id="11_e1cbu"]
+[ext_resource type="Shader" uid="uid://sv62e3hutmjj" path="res://shader/portal.gdshader" id="13_si52b"]
 [ext_resource type="PackedScene" uid="uid://bs3ye1a1n0bh0" path="res://scenes/enemies/scarecrow.tscn" id="14_0f5b0"]
+[ext_resource type="Texture2D" uid="uid://cuai00m3ox0d7" path="res://gane_assets/art/building/portal_2.png" id="15_01n6w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bcnxi"]
+shader = ExtResource("13_si52b")
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.76
+shader_parameter/size = 1.085
+shader_parameter/speed = 1.405
+shader_parameter/ray1_density = 8.72
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.3
+shader_parameter/core_intensity = 2.0
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ujykm"]
 size = Vector2(1000, 200)
@@ -20,6 +34,7 @@ size = Vector2(1000, 200)
 script = ExtResource("1_pkn42")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="sky" type="Parallax2D" parent="ParallaxBackground"]
 scroll_offset = Vector2(0, -550)
@@ -73,6 +88,19 @@ repeat_times = 40
 visible = false
 texture = ExtResource("5_sojf6")
 
+[node name="background" type="Node2D" parent="."]
+
+[node name="Portal2" type="Sprite2D" parent="background"]
+position = Vector2(231, 1056)
+texture = ExtResource("15_01n6w")
+
+[node name="ColorRect" type="ColorRect" parent="background/Portal2"]
+material = SubResource("ShaderMaterial_bcnxi")
+offset_left = -123.0
+offset_top = -150.0
+offset_right = 122.0
+offset_bottom = 229.0
+
 [node name="ground" type="Node2D" parent="."]
 
 [node name="ground" type="StaticBody2D" parent="ground"]
@@ -108,9 +136,6 @@ position = Vector2(564, 813)
 [node name="控制相机" type="RemoteTransform2D" parent="player"]
 remote_path = NodePath("../../Camera2D")
 
-[node name="Box" parent="." instance=ExtResource("5_b6kwy")]
-position = Vector2(1425, 868)
-
 [node name="timernode" type="Node" parent="."]
 
 [node name="Timer" type="Timer" parent="timernode"]
@@ -124,6 +149,7 @@ collision_mask = 4
 [node name="enemy and bullets" type="Node2D" parent="."]
 
 [node name="UI_layer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="UI" parent="UI_layer" instance=ExtResource("10_0ccap")]
 

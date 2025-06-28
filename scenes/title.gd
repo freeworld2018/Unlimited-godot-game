@@ -13,7 +13,7 @@ func _ready() -> void:
 func _on_button_pressed() -> void:
 	#
 	get_tree().change_scene_to_file("res://scenes/pre_game.tscn")
-	queue_free()
+
 	pass # Replace with function body.
 
 
@@ -22,7 +22,7 @@ func _on_area_2d_mouse_entered() -> void:
 	title_tween = get_tree().create_tween()
 	title_tween.tween_method(set_title_shader_parameter,$Title1.material.get_shader_parameter("Process"),0.085,2.0)
 	await title_tween.finished
-	print("yes2")
+	$ParallaxGround1.modulate = Color(2.0,1.0,1.0)
 	
 	pass # Replace with function body.
 
